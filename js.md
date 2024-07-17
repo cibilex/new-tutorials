@@ -18,13 +18,31 @@ Tarayıcının kendi tercihine kalmıştır microtask queue mu yoksa callback qu
 
 arrow fonksiyonun kendi execution contexti olmaz ve parent execution contexti içerisinde çalışır.
 
-closure :a closure allow us to access outer function scope in a inner function.
+closure :a closure allow us to access outer function scope in a inner function.Closure is combination of lexical scope and inner function.
+
+lexical scope is environment of outer function which includes variables,functions and objects.
+```ts
+function getUser(fromEnd: boolean) {
+  const users = ["ahmet", "mehmet", "ali"];
+
+  return function write(index: number) {
+    return fromEnd ? users.reverse()[index] : users[index];
+  };
+}
+
+const write = getUser(true);
+
+console.log(write(1)); // mehmet
+
+console.log(write(0)); // ahmet
+```
+
+
 
 heap : storage of all the variables  
 microtask queue  
 callback queue  
 browser  
-lexical scope
 
 **generator functions**:are used to access execution context and yield multiple result from a function via multiple calls.
 
