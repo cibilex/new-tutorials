@@ -1,0 +1,21 @@
+# Passive Voice
+- özneye bu işi yapabiliyor musun,böyle bir yeteneğin var mı. var ise aktif yok ise pasif
+- `Mehmet has  cleaned the board` `The board has been cleaned by Mehmet.`
+- SVO da O yu bulmak için I verb what veya neyi,kimi soruları verbe sorulur. sorulamıyorsa aktif cümle.Sorulabiliryorsa ve cevap varsa aktif yoksa pasif.
+- Pasif cümlelerde genelde fiilden sonra Obje almaz,sonrasında prep seve özellikle by.
+- ıt cümleleri passive olur(Boş özne). `It is considered that`
+- Her by cümlesi passive değildir.Tarafından anlamı vermeli.
+- `Has suggested that ....` that kısmındaki noun clause ana cümlenin objecti ve kendi içinde bir svo olur.
+- Sorularda kimi neyi cevabı var diye hemen eleme.Özne o eylemi yapabiliyorsa çeviri yap.
+- **Ergative verbs**: can be both transitive and intransitive.
+     - kimin yaptığı cümlede var mı
+         - varsa: pasif
+         - yoksa: active
+     - Yani geçişli haldeki nesne geçişsiz haldeki özneyle aynı ise.
+     - `Mike closes the shop at 9 pm on the weekends.`
+     - `The shop is closed by Mike at 9m on the weekends`
+     - `The shop closes at 9 pm on the weekends.`
+     - Hepsi doğru.
+     - `begin`  `open` `close` `stop` `start` `finish` `end`  `move` `turn` `crack`  `shake`  `change` `tear` `break` ` improve` `increase` `dicrease` `drop` `dry` `grow` 
+
+-

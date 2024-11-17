@@ -1,6 +1,6 @@
 # Gerunds and infinitives
 
-- gerunds always acts like nouns or noun pharases.They are not verbs.
+- gerunds always acts like nouns or noun pharases.They are not verbs.        
 **These words are used with gerunds**
 avoid
 advice
@@ -129,10 +129,10 @@ finish
 * pasif cümlelerde istisnalar dışında to verb0 alır.
      - `catch,see,heard` +gerund
      - `find`=>... yaparken ise gerund,.... olduğu,yaptığı keşfedildi farkedildi to verb0   
-* ,verb ... => ask questions verbs to determine  whether is transitive or intransitive.`neyi,kimi,kime,neye`>cavap yoksa intransitive varsa transitive o zaman object olmalı>obje ara varsa aktif yoksa pasif cümle.
+* ,verb ... => 
     - if the sentence is active  : `gerund` 
     - if the sentence is passive : `verb3`
-* adjective ... => ask questions verbs to determine  whether is transitive or intransitive.`neyi,kimi,kime,neye`>cavap yoksa intransitive varsa transitive o zaman object olmalı>obje ara varsa aktif yoksa pasif cümle.
+* adjective ... => 
     - if the sentence is active  : `infinitive` 
     - if the sentence is passive : `to be verb3`
 Other examples:
@@ -145,7 +145,7 @@ Other examples:
 - ipucu yoksa 
   1. infinitive=>amaç,hedef
   2. gerund=>adjective clause kısaltması veya özne durumundaki fiil.
-    
+
 
 - He put off returning to paris. he postponed getting back to paris.
 - Tony advised you to get on the train. Tony proposed getting on the train.

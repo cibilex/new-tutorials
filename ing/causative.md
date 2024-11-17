@@ -9,4 +9,3 @@
 **passive causative**: agent is optional. `subject+causative verb+object +verb3`
 1. get and let can be used and bot are the same meaning.
 - `I got my car fixed`
-- 

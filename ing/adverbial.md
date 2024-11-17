@@ -274,3 +274,4 @@ Zaman bağlaç kuralları:
 
 
 
+

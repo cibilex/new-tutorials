@@ -11,7 +11,7 @@
     1. If objects are the same: `subject+would rather+have+verb3`
     2. If objects are different: `subject+would rather+had+verb3`
 
-- I would rather go than school by bus to by my motorcycle.
+- I would rather go  school than by bus to by my motorcycle.
 - I’d rather you treated me kindly.
 - I’d rather  have eaten meat at this restaurant than the other.
 - I’d rather you had brought me an expensive gift than this trash.

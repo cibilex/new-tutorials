@@ -17,6 +17,8 @@
      - `I like swimming in summer.`
 6. car,taxi
      - `will you get in the car?`
+7. Bilim alanında anlamını in verir.
+      - `in computer science` `in Math`
 - **on**
 1. If location is over or hand a thing
     - `The key is on the table` 
@@ -58,6 +60,7 @@
     - `Your legs are under the table.` 
   2. **below-belowneath** lower location
     `My mouth is below my nose.`
+  3. beneath=under
 - **of**:
     - `the rooms of the house`
     - `both of the apples`
@@ -87,6 +90,5 @@
 - `The house is on fire.`
 - `you are in trouble` `in danger`
 - `responsible for`
-- `looking to`
-- `contrary to`
 - ` I have pain in my legs`
+-  `, ... noun pharase ving` =>withe kaysın aklın,bununla birlikle,ile anlamı verir.

@@ -10,7 +10,7 @@
 10. **liblary-framework arasındaki fark**
 11. **two-way data binding vs one-way data binding**
 12. **pinia vs vuex**
-13. 
+13. **fixed length vs variable length encoding**
 
 
 
