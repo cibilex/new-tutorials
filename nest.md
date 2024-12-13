@@ -1,3 +1,16 @@
+1. nest-cli(create project,create module,services ...)
+2. nest with fastify
+3. services,service with variable,controllers ,Decorators
+4. modules,dynamic,moduleRef
+5. nest/config
+6. middlewares
+7. built-in pipes,class-validator,class-transformers
+8. exceptions,built in exceptions,custom exceptions,exception filter(handler)
+9. 
+
+
+Not: Authentication
+
 nest
 https://www.youtube.com/watch?v=tC9llkCzvl8
 https://www.youtube.com/watch?v=xzu3QXwo1BU&list=PL_cUvD4qzbkw-phjGK2qq0nQiGtjkwC9llkCzvl86gw1cKK
@@ -51,7 +64,7 @@ The last trick is to disable to create files when using @nestjs/cli.To instantia
 
 Middlewares
 NestJS middlewares yapı olarak Express middlewareleri ile aynıdır.Handlerdan önce çalışırlar ve req,res objeleri üzerinde modify işlemi veya loglama gibi herhangi bir amaç için kullanılabilirler.
-Middlewareler class veya fonksiyon olabilir ve req,res,next olmak üzere üç parametre alırlar.Class olarak kullanırken type desteği için NestMiddleware den implement edilebilir.
+Middlewareler class veya fonksiyon olabilir ve req,res,next olmak üzere üç parametre alırlar.Class olarak kullanırken type desteği için `NestMiddleware` den implement edilebilir.
 
 Fastify middlewareler için req,res değerlerinde raw hallerini sunar çünkü Wrapper işlemi middleware aşamasından sonra olur.Bu yüzden .send gibi methodlar middlewarelerde değil hooklarda(mesela preHandler) gibi aşamalarda kullanılabilir.
 Middleware modüle eklemek için module classının içerisindeki use fonksiyonu kullanılır.use fonksiyonu consumer parametresini alır ve consumer.apply(Middleware) yöntemi ile module eklenir.
@@ -89,9 +102,10 @@ export class AppModule implements NestModule {
 
 Note: Expressten farklı olarak Fastify middleware içerisinde response döndürülemez.!!
 
-forRoutes ile uygulanacak pathler veya exclude ile uygulanmayacak pathler belirtilebilir.Ayrıca forRoutes('/user') yazmak yerine forRoutes({ path: '/user', method: RequestMethod.GET }) gibi bir özelleştirme yapılarak sadece GET methodu içinde çalıştırılabilir.Her iki fonksiyounda rest parameter tipindedir yani istenildiği kadar parametre eklenebilir.
+`forRoutes` ile uygulanacak pathler veya `exclude` ile uygulanmayacak pathler belirtilebilir.Ayrıca forRoutes('/user') yazmak yerine forRoutes({ path: '/user', method: RequestMethod.GET }) gibi bir özelleştirme yapılarak sadece GET methodu içinde çalıştırılabilir.Her iki fonksiyounda rest parameter tipindedir yani istenildiği kadar parametre eklenebilir.
 
-Functional Middlewares: Express middlewarın aynısıdır.@Injectable,NestModule kullanmaya gerek yoktur. class middlewarin aynısı gibi (consumer.apply(middleware)) veya global olarak main.ts dosyasında app.use(middleware) olarak eklenebilir.
+Ayrıca main.ts dosyasında app.use(middleware) ile global olarak eklenebilir.Functional middleware sadece global olarak kullanılabilir.Class versiyonunda .forRoutes('*') denilirse aynı anlama gelir.
+
 
 ```ts
 ///autheticate/authenticate.middleware.ts
@@ -237,7 +251,13 @@ Birkaç farklı kullanım yöntemi mevcuttur.
 //main.ts
 app.useGlobalFilters(new HttpExceptionFilter());
 ```
-
+4. Global-scope olarak kullanma vol2:app.module.ts>providers içine
+```ts
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    }
+```
 Bu yöntemler hata ayıklamamızı inanılmaz derecede kolaylaştırır :))))
 
 Pipes
@@ -270,7 +290,7 @@ Note: Hem class-validator hemde class-transformer ile çalışırken interface v
 class-validator: classlar ile beraber kullanılan decoratorlar ile validasyon işlemleri yapmamızı sağlar.
 
 `npm i class-validator class-transformer`
-Nestjs built-in ValidationPipe ile class-validator ve class-transformer desteği sunar.Global olarak uygulamamıza ekleyelim
+Nestjs built-in `ValidationPipe` ile class-validator ve class-transformer desteği sunar.Global olarak uygulamamıza ekleyelim
 
 ```ts
 //main.ts
@@ -356,7 +376,7 @@ export class CreateInvoice {
 Mapped Types:
 Classlar ile validasyon ve transformation işlemlerini yaptığımız için ve değerlerin compile-time aşamasında silinmemesi için
 TypeScriptin Utility typelarını kullanamayız.Bunların yerine NestJS bize built-in bazı Mapped typelar sunar.Açıklamalarını yapmayacağız çünkü TypeScriptteki utility type işleminin aynısını veriler üzerinde yaparlar.TypeScript serimizi okumadıysanız lütfen buraya tıklayarak göz atın.
-
+Mapped types paketini indirmeliyiz. `npm i @nestjs/mapped-types`
 1. PartialType >Partial
 2. PickType>Pick
 3. OmitType>Omit
@@ -391,7 +411,7 @@ export class UpdateInvoiceDto extends PartialType(
 ### Validation nested objects
 
 @ValidateNested decorator is used to validate nested objects or arrays.
-@Type decorator is used to explicitly describe the type of an property.With nested objects all the we must the @Type decorator because of TypeScript doesn't have enough good reflection abilities yet.
+@Type decorator is used to explicitly describe the type of an property.With nested objects all the we must use the @Type decorator because of TypeScript doesn't have enough good reflection abilities yet.
 So let's make an example which validate arrays
 
 ```ts
@@ -437,8 +457,8 @@ Bir guardın return değeri false ise handlera erişilemez ve 403 hata kodu dön
 
 ##Metadata  
 Metadata genelde yetkilendirme için kullanılan ve controller veya handlera eklenebilen bilgilerdir.Bu bilgiler Guards veya Inteseptorlarda alınarak kullanılırlar.
-SetMetaData(keyName,value)  
-UseGuards(guards) : Controller veya handlerda kullanılacak Guardsları eklemek için kullanılır.
+`@SetMetaData(keyName,value)`  
+`@UseGuards(guards)` : Controller veya handlerda kullanılacak Guardsları eklemek için kullanılır.
 
 Mesela handlerları giriş gerektirme-gerektirmeme durumlarına göre metadatalar ekleyerek authorization işlemi için aşağıdaki gibi bir yöntem kullanabiliriz.
 
@@ -486,7 +506,8 @@ const auth = this.reflector.get(Auth, ctx.getHandler());
 Gördüğünüz gibi hem daha basit,hemde typelar üzerinden gidildiği için hata yapılmasını engeller.
 
 Reflector classı ayrıca 2 kullanışlı fonksiyon daha sunar
-.getAllAndOverride(Decorator, []): girilen değerleri teke indirir.  
+.getall(decorator,[]):her birini array indexi olarak döner.
+.getAllAndOverride(Decorator, []): girilen değerleri teke indirir. Sondan başlar ve çalıştırır,başa gelirken ezer.
 ..reflector.getAllAndMerge(Decorator,[]): girilen değerlerin tamamını içeren bir array oluşturur.
 
 Bir Guardı global olarak kullanmak için
@@ -496,7 +517,7 @@ Bir Guardı global olarak kullanmak için
 app.useGlobalGuards(new AuthGuard(new Reflector()));
 ```
 
-Bu yöntem ile global olarak eklenen guardlar NestJS modülleri ayağa kalktıktan sonra eklenir.Bu nedenle Dependecy Injectiona dahil edilmezler.Bu sorunu çözmek ve yukardaki yöntem yerine,herhangi bir module içerisine provide:APP_GUARD tokenı ile eklemek daha kullanışlıdır.
+Bu yöntem ile global olarak eklenen guardlar NestJS modülleri ayağa kalktıktan sonra eklenir.Bu nedenle Dependecy Injectiona dahil edilmezler.Bu sorunu çözmek ve yukardaki yöntem yerine,herhangi bir module içerisine `provide:APP_GUARD` tokenı ile eklemek daha kullanışlıdır.
 
 ```ts
 @Module({
@@ -540,6 +561,16 @@ export const User = createParamDecorator(
     console.log(id);
     return id;
   }
+
+
+  // src>types>fastify.ts  extend fastify request ,add request.user type
+import fastify from 'fastify';
+declare module 'fastify' {
+  export interface FastifyRequest {
+    user?: { id: number; username: string };
+  }
+}
+
 ```
 
 Moreover,multiple guards ana bir decorator içine toplanabilir.
@@ -627,7 +658,7 @@ controller:onApplicationShutdown
 module:onApplicationShutdown
 ```
 
-Authentication:
+Authorization:
 
 0Auth(Open Authorization) bir clientin kendisine verilmiş bir cryptographic token ile kaynak sahibinin adına işlem yapabilmesi için yetkilendirilmesini sağlayan açık kaynaklı bir frameworktur.
 ![auth-image](https://assets.digitalocean.com/articles/oauth/auth_code_flow.png)
@@ -856,7 +887,7 @@ Both cors and helmet must be registered top of middlewares to work correctly.
 
 ###Configurations
 
-nest/swagger paketi internal olarak dotenv kullanır.Default olarak import edildiği paketlerde env dosyaları kullanılabilirken,isGlobal:true diyerek global olarak eklenebilir.
+`@nest/config` paketi internal olarak dotenv kullanır.Default olarak import edildiği paketlerde env dosyaları kullanılabilirken,isGlobal:true diyerek global olarak eklenebilir.
 
 Default olarak projenin ana dizinindeki .env dosyasına bakılır.Farklı bir dosyayı tanımlamak için envFilePath kullanılır.
 Environmentları key-value şeklinde string olarak kullanmak yerine bir js dosyasında formatlama ve default değer atama işlemlerini yapabiliriz.

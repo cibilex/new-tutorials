@@ -1,3 +1,13 @@
+https://www.hackerrank.com/apply?roles=%5B%22Back-End+Developer%22%2C%22Back-End+Developer+%28Node%29%22%2C%22Back-End+Developer+%28Node.js%29%22%2C%22Backend+Developer%22%2C%22Front-End+Developer%22%2C%22Front-End+Developer+%28Vue%29%22%2C%22Frontend+Developer%22%2C%22Frontend+Developer+%28Vue.js%29%22%2C%22Senior+Frontend+Developer%22%2C%22Senior+Frontend+Developer+%28Vue.js%29%22%2C%22Full-Stack+Engineer+%28Vue%2C+Node%29%22%2C%22Fullstack+Engineer%22%5D&countries=%5B%22Turkey%22%5D
+
+05526580562 can bey
+
+https://jobs.lever.co/oneteam/b105de9d-8c17-4e5a-970c-f105a4dc1798
+https://www.hogarth.com/job/freelance-front-end-developer?gh_src=9ea6f5ad4us
+with clause,recursive queries
+https://www.hackerrank.com/challenges/sql-projects/problem?isFullScreen=true
+date_add
+
 1. postgres schema
 2. postgres view
 3. postgres functions
@@ -6,19 +16,27 @@
 6. connection pool(knex,typeorm,tarn)
 7. postgres administration(priviligies,row level security)
 8. postgres copy
-9. postgres docker environments
-10. How to resave a table to change columns order and columns type without lost the data.
-11. MVCSS in postgresql
-12. [raodmap](https://roadmap.sh/postgresql-dba)
-13. vacuum launcher
-14. Sorunnn: Docker compose dosyasını başlattıktan sonra kullanıcı şifresini değiştirip tekrar yazmama rağmen güncellenmiyor.Eski veriler ile girmeye devam etmem gerekiyor.Mesela postgres(süperuser) envsini unuttuğumda superadmin olarak bağlanamıyorum.Volume silmem gerekiyor çok saçma.
-15. sorunn: normalde linuxta `su - postgres` çalışırken bitnami containerında çalışmıyor.Her komutta -U postgres eklemek gerekiyor yada db ye girip öyle oluşturmak gerekiyor.
-16. non-root containers => COPY,import export files,\o
+9. incremental
+10. postgres docker environments
+11. How to resave a table to change columns order and columns type without lost the data.
+12. MVCSS in postgresql
+13. [raodmap](https://roadmap.sh/postgresql-dba)
+14. vacuum launcher
+15. Sorunnn: Docker compose dosyasını başlattıktan sonra kullanıcı şifresini değiştirip tekrar yazmama rağmen güncellenmiyor.Eski veriler ile girmeye devam etmem gerekiyor.Mesela postgres(süperuser) envsini unuttuğumda superadmin olarak bağlanamıyorum.Volume silmem gerekiyor çok saçma.
+16. sorunn: normalde linuxta `su - postgres` çalışırken bitnami containerında çalışmıyor.Her komutta -U postgres eklemek gerekiyor yada db ye girip öyle oluşturmak gerekiyor.
+17. non-root containers => COPY,import export files,\o
+18. When I try to stop the postgresql server with `pg_ctl -D /bitnami/postgresql/data stop` .It throws me out immidiately.
+19. docker run --rm -it --volumes-from <container_id_or_name> busybox sh
+https://hizlibasvuru.aselsan.com.tr/apply?announcementId=95e7d7df-cc6c-4fb0-8055-cd1eeef4a116
+1.  string ordering
+
+
 - postgreSQL is a relational object-orianted database management system.
 - PostgreSQL uses client-server model and the default port is 5432.
 -  Michael Stonebraker created postgres in 1986.In 1996,Postgres was renamed to postgresql and was added a lot of features.
 -  PostgreSQL is highly extensible.It allow to add custom indexes,data types,functions and views.
 -  Three databases come with postgresql by default.
+-  SQL requires that every subquery used as a table source (in FROM or as a subquery in SELECT) must have an alias.
 -  We can do all the operations on pgadmin istead of dealing with the terminal.
     - In pgadmin query tool,It can be written multiple query at once,selected query will be executed.
 - Shell commands are preceded by the prompt $.SQL commands are preceded by the prompt =>  or =#.The farmer is  for user and the latter is for superuser.
@@ -48,7 +66,7 @@
 
 
 ## AUTOCOMMIT
-- When Auto-Commit is off: Each SQL command you execute does not get automatically committed. Instead, it enters a transaction that remains open.This means that you are in a transaction block after each SQL command, and changes are only visible to other sessions once you explicitly commit or rollback the transaction.We can change the mode witj `\set AUTOCOMMIT  on | off`
+- When Auto-Commit is off: Each SQL command we execute does not get automatically committed. Instead, it enters a transaction that remains open.This means that we are in a transaction block after each SQL command, and changes are only visible to other sessions once we explicitly commit or rollback the transaction.We can change the mode witj `\set AUTOCOMMIT  on | off`
 ```sql
 -- Start the transaction (automatically done when AUTOCOMMIT is off)
 -- Run some queries
@@ -60,9 +78,12 @@ SELECT * FROM users;
 -- Commit the transaction to make changes permanent
 COMMIT;
 
--- Or if you want to discard changes:
+-- Or if we want to discard changes:
 ROLLBACK;
 ```
+
+## PostgreSQL files
+
 
 ### PG CATALOG TABLES
 - In PostgreSQL, the pg_catalog schema contains several system tables and views that store metadata about the database, its objects (such as tables, views, and indexes), users, permissions, and more. These tables are regular tables in the sense that they can be queried like any other table, manual updates or changes to these system tables can break the database, so they should be treated with care.
@@ -129,15 +150,37 @@ ROLLBACK;
      - COLLATE overrides the default collation for specific queries. `SELECT * FROM users WHERE username COLLATE "C" > 'mehmet'`
    - **SCALAR SUBQUERY**: scalar subquery  is a subquery that returns single result from a different table.For example.
      - `SELECT *,(SELECT max(user_id) FROM books WHERE books.user_id=users.id) FROM users` 
-## Functions
-- `\df` is used to see all the functions
-- There are 2 type of calling functions: 
-    - **Positional notation**: Parameters are passed in a specific order. `my_function(true, 'hi world');`
-    - **Named notation**: Parameters are passed by name, in any order. `:=` operator is also supported for backward compatibility. `my_function(a => 'hi world', b => true);`
-    - Both notations can be used together.Positional notation must come first, followed by named notation.
-  #### Mathematical Functions
+
+
+  ### Mathematical Functions
 - `greatest` `least` `random` `ceil` `sqrt` `mod`
 - `select greatest(1,2,10,-10,2200,21)`
+
+## Utils
+- **generate_series**:
+   1. `generate_series(start, end)`  This generates a series of numbers from start to end, and the end is included.
+   2. `generate_series(start_date, end_date, interval)` This generates a series of timestamps from start_date to end_date with the given interval between them, and the end date is also included.
+   - ```sql
+        SELECT * FROM generate_series('2024-01-01'::date, '2024-03-02'::date, '1 day'::interval);
+        -- Returns each day from '2024-01-01' to '2024-03-02'
+
+        SELECT * FROM generate_series(1, 10); 
+        -- Returns numbers from 1 to 10
+
+        SELECT COUNT(*) FROM GENERATE_SERIES(1,100,5); -- returns 
+        
+        INSERT INTO ORDERS (title, created_at)
+        SELECT 'title_' || FLOOR(RANDOM() * 10 + 1), gs.curr_date
+        FROM GENERATE_SERIES(
+        '2024-01-01'::date, 
+        '2024-02-20'::date, 
+        '1 day'::interval
+        ) AS gs(curr_date);
+
+
+
+       ```
+
   ### String Functions
 - **char_length,character_length,length**: returns length of the given string. `select char_length('Hi world');`
 - **concat, ||**:returns  concatenated given strings. `select concat('hi world',' from',' postgreSQL');` `select 'hi world' || 'from' || 'postgresql';`
@@ -191,7 +234,7 @@ ROLLBACK;
 - superuser can do all the actions.
 - `select current_user;` show current user
 - In PostgreSQL, ROLE, GROUP, and USER essentially behave the same after version 8.1, as PostgreSQL unified the concepts. Prior to version 8.1, USER and GROUP were separate entities, where a USER was a role with login privileges, and a GROUP was essentially a way to manage a collection of users.
-- To view connection information, use \conninfo.  `You are connected to database "postgres" as user "postgres" via socket in "/tmp" at port "5432".`
+- To view connection information, use \conninfo.  `we are connected to database "postgres" as user "postgres" via socket in "/tmp" at port "5432".`
 - `\du` or `SELECT * FROM pg_user;` can be used to list all users in PostgreSQL.
 ### Roles
 1. LOGIN | NOLOGIN: Whether a user can login to the database.
@@ -346,6 +389,7 @@ Additional Examples:
 5. `GRANT SELECT (name) ON pruser.users TO pradmin;` grant specific column selection to the pradmin user.
 
 
+
 # Table commands
 -- **describe**: `\d name`
 - **create** : `create table name`
@@ -388,7 +432,7 @@ Additional Examples:
         - **Modifying Table**: 
              - **add column**: `ALTER TABLE colors ADD COLUMN rgb VARCHAR(6) CONSTRAINT not_blank CHECK (rgb <> '');`
              - **drop column**: `ALTER TABLE colors DROP COLUMN rgb;`  
-             - **add constraint**: To delete a constraint, you must know its name. You can use the \d tablename command to view all constraints on a table, which helps you identify the exact name of the constraint you want to delete.
+             - **add constraint**: To delete a constraint, we must know its name. we can use the \d tablename command to view all constraints on a table, which helps we identify the exact name of the constraint we want to delete.
                  - `ALTER TABLE books ADD FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE;`
                  -  `ALTER TABLE COLORS ADD CHECK (color <> '');`
                  -  `ALTER TABLE users ALTER COLUMN name SET NOT NULL;` ``exception for null``
@@ -400,6 +444,7 @@ Additional Examples:
              - **Modify type**: `ALTER TABLE colors ALTER COLUMN  color TYPE varchar(200) NOT NULL;`
              - **rename column**: `ALTER TABLE colors RENAME COLUMN color TO name;`
              - **rename table**: `ALTER TABLE colors RENAME TO my_colors;`
+             - **change schema**: `ALTER TABLE public.my_table SET SCHEMA test;`
          - **Conditions**:
              - 1. **CASE**: The CASE statement in SQL works similarly to an if/else structure in programming. It evaluates conditions sequentially with each WHEN clause. If a condition is met, the corresponding THEN statement is executed. If no conditions are met, the ELSE clause (if present) will run; otherwise, NULL is returned by default.
              -  ```SQL 
@@ -468,3 +513,697 @@ Additional Examples:
 
 ### Indexes
 - `di` show indexes or `select * from pg_indexes`
+
+
+## Functions
+- `\df` is used to see all the functions
+- There are 2 type of calling functions: 
+    - **Positional notation**: Parameters are passed in a specific order. `my_function(true, 'hi world');`
+    - **Named notation**: Parameters are passed by name, in any order. `:=` operator is also supported for backward compatibility. `my_function(a => 'hi world', b => true);`
+    - Both notations can be used together.Positional notation must come first, followed by named notation.
+
+```sql
+CREATE OR REPLACE FUNCTION function_name(param_list)
+RETURNS return_type
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    -- Variable declarations, if necessary
+BEGIN
+    -- Function logic
+    -- Return a result
+END;
+$$;
+```
+- `OR REPLACE` is an optional clause. It is used to replace an existing function if it already exists with the same name.We cannot change the names of the input parameters or the return type when using `OR REPLACE`. Only the function body can be modified.
+N8LMTF060702
+```sql
+-- creating function.
+CREATE OR REPLACE FUNCTION sumss(ac INT ,bc INT)
+RETURNS INTEGER
+RETURN ac + bc;
+N8LMTF060702
+-- calling
+select sumss(1,2);
+-- or
+select sumss(a => 1,b => 2); -- := also can be used.
+```
+
+- `LANGUAGE language`
+   1.  `sql` :Simple, single-line, cannot use IF or LOOPS, but they are faster.Default language.
+   2.  `plpgsql` (Prodecural Language / postgreSQL) : Complex, can be multi-line, supports IF, LOOPS, and other control structures, but slower than SQL functions.Structure is 
+        1. **header**: The header section can be used to declare variables , its optinal.
+             - ```sql
+                DECLARE
+                    variable_name type [DEFAULT value];
+                    another_variable type;
+               ```  
+        2. **body**: The body contains the logic of the function. This section must always include at least one statement and is wrapped in BEGIN and END.
+             - ```sql
+                BEGIN
+                    -- write logic here 
+                END;
+                ```
+
+- `Argument Modes in PostgreSQL Functions`
+     1. `IN` : The argument acts as an input parameter.Default mode.
+     2. `OUT`: The argument acts as an output parameter.The values assigned to these arguments inside the function are automatically included in the function's result.
+     3. `INOUT`: The argument is both an input and output parameter.It is passed to the function as input, and the function modifies and returns it as part of the output.
+     - ```sql
+        CREATE OR REPLACE FUNCTION g(
+            IN l INT, 
+            OUT id INT, 
+            INOUT user_name VARCHAR(20)
+        )
+        LANGUAGE plpgsql
+        AS $$
+        BEGIN
+        SELECT u.name, u.id INTO user_name, id FROM users u WHERE u.name = user_name AND u.id = l;
+        END;
+        $$;
+       ```
+- PostgreSQL supports function overloading, allowing functions with the same name but different parameter lists. However  if the parameters overlap ambiguously, PostgreSQL cannot determine which function to execute and throws error.
+```sql
+-- function 1
+CREATE OR REPLACE FUNCTION get_user_count(n VARCHAR(30))
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE 
+   c INT;
+BEGIN
+  SELECT COUNT(*) into c FROM users u where u.name=n;
+  RETURN c;
+END;
+$$;
+
+-- function 2
+CREATE OR REPLACE FUNCTION get_user_count(n VARCHAR(30),a BOOLEAN DEFAULT FALSE)
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE 
+   c INT;
+BEGIN
+  SELECT COUNT(*) into c FROM users u where u.name=n AND u.admin=a;
+  RETURN c;
+END;
+
+$$;
+
+select get_user_count('ilex',true) -- works correctly
+select get_user_count('ilex'); -- throws error : function get_user_count(unknown) is not unique
+```
+- `RETURNS TABLE(columns)` allow to return table
+- `SETOF tablename` can be used to return a row or rows from a table.
+     - ```sql
+        CREATE OR REPLACE FUNCTION get_user(n VARCHAR(20))
+        RETURNS SETOF users
+        LANGUAGE plpgsql
+        AS $$
+        BEGIN
+        RETURN QUERY SELECT * FROM users u WHERE u.name=n;
+        END;
+        $$;
+
+
+        SELECT * FROM get_user('cibilex');
+        SELECT id,age FROM get_user('cibilex');
+        ```
+- `DROP FUNCTION`: if we have multiple functions with the same name (due to function overloading), we must specify the function's parameters in the `DROP FUNCTION` statement to uniquely identify which function to drop.
+- `ALTER FUNCTION fill_users RENAME TO populate_users;` rename function
+- `ALTER FUNCTION populate_users OWNER TO cibilex;`  change owner
+- `ALTER FUNCTION populate_users SET SCHEMA test;` change schema
+- `\df test.*`  list all functions which are in test schema
+- While postgreSQL does not support transactions in functions,producers are used for this aim.
+```SQL
+CREATE OR REPLACE FUNCTION get_user(IN i INT)
+RETURNS SETOF users
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RETURN QUERY 
+    SELECT * 
+    FROM users u 
+    WHERE u.id = i;
+
+    IF FOUND THEN
+        RAISE NOTICE 'User with ID % exists', i;
+    ELSE
+        RAISE EXCEPTION 'User with ID % does not exist', i;
+    END IF;
+END;
+$$;
+
+
+CREATE OR REPLACE FUNCTION insert_users()
+RETURNS VOID
+LANGUAGE plpgsql
+AS $$
+DECLARE 
+  item INT;
+  ag INT := 0;
+BEGIN
+  FOR i IN 0..10 LOOP
+    RAISE INFO 'Current index is %', i;
+    ag := FLOOR(RANDOM() * 120);  -- Generate random age between 0 and 89
+    SELECT id INTO item FROM users u WHERE u.age = ag LIMIT 1;  -- Retrieve user with the random age
+
+    IF item IS NOT NULL THEN
+      RAISE NOTICE 'User exists with age %', ag;
+    ELSE
+      INSERT INTO users (name, age, admin) 
+      VALUES ('Age_' || i, ag, RANDOM() < 0.5);  -- Insert a new user with random name, age, and admin flag
+    END IF;
+
+    item := NULL;  -- Reset item for the next iteration
+  END LOOP;
+END;
+$$;
+
+```
+
+### LOOPS
+1. **For in**:
+```sql
+for loop_counter in [ reverse ] from.. to [ by step ] loop
+    statements
+end loop
+```
+
+```sql
+CREATE OR REPLACE FUNCTION fill_users()
+RETURNS VOID
+LANGUAGE plpgsql
+AS $$
+DECLARE
+   inserted_id INT =0;
+BEGIN
+ FOR i IN 0..10 LOOP
+    RAISE INFO 'current value is %',i;
+	INSERT INTO users (name,admin,age) VALUES ('x' || i,RANDOM()<0.5,FLOOR(RANDOM()*90+1)) RETURNING id INTO inserted_id;
+	RAISE NOTICE 'inserted id is %',inserted_id;
+	
+ END LOOP;
+END;
+$$;
+```
+- `BY step` can be used to declare step.The loop will run three times if we write`FOR i IN 0..10 BY 5 LOOP`. 
+- `REVERSE from...to` can be used to reverse loop.The loop will starts with 10 if we write`FOR i IN REVERSE 10..1 LOOP`
+### Inheritance
+- Inheritance in PostgreSQL is similar to the subclass method in Object-Oriented Programming (OOP), but it is not identical. While some features such as CHECK and NOT NULL are inherited , others such as FOREIGN KEY,INDEXes and UNIQUE are not.
+- Inheritance is a good method for creating hierarchical tables. For example, a logs table might contain columns such as ip, response, and code. A specialized error_logs table could include additional columns like error_class.For example 
+- As a consequence, inheritance is a useful approach for declaring hierarchical tables. However, it can be somewhat confusing and requires additional effort to ensure a reliable database structure. For most circumstances, partitioning is often a better and more practical solution.
+    - ```sql
+      --  Create a Parent Table
+      CREATE TABLE logs (id SERIAL PRIMARY KEY, code INT NOT NULL, response TEXT);
+
+      -- Create a Child Table with Inheritance
+      CREATE TABLE error_logs (err TEXT) INHERITS (logs);
+
+      -- Select All Rows (Including Child Rows)
+      SELECT * FROM logs;
+
+      -- SELECT * FROM ONLY logs;
+      SELECT * FROM ONLY logs;
+
+      -- Drop a Table (Enforcing Cascade) Use the CASCADE option to remove a parent table along with its child tables.
+      DROP TABLE logs CASCADE;
+
+      -- Add a Column to Both Parent and Child Tables.Constraints like PRIMARY KEY and FOREIGN KEY are not inherited  automatically and must be manually defined in child tables.
+      ALTER TABLE logs ADD COLUMN user_id INT REFERENCES users;
+        ``` 
+
+### Partitioning
+- Partitioning helps manage large datasets by splitting them into smaller, more efficient subsets. This can improve query performance, particularly for range queries and data management operations (like deletions).
+- These are the three main partitioning methods in PostgreSQL:
+     1. **RANGE**: Divides data based on a range of values (e.g., dates, numbers).
+     2. **LIST****: Divides data based on discrete values (e.g., categories, specific dates).
+     3. **HASH**: Divides data based on a hash function, though it’s not as commonly used for typical range-based queries.
+- **Partitioned table**  does not store data but acts as a template for the child partitions. The partitions themselves store the actual data.
+- **Partition key**: The partition key is the column on which partitioning is based (e.g., a date column for range partitioning). 
+-  A regular table cannot be directly partitioned, and a partitioned table cannot hold data.
+-   Indexes and constraints created on the partitioned table automatically inherit to the child partitions. However, we can define additional custom indexes on the child partitions if needed.
+-   Primary key or unique constraints cannot be used without partition key.For example `id SERIAL PRIMARY KEY` will throws error.
+-   Use `ALTER TABLE ... DETACH` or `DROP TABLE` instead of `DELETE FROM `because of performance.
+-   PostgreSQL doesn't support foreign keys across partitions, so this is something to be mindful of when designing partitioned tables.
+-   `enable_partition_pruning` make sure that this option is on.This allows to create query planning for faster queries.  
+
+1. **Old way-with inheritance** : It's more flexible from the new way but its not that fast.
+- `ALTER TABLE orders_jan NO INHERIT orders;`
+```SQL
+-- Create the main orders table with common columns
+CREATE TABLE orders(
+    ID SERIAL PRIMARY KEY,  -- Unique identifier for each order
+    title VARCHAR(50),      -- Title of the order
+    created_at TIMESTAMP    -- Timestamp of when the order was created
+);
+
+-- Create child tables for each month with date-based checks
+CREATE TABLE orders_jan(
+    CHECK (created_at >= '2024-01-01' AND created_at < '2024-02-01')  -- January orders
+) INHERITS (orders);  -- Inherit from orders table
+
+CREATE TABLE orders_feb(
+    CHECK (created_at >= '2024-02-01' AND created_at < '2024-03-01')  -- February orders
+) INHERITS (orders);  -- Inherit from orders table
+
+-- Create indexes for faster queries on child tables
+CREATE INDEX ON orders_jan (created_at);
+CREATE INDEX ON orders_feb (created_at);
+
+-- Create the trigger function to insert into appropriate child tables
+CREATE OR REPLACE FUNCTION on_order_insert()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  -- Insert into orders_jan if created_at is in January
+  IF (NEW.created_at >= '2024-01-01' AND NEW.created_at < '2024-02-01') THEN
+     INSERT INTO orders_jan VALUES(NEW.*);
+  -- Insert into orders_feb if created_at is in February
+  ELSIF (NEW.created_at >= '2024-02-01' AND NEW.created_at < '2024-03-01') THEN
+      INSERT INTO orders_feb VALUES(NEW.*);
+  ELSE
+    -- Raise exception if the date does not match
+    RAISE EXCEPTION 'Valid child table not found for %', NEW.created_at;
+  END IF;
+
+  -- Prevent insertion in the parent table
+  RETURN NULL;
+END;
+$$;
+
+-- Create the trigger to invoke the function before insert
+CREATE TRIGGER insert_check
+BEFORE INSERT ON orders  -- Trigger before insert
+FOR EACH ROW            -- For each row inserted
+EXECUTE PROCEDURE on_order_insert();  -- Call the insert function
+
+-- Test inserts
+INSERT INTO orders (title, created_at) VALUES ('amazon order', '2024-01-01');  -- January
+INSERT INTO orders (title, created_at) VALUES ('amazon order', '2024-02-01');  -- February
+INSERT INTO orders (title, created_at) VALUES ('amazon order', '2024-02-10');  -- February
+INSERT INTO orders (title, created_at) VALUES ('amazon order', '2024-03-01');  -- Will raise exception
+
+-- Query results
+SELECT * FROM orders;   -- Should be empty (data goes into child tables)
+SELECT * FROM orders_jan;  -- Should show January orders
+SELECT * FROM orders_feb;  -- Should show February orders
+
+```
+
+2. **New way-declarative partitioning**:
+
+```sql
+CREATE TABLE orders (
+    id SERIAL,
+    created_at TIMESTAMP NOT NULL,
+    UNIQUE (id, created_at)  -- Include both id and created_at in the UNIQUE constraint
+) PARTITION BY RANGE (created_at);
+
+CREATE TABLE orders_jan PARTITION OF orders FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
+CREATE TABLE orders_feb PARTITION OF orders FOR VALUES FROM ('2024-02-01') TO ('2024-03-01');
+CREATE TABLE orders_march PARTITION OF orders FOR VALUES FROM ('2024-03-01') TO ('2024-04-01');
+
+-- CREATE INDEX ON orders (created_at);
+
+INSERT INTO orders (title,created_at) SELECT curr_time,curr_time FROM GENERATE_SERIES('2024-01-01'::date,'2024-03-25'::date,'1 minute'::interval) as gs(curr_time);
+INSERT INTO orders (title,created_at) VALUES ('hi','2024-04-01'); --ERROR:  no partition of relation "orders" found for row
+
+```
+- Tables with conflicting constraints cannot be part of the same partition.
+- `DETACH PARTITION` This command does not drop the table; it merely removes the table from the partition.
+     - `ALTER TABLE orders DETACH PARTITION orders_jan;`
+- `ATTACH PARTITION`  This command allows we to easily add a table to a partitioned table.
+    - `CREATE TABLE orders_april (LIKE orders INCLUDING DEFAULTS INCLUDING CONSTRAINTS);` First, create a table that matches the partition structure:
+    - `ALTER TABLE orders_april ADD CHECK (created_at>='2024-04-01' AND created_at<'2024-05-01');` Next, add an appropriate constraint to the table:
+    - `INSERT INTO orders_april (title,created_at) VALUES ('hi','2024-04-12');` Insert data into the new table:
+    - `ALTER TABLE orders ATTACH PARTITION orders_april FOR VALUES FROM ('2024-04-01') TO ('2024-05-01');` Finally, attach the new table to the partitioned table:
+
+
+**Old way vs new way**:
+1. Structure of columns have to be the same with the parent table in new way.But we can add custom columns to child tables in old way.
+2. New way is faster.
+3. A child table can have multiple parent table in old way.
+### [PARTMAN](https://github.com/pgpartman/pg_partman/blob/development/doc/pg_partman.md)
+- Pg_partman is a PostgreSQL extension designed to simplify the creation and management of partitions. As a background worker (BGW), it eliminates the need for an external scheduler by automating partition maintenance tasks.
+- pg_partman cannot be used for list partitioning, such as grouping rows by distinct cities.
+- The `run_maintenance` function is a scheduled job that automatically creates new partitions or detaches old ones (date aging) based on the defined criteria.The default interval for `run_maintenance` is 3600 seconds (1 hour), but it can be customized.
+
+- These are important options
+     1. **shared_preload_libraries** : Must include 'pg_partman_bgw' to activate the extension. Requires restart.
+     2. **pg_partman_bgw.dbname**: Specifies the databases where pg_partman will operate. Multiple databases can be listed, separated by commas such as `'ilex,postgres'`.
+     3. **pg_partman_bgw.interval**: Sets the interval between run_maintenance executions. The default is 3600 seconds (1 hour).
+     4. **pg_partman_bgw.role**: Determines the PostgreSQL role used for pg_partman operations.
+     5. **pg_partman_bgw.analyze**: Default is `off`. Controls whether tables are analyzed during maintenance.
+     6. **pg_partman_bgw.jobmon**: Default is `on`. This works with the Jobmon extension to monitor and manage partitions.
+  
+- `create_parent(p_parent_table text, p_control text, p_type text, p_interval text, p_constraint_cols text[] DEFAULT NULL::text[], p_premake integer DEFAULT 4, p_automatic_maintenance text DEFAULT 'on'::text, p_start_partition text DEFAULT NULL::text......)`
+     1. `p_parent_table` : partitioned table
+     2. `p_control` : partition key
+     3. `p_type`:
+         - `native` : postgresql native partition feature.Recommended
+         - `partman` : partman partition logic.  
+     4. `p_interval` : interval always must be string.
+     5. `p_premake` : number of next and previous table
+     6. `p_start_partition` : starting point
+     7. `p_default_table` : Default is true.So if there is no valid table ,partman will insert the data to default table.If we make it false,Partman will throw error.
+- to call the function that create and drop old tables `CALL run_maintenance_proc();`
+- If we run `\df` we should see the partman functions.
+- `SELECT * FROM ONLY orders` : do not include child datas.
+- **Installation**: To install pg_partman and nano look at the Dockerfile
+     - ```sql
+        -- Add the extension
+        CREATE EXTENSION pg_partman SCHEMA test;
+
+        -- Create a role and grant permissions
+        CREATE ROLE partman LOGIN;
+        GRANT ALL ON SCHEMA test TO partman;
+        GRANT ALL ON ALL TABLES IN SCHEMA test TO partman;
+        GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA test TO partman;
+        GRANT EXECUTE ON ALL PROCEDURES IN SCHEMA test TO partman;
+        GRANT TEMPORARY ON DATABASE ilex TO partman;
+        ``` 
+- **configuration**: 
+     1. ```yml
+        version: "3"
+        services:
+        postgresql:
+            container_name: pod
+            image: my-postgres
+            environment:
+            - POSTGRESQL_USERNAME=my_user
+            - POSTGRESQL_PASSWORD=my_password
+            - POSTGRESQL_POSTGRES_PASSWORD=postgres_pass
+            - POSTGRESQL_SHARED_PRELOAD_LIBRARIES=pg_partman_bgw
+            volumes:
+            - pod-p:/bitnami/postgresql
+            ports:
+            - "5432:5432"
+
+        volumes:
+        pod-p: 
+         ``` 
+     2. Also we need to add some pg_partman options to config file 
+         - ```conf
+            # Add settings for extensions here nano opt/bitnami/postgresql/conf/postgresql.conf
+            pg_partman_bgw.interval = 36000
+            pg_partman_bgw.role = 'partman'
+            pg_partman_bgw.dbname = 'ilex'
+            ``` 
+      3. `pg_ctl -D bitnami/postgresql/data/ restart`
+
+- **example with time**: 
+     - ```sql
+        SET search_path = 'test';
+
+        -- Create the partitioned table
+        CREATE TABLE orders (
+            id SERIAL,
+            created_at TIMESTAMP NOT NULL,
+            UNIQUE (id, created_at)
+        ) PARTITION BY RANGE (created_at);
+
+        -- Use pg_partman to create partitions automatically
+        SELECT create_parent(
+            p_parent_table := 'test.orders',
+            p_control := 'created_at',
+            p_type := 'native',
+            p_interval := 'monthly',
+            p_start_partition := '2024-05-01'
+        );
+
+        -- Alternatively, call the function with positional parameters
+        SELECT create_parent('test.orders', 'created_at', 'native', 'monthly', p_start_partition := '2024-05-01');
+              
+        ``` 
+- **example with serial**:
+     - ```sql
+        -- Create a partitioned table
+        CREATE TABLE tags (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(20) NOT NULL
+        ) PARTITION BY RANGE (id);
+
+        -- Use pg_partman to manage partitions
+        SELECT create_parent(
+            p_parent_table := 'test.tags',
+            p_control := 'id',
+            p_type := 'native',
+            p_interval := '10'
+        );
+     ```  
+- **Mıgration**:
+- Note that this is offline way
+- `partition_data_proc` IN p_parent_table text, IN p_interval text DEFAULT NULL::text, IN p_batch integer DEFAULT NULL::integer, IN p_wait integer DEFAULT 1, IN p_source_table text DEFAULT NULL::text,
+```sql
+CREATE TABLE orders(
+id SERIAL,
+price INT NOT NULL,
+created_at TIMESTAMP NOT NULL,
+PRIMARY KEY (created_at,id)
+) ;
+INSERT INTO orders (price,created_at) SELECT  FLOOR(RANDOM()*1000),curr_time FROM GENERATE_SERIES('2024-08-01'::date,'2024-10-25'::date,'1 second'::interval) AS gs(curr_time)  ;
+
+ALTER TABLE orders RENAME TO old_orders;
+
+-- create a new table .Note that we didn't write PRIMARY KEY (created_at,id).We will add it later
+CREATE TABLE orders(
+id SERIAL,
+price INT NOT NULL,
+created_at TIMESTAMP NOT NULL
+) PARTITION BY RANGE (created_at);
+
+CREATE INDEX ON orders (created_at);
+
+SELECT create_parent('ilex.orders','created_at','native','monthly');
+
+SELECT COUNT(*) FROM old_orders; -- 7344001
+
+
+CALL partition_data_proc(
+p_parent_table => 'ilex.orders',
+p_batch => 100,
+p_interval => '1000',
+p_source_table => 'ilex.old_orders'	
+);
+
+SELECT COUNT(*) FROM old_orders; -- 7244001
+
+
+```
+### Managing UNIQUE Constraints in Partitioned Tables with pg_partman
+- In PostgreSQL, UNIQUE and PRIMARY KEY constraints cannot be applied to partitioned tables without including the partition key column. For example:
+     - ```sql
+        CREATE TABLE tags (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(20) NOT NULL
+        ) PARTITION BY RANGE (id);
+
+        ALTER TABLE tags ADD COLUMN color VARCHAR(20) UNIQUE;
+        -- ERROR: unique constraint on partitioned table must include all partitioning columns
+        ```
+- To overcome this restriction and provide additional flexibility, pg_partman introduces a template table. The template table is used as a blueprint for creating new partitions, allowing constraints like UNIQUE to be defined independently of the partition key.
+     1. `SELECT * FROM part_config WHERE parent_table = 'test.tags';` This will display the associated template table, e.g., test.template_test_tags
+     2. `ALTER TABLE test.template_test_tags ADD COLUMN color VARCHAR(20) UNIQUE;`  we can add columns with UNIQUE constraints to the template table. These constraints will automatically apply to new partitions created by pg_partman:
+     3. This change will apply only to new partitions.For existing partitions, we must manually add the column or constraint. For example:
+         - ```sql
+            ALTER TABLE test.tags ADD COLUMN color VARCHAR(20);
+            -- or include the partition key in a UNIQUE constraint:
+             ALTER TABLE test.tags ADD CONSTRAINT unique_color_per_partition UNIQUE (id, color);
+           ``` 
+
+
+### COPY TABLE
+-  there are three primary methods to replicate a table's structure and/or data.
+   1. `CREATE TABLE new_table AS TABLE current_table;` Copy Structure and Data.
+   2. `CREATE TABLE new_table AS TABLE current_table WITH NO DATA;` Copy Structure Only (No Data):
+   3. `CREATE TABLE new_table AS SELECT * FROM current_table WHERE conditions;` Copy Structure and Conditional Data:
+- When copying tables, indexes, constraints (e.g., PRIMARY KEY, NOT NULL), and default values (e.g., SERIAL) are not automatically included in the new table. These must be manually recreated.
+```SQL
+-- Step 1: Create the orders table
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    price INT NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+-- Step 2: Insert sample data into the orders table
+INSERT INTO orders (price, created_at)
+SELECT FLOOR(RANDOM() * 1000), curr_time
+FROM GENERATE_SERIES('2024-08-01'::date, '2024-10-25'::date, '1 week'::interval) AS gs(curr_time);
+
+-- Step 3: Copy the table structure and data to orders_backup
+CREATE TABLE orders_backup AS TABLE orders;
+
+-- Step 4: Add a primary key to the id column
+ALTER TABLE orders_backup ADD PRIMARY KEY (id);
+
+-- Step 5: Add NOT NULL constraints to other columns
+ALTER TABLE orders_backup ALTER COLUMN price SET NOT NULL;
+ALTER TABLE orders_backup ALTER COLUMN created_at SET NOT NULL;
+
+
+-- The last step is that add next_val sequence to id column.
+SELECT COALESCE(MAX(id), 0) + 1 AS next_val FROM orders_backup; -- get row count +1 :This will be the next id
+CREATE SEQUENCE orders_backup_id_seq START WITH 14  OWNED BY orders_backup.id; -- create sequence with start val
+ALTER TABLE orders_backup ALTER COLUMN id SET DEFAULT nextval('orders_backup_id_seq'); --  add orders_backup to this sequence
+
+-- That's it ,We can insert values as we can now.
+INSERT INTO orders_backup (price,created_at) VALUES (123,'2024-01-01'); -- id will be 15
+```
+
+### TableSpaces
+- Tablespaces control where data is stored on disk,They are physical locations. PostgreSQL comes with two default tablespaces:
+     - **pg_default**: Stores user-defined objects like tables and indexes. Located in `/bitnami/postgresql/data/base`.
+     - **pg_global**: Stores global data like roles and system catalogs. Located in `/bitnami/postgresql/data/global`.
+- Steps to Create a Custom Tablespace:
+     1. Create a new directory: `mkdir /path/to/tablespace_directory/test`
+     2. Create the tablespace in PostgreSQL: `CREATE TABLESPACE test LOCATION '/path/to/tablespace_directory/test';`
+     3. Create a table in the custom tablespace:
+         - ```sql
+            CREATE TABLE users (
+            id SERIAL PRIMARY KEY
+            ) TABLESPACE test; 
+         ```
+- `DROP TABLESPACE test;` -- drop tablespace
+- `ALTER TABLE users SET TABLESPACE test;` -- move an object
+- `\db` show tablespaces
+
+
+
+
+
+
+
+### (Back up)[https://neon.tech/postgresql/postgresql-administration/postgresql-backup-database]
+| Feature                       | Physical Backup                             | Logical Backup                              |
+|-------------------------------|---------------------------------------------|---------------------------------------------|
+| **Backup Scope**               | Entire database system (all databases)      | Specific databases, tables, or schemas     |
+| **Speed**                      | Faster (direct file copy)                  | Slower (requires data export)              |
+| **Restore Process**            | Restore data directory and apply WAL logs   | Execute SQL dump to recreate schema/data   |
+| **Point-in-Time Recovery (PITR)** | Yes (with WAL)                             | No (does not include WAL)                  |
+| **Portability**                | Less portable (requires same PostgreSQL version) | Highly portable (SQL or CSV format)        |
+| **Data Type**                  | File-based (data files, WAL logs)           | Text-based (Human read) (SQL dump, CSV, JSON)           |
+
+- logical backups are better for partial backups, version upgrades, and portability across systems, while physical backups are more suitable for backing up large databases quickly and efficiently, with the ability to perform Point-in-Time Recovery (PITR).
+
+**pg_dump**:pg_dump is used to back up a PostgreSQL database with various options, allowing we to specify which tables, schemas, or the entire database to back up. 
+  1. `pg_dump -U postgres -d ilex -f /opt/ilex.sql`  Backs up the entire ilex database into the file ilex.sql.
+  2. `pg_dump -U postgres -d postgres -n user2 -n user1 -f /opt/users-data.sql` Backs up both the user1 and user2 schemas from the postgres database into the file users-data.sql.
+  3. `pg_dump -U postgres -d postgres -t user1.users -f /opt/userxs.sql` Backs up the users table in the user1 schema from the postgres database into the file userxs.sql
+  4. `-F` flag can be used to choose a file format.Default is `p`(plain text).Also can be `t`(tar),`c`(custom format) or `d`(directory format).
+**pg_dumpall**:pg_dumpall is used to back up an entire PostgreSQL cluster, which includes all databases, roles, permissions, schemas, and other cluster-wide objects.
+  1. `pg_dumpall -U postgres -f /opt/cluster.sql` Backs up all databases, schemas, tables, roles, permissions, and other objects with data in the PostgreSQL cluster to the file cluster.sql.
+  2. `pg_dumpall -U postgres -s -f /opt/cluster.sql` Backs up the entire PostgreSQL cluster, but without data (only schema, roles, permissions, etc.), to the file cluster.sql.
+  3. `pg_dumpall -U postgres -r -f /opt/cluster.sql` Backs up only the roles in the PostgreSQL cluster, without databases or schemas, to the file cluster.sql. 
+**Compressing Back up**:
+1. `pg_dumpall -U postgres | gzip > /opt/cluster.gz` This command pipes the output of pg_dumpall into gzip, compressing the entire backup into a .gz file (cluster.gz).
+     - `gunzip -c '/opt/cluster.gz' | psql -U postgres` to restore
+2. `pg_dumpall -U postgres | split -b 100k - /opt/a` This command uses split to divide the backup output into multiple smaller files of 100 KB each, named aaa, aab, aac, etc., in the /opt/ directory.
+     - `cat cluster* | psql -U postgres` to restore
+
+**Restore logical back up**:
+1. **with psql**:
+   1. `pg_dump -U postgres -d postgres -n user2 -f /opt/user2-dump.sql`: This command uses pg_dump to back up the user2 schema from the postgres database into a SQL file (user2-dump.sql).
+   2. `psql -U postgres -d postgres < '/opt/user2-dump.sql'` :This command uses psql to restore the contents of the user2-dump.sql file into the postgres database.
+2. **with pg_restore**: pg_restore is used when we perform backups in tar, directory, or custom formats, which are created using pg_dump with the -F flag
+   1. **Basic**
+      1. `pg_dump -U postgres -d postgres -n user2 -Ft -f '/opt/user2.tar'` This command creates a backup of the user2 schema in tar format.
+      2. `pg_restore -U postgres -d postgres < '/opt/user2.tar'` This command restores the backup from the user2.tar file into the postgres database.
+      3. If we want to manually create a schema  and add just a table into it `pg_restore -U postgres -d postgres -n user2 -t items < '/opt/user2.tar`
+
+**Note**: By default, pg_dump does not include the CREATE DATABASE command in its output. This behavior allows the backup to be restored into an existing database or a database with a different name.  For example 
+   1. `pg_dump -U postgres -d x -f '/opt/test.sql'` : This command will create a file test.sql, which does not include a CREATE DATABASE x statement.
+   2. `pg_dump -U postgres -d x -Ft -C -f '/opt/test.tar'` : This command will create a file test.tar that includes the CREATE DATABASE command.
+   3. `pg_restore -U postgres -d ab -C /opt/test.tar` : To restore such a backup, our pg_restore command should look like this.
+
+
+**Physical Back up and restores**:
+1. **offline back ups**: `tar -cvzf /path/on/host/backup/archive.tar.gz /bitnami/postgresql/data`
+2. **online back ups**: 
+WAL files are stored in the pg_wal/ directory, with a default size of 16MB, and the total directory size is controlled by the `max_wal_size` setting (often several hundred MB by default). These files log all database changes and are critical for recovery. To save space, PostgreSQL recycles WAL files once they are no longer needed.
+
+A checkpoint is a process where all recent changes are written to disk, and the database's consistent state is recorded. After a checkpoint, WAL files are created so that it can be safely recycled or removed, speeding up recovery and saving storage.
+
+In archiving mode, completed WAL files are saved to an external location before being recycled. This enables Point-in-Time Recovery (PITR) by replaying changes logged in the WAL files after restoring a base backup. For example, during a backup, a long transaction might not be fully included in the backup files, but the WAL logs ensure that the transaction is replayed during recovery, keeping the database consistent.
+- To enable WAL archiving in PostgreSQL:These changes require a restart. Configuration file  `postgresql.conf`, must be manually edited to enable these settings. We can also use an archive library instead of the cp command.
+   1.  `wal_level = replica` or higher.
+   2.  `archive_mode = on`
+   3.  `archive_command = 'test ! -f /opt/archivedir/%f && cp %p /opt/archivedir/%f'`
+         1. `%p` is the full path to the WAL file.   
+         2. `%f` is the filename of the WAL file.
+         3. The `test ! -f` ensures the file is not overwritten.
+         4. Do not forget to restart the server. Be sure that you created the `/opt/archivedir` for wal files.Otherwise `pg_stop_backup` won't work.
+   4. We don't need to include the `pg_wal/` directory in your backup because we will rely on the archived WAL files to restore the database and ensure consistency. 
+   5. After these steps we should test the archieve mode with `SELECT PG_SWITCH_WAL()` function.This function must create another file in `/opt/archivedir`
+**Low level API back up**:
+  1. `SELECT pg_backup_start(label text,fast boolean default false)`: this function prepare the server for starting back up.For example it check the correction of archive files and save the starting point of back up.
+      1. `label` is a description for the back up  
+      2. `fast` : PostgreSQL will wait for finishing the current transaction.So the next checkpoint will be the starter point of the back up.To cancel it and start the back up immidiately use `true`.
+  2. Perform the back up process. `tar -cvzf /opt/my_backup.tar /bitnami/postgresql/data/`
+  3. `SELECT pg_backup_stop(wait_for_archive BOOLEAN DEFAULT true)`: won't return until the wal logs copied to the archivedir directory and return information about back up.`wait_for_archive` can be false to return the function immediately.But this could be breake the whole system.Also it will create .....backup file and put the information.
+
+**pg_basebackup**: This utility automatically put the database backup mode and throws it out from the mod.
+Bitnami automatically creates  the pg_hba.conf file when the PostgreSQL server starts. If we manually configure `/opt/bitnami/postgresql/conf/pg_hba.conf` and restart the server, Bitnami will overwrite our changes. So we need to set specific environment variables in docker compose like below:
+   1. `POSTGRESQL_REPLICATION_USER= replicator`
+   2. `POSTGRESQL_REPLICATION_PASSWORD=replicator_password`
+These variables automatically add the following lines to the pg_hba.conf file upon server start:
+```bash
+host      replication     all             0.0.0.0/0               md5
+host      replication     all             ::/0                    md5
+```  
+Additionally, ensure `listen_addresses` in the PostgreSQL configuration is set to allow connections from any host (*):
+- We still cannot use `pg_basebackup` unless the replication user exists.If we run `\du` we should   see the `replicator` user.Also if we look at the above configuration lines,It says that any user with `REPLICATION` privilege can replicate the cluster.So we should create a user witH `REPLICATION` or we can perform the operation with `postgres` user
+    - `CREATE ROLE replicator WITH LOGIN REPLICATION;`
+    - `\password replicator`
+- Now we can use `pg_basebackup` utility : `pg_basebackup -h localhost -p 5432 -U replicator -Fp -Xs -v -D '/opt/base_backup'`
+    - `-h` hostname
+    - `-p` portname .Include `-p` and `-h` on command because of `PGPORT` or `PGHOST` might be undefined.So you could get `not entry` error for nothing.
+    - `-U` username.User must have `REPLICATION` privilege
+    - `-F` backup format: `p` for plain text and `t` for tar.
+    - `-z` Compress data (can be used only with tar format).
+    - `-X`  WAL log inclusion options:
+         1. `none` or `n`: Do not include WAL logs.
+         2. `fetch` or `f`: Include WAL logs after backup completion.
+         3. `stream` or `s`: Stream WAL logs concurrently during backup (creates a separate connection).
+    - `-v` : enable verbose output
+    - `-D` Directory to store the backup. The directory must be empty or non-existent, or the operation will fail.
+    - `backup_label` : this file in backup data will include backup information.
+**Recovery**:
+- `restore_command = 'cp /opt/archivedir/%f "%p"'` : It will retrive wal logs into pg_wal/ directory.
+- By default,a recovery will execute whole the wal logs.We can set some options to prevent this.
+    1. `recovery_target` Only option is `'immediate'`.That means that The recovery should end as soon as consistent state is reached.
+    2. `recovery_target_name` : We can create restore points with `SELECT PG_CREATE_RESTORE_POINT('hi');` and use particular restore point for `recovery_target_name`.For example for this command `recover_target_name= 'hi'` can be used.
+    3. `recovery_target_time` This parameter specifies the time stamp up to which recovery will proceed.Usually people use this option to recover the database.
+    4. `recovery_target_lsn` lsn refers to `log sequence number`.LSN is a unique identifier for a specific point in the WAL and helps track changes within the database.For example to see current lsn `SELECT pg_current_wal_lsn();` can be used.
+    5. `recovery_target_xid` Each operation has a transaction id in postgresql.We can specify a particular transaction id with this option.
+    6. `recovery_target_inclusive;` is used to specify whether include current target value or not.Default is `on`
+Here are the steps:
+  1. Stop the server
+  2. Copy whole `/data` and tablespaces to temporary a directory (This step can be skipped) . ` cp -r /bitnami/postgresql/data /opt/copy_data`
+  3. Empty `/data` directory.Delete all file and fodlers in data directory. `rm -r /bitnami/postgresql/data` `mkdir data`
+  4. restore the database files. `tar xvf /opt/tar_basebackup/base.tar -C '/bitnami/postgresql/data/'`
+  5. Empty `pg_wal/` directory because It will still include unnecessary logs. `rm -rf /bitnami/postgresql/data/pg_wal/*`
+  6. If there are any wal files exist in the copy of our cluster(step 2) and they are not archived!!!.Copy wal files to current `pg_wal/` directory.
+  7. Set the recovery configuration settings(recover_command,an recover_target option and ,recover_target_inclusive).Create a `recovery.signal` file in the /data directory.Do not anything with it. `touch recovery.signal`
+  8. Set pg_hba.conf file to prevent so that prevent connections until the back up steps done
+  9. Start the server. If the server find `recovery.signal` file,It will go into recovery mode and run all the wal logs as need.
+  10. The server will remove recovery.signal
+  11. Modify pg_hba.conf file to allow user connections
+chown -R 1001:1001 /bitnami/postgresql/data/pg_wal
+Show linux files with last modify date: `ls -al`
+
+
+### Non root containers
+- In root containers the same user ID and GROUP ID for the root user will be exist in the /etc/passwd file on the container.For example I am different user in operating systetm and try to access docker container.When I access the docker container my user will change to the root user.This creates a huge vulnerability.
+- Bitnami uses non-root containers for security, to access them as a root `docker exec -it -u root container-name bash`;
+- SELECT PG_CURRENT_WAL_LSN(),PG_WALFILE_NAME(PG_CURRENT_WAL_LSN());
+
+
+
+### Vi commands
+i : insert mode
+esc: cancel insert mode
+:wq : save and quit

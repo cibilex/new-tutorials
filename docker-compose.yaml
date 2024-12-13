@@ -1,0 +1,21 @@
+version: "3"
+services:
+  postgresql:
+    container_name: ppp
+    image: my-postgres
+    environment:
+      - POSTGRESQL_USERNAME=my_user
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_POSTGRES_PASSWORD=postgres_pass
+      - POSTGRESQL_SHARED_PRELOAD_LIBRARIES=pg_partman_bgw
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=replicator
+    volumes:
+      - banban:/bitnami/postgresql
+      - dandan:/opt
+    ports:
+      - "5432:5432"
+
+volumes:
+  banban:
+  dandan:
