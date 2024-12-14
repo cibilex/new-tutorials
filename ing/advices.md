@@ -19,4 +19,9 @@
      - `no sooner ... than` ,`hardly/barely/scarcely .... when` = `as soon as`
      - `by the time + verb2(past modals,was were,v2), had+verb3(had been,had verb3)` 
    kesinlikle ana cümle zamanıyla uyumlu olmalı.
+
+
+- `It + be + adjective + pronoun + to + verb` : adjective should refers to personality.
+- `It was nice of you to help`: Yardım etmen çok nazikti(Kişiyi focuslar). `It was nice that you helped.` Yardım etmeniz hoştu.(Olayı focuslar)
+- `It was clever of you to solve the problem quickly.` sorunu çözmeniz akıllıcaydı.
 https://www.youtube.com/watch?v=uf-EylJTLO4&list=PL5kIOunpmSBPCfciMcB0ehX31Ef2ca8Zs&index=5
