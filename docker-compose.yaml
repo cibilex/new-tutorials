@@ -1,7 +1,7 @@
 version: "3"
 services:
   postgresql:
-    container_name: ppp
+    container_name: poss
     image: my-postgres
     environment:
       - POSTGRESQL_USERNAME=my_user
@@ -11,11 +11,21 @@ services:
       - POSTGRESQL_REPLICATION_USER=replicator
       - POSTGRESQL_REPLICATION_PASSWORD=replicator
     volumes:
-      - banban:/bitnami/postgresql
-      - dandan:/opt
+      - poss:/bitnami/postgresql
+      - dann:/opt
     ports:
       - "5432:5432"
-
+  redis:
+    container_name: poss-redis
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+      - REDIS_PASSWORD=redis_password
+    ports:
+      - "6379:6379"
+    volumes:
+      - poss-red:/bitnami/redis/data
 volumes:
-  banban:
-  dandan:
+  poss:
+  dann:
+  poss-red:

@@ -68,15 +68,13 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
 
 
 **while** : iken,-a rağmen,-sa da,-rken.
-         - `While I was in the hospital,nobady paid a visit for me.`
-         - `While He is a doctor,His doughter is a dentist.`
-         - `While he is a good student,nobayd likes him.`
-**still** hala,lakin,durgun.
-    - `I am still working with my father.`
-    - `I insisted on working near my father,Still, he doesn't want me in his business.`
-    - `I can swim in still water.`
-- `though` her şekilde kullanılabilir.
-ösym cümleyi nasıl uzatır.
+   - `While I was in the hospital,nobady paid a visit for me.`
+   - `While He is a doctor,His doughter is a dentist.`
+   - `While he is a good student,nobayd likes him.`    
+**still** hala,lakin,durgun.    
+  - `I am still working with my father.`
+  - `I insisted on working near my father,Still, he doesn't want me in his business.`
+  - `I can swim in still water.`
 
 - `Although,even though` cümle başındaysa comma,ortasındaysa comma kullanılmaz.`even though` beklenmedik durumlarda tercih edilir.
 - `in spite of,despite` virgül kullanmaz.
@@ -91,7 +89,6 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
        - `Women live longer than men because of taking care of themselves..`
 3. **result sentence adverbs**: `therefore` `thereby` `as a result` `thus` `so` `hence` `accordingly` `consequently` `that's why` `in turn` `for this reason` `as a consequence`:bunun sonucunda,böylece,bu yüzden =>soldaki sebebin sonucunu verir. 
      - `thereby` dan sonra svo gelemez.
-     - adverbial clause gelebilir arkalarından.
      - `Women take care of themselves; therefore, they live longer than men.`
 4. **aa +1 additional info sentence adverb**: `also` `besides` `moreover` `in addition` `additionally` `furthermore` `what's more`=>ek olarak,bununla birlikte,bunun yanında,ayrıca
      - `Ali consumes alcohol. In addition,ali uses drugs.`
@@ -129,7 +126,8 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
 11. **aim prepositions**:=>-mak için,-mek-içim, amacıyla
    - `in order to` `so as to` `in an attemp to`=>sonrasında fiil alır. 
         -  `zoom in the page in order to see the sentences better.`
-   - `with a view to` `with the aim of` `with the intention of` `with the intent of` `with the purpose of` `for the purpose of` `in a bid to`
+   - `with a view to` `with the aim of` `with the intention of` `with the intent of` `with the purpose of` `for the purpose of` `in a b
+   - id to`
         - `zoom in the page with a view to seeing the sentences better.` 
 
 12. AS

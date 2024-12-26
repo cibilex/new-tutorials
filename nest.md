@@ -6,7 +6,7 @@
 6. middlewares
 7. built-in pipes,class-validator,class-transformers
 8. exceptions,built in exceptions,custom exceptions,exception filter(handler)
-9. 
+9. encrypt vs hash vs dechipher
 
 
 Not: Authentication
@@ -1029,10 +1029,37 @@ TypeORM is object relational Mapper that workings on Server,Browser,Electron etc
 ```bash
 npm i --save @nestjs/typeorm typeorm mysql2
 ```
+configuration: 
+
+```ts
+@Global()
+@Module({
+  imports: [
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigService<EnvType, true>) => {
+        return {
+          port: configService.get('DB.DB_PORT', { infer: true }),
+          host: configService.get('DB.DB_HOST', { infer: true }),
+          database: configService.get('DB.DB_DATABASE', { infer: true }) as string,
+          username: configService.get('DB.DB_USERNAME', { infer: true }),
+          password: configService.get('DB.DB_PASSWORD', { infer: true }),
+          synchronize: configService.get('DB.DB_SYNCHRONIZE', { infer: true }),
+          logging: false,
+          autoLoadEntities: true,
+          type: configService.get('DB.DB_TYPE', { infer: true }) as 'postgres',
+          schema: configService.get('DB.DB_SCHEMA', { infer: true })
+        }
+      },
+      inject: [ConfigService]
+    })
+  ],
+})
+
+```
 
 Daha önce mongoose kullandıysanız bazı yerler size tanıdık gelecektir.
 
-Entity is a class that refers to a table.As defult class name will be name of createded table ,to declare a table name use @Entity('table_name').Each entity must contain a Primary column and each of its value must be optional.  
+Entity is a class that refers to a table.As defult class name will be name of created table ,to declare a table name use @Entity('table_name'). 
 PrimaryGeneratedColumn: refers to Serial in mariadb(INT NOT NULL PRIMARY KEY AUTO_INCREMENT).
 
 @Column('type',opts) - @Column({opts}): Tablodaki belirli bir sütunu temsil eder.If type hasn't been specified,TypeORM will try to look at its TS type,For example if type is number,column type will be INT.If type is string,column type will be VARCHAR(255) and so forth.
@@ -1051,7 +1078,7 @@ top options:
 | comment  |                    | column comment                                                              |
 | zerofill |                    | ZEROFILL in MySQL                                                           |
 | unsigned |                    | UNSIGNED in MYSQL                                                           |
-| charset  | depends db version | charachter set of column                                                    |
+| charset  | depends db version | character set of column                                                    |
 | enum     |                    | valid values for current column                                             |
 
 ```ts
@@ -1136,18 +1163,30 @@ private readonly entityManager: EntityManager : TypeORM manager classını temsi
 export abstract class BaseTable {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column({
+    type: 'int',
+    nullable: false,
+    name: 'created_at',
+  })
+  createdAt: number;
 
   @Column({
-    type: "int",
+    type: 'int',
     nullable: false,
+    name: 'updated_at',
   })
-  created_at: number;
+  updatedAt: number;
 
-  @Column({
-    type: "int",
-    nullable: false,
-  })
-  updated_at: number;
+  @BeforeInsert()
+  beforeInsert() {
+    this.createdAt = toUnixTime();
+    this.updatedAt = toUnixTime();
+  }
+
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.updatedAt = toUnixTime();
+  }
 }
 
 //user.entity.ts
@@ -1404,6 +1443,15 @@ Yukarıdaki kodta 2 önemli hata bulunmaktadır.
   user: Partial<Users>;
 ```
 
+veya
+```ts
+  @OneToOne(() => User, {
+    nullable: false,
+  })
+  user: Partial<Users>;
+
+```
+
 2. save işlemleri transaction içine alınmalıdır.Yoksa settings tablosuna eklerken hata verirse bile users tablosu insert edilmiş olur.Transaction entityManager tarafından oluşturulabilir.
 
 ```ts
@@ -1472,7 +1520,7 @@ Bu örnekte uni-directional relation yapıldı,bi-directional bağlantıda yapab
 Böylece users ilede settingse karmaşık queryler yapmadan erişebiliriz.Users tablosunda settingId veya FOREIGN KEY oluşmayacaktır!!!
 
 @ManyToOne() and @OneToMany()
-Users ve products tablolarının olduğunu düşünelim.Bir kullanıcının çok sayıda productı olabilir ancak bir productın bir kullanıcı olabilir.Bu durumda products tablosunda @ManyToOne(),users tablosunda @OneToMany() kullanılır.
+Users ve products tablolarının olduğunu düşünelim.Bir kullanıcının çok sayıda productı olabilir ancak bir productın bir kullanıcısı olabilir.Bu durumda products tablosunda @ManyToOne(),users tablosunda @OneToMany() kullanılır.
 
 @ManyToOne() tek başına kullanılabilirken,@OneToMany için @ManyToOne() da eklenmesi zorunludur.
 @ManyToOne() underlying olarak @JoinColumn() decoratorunu çalıştırır yani manual yazmaay gerek yoktur.
@@ -1569,7 +1617,7 @@ Mesela products isteği ise aşağıdaki gibi döner
 ```
 
 ```ts
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   userId: number;
     @ManyToOne(() => Users, (users) => users.product, {
     nullable: false,
@@ -1613,6 +1661,13 @@ export class Categories {
 Relation kullanırken default olarak @JoinColumn() bulunduğu tabloda propertyId şeklinde bir sütun oluşturulur.Bu ismi değiştirmek için `@JoinColumn({name:'name'})` kullanabiliriz.
 
 createForeignKeyConstraints:To prevent creation of foreign key in table which @JoinColumn used in.use createForeignKeyConstraints:false option.
+```ts
+  @ManyToOne(() => User, {
+    createForeignKeyConstraints: false,
+  })
+```
+
+Also `onDelete` and `onUpdate` options can be determined.
 
 Find\*  
 It is used to create queries handy Instead of making queries with QueryBuilder.  
@@ -1882,7 +1937,7 @@ leftJoin ve innerJoin joinlenen tablo verilerini getirmez.
       .where('user.id = :id', { id })
       .getMany();
 
-     //or
+     //opt 2
 
      this.usersRepository
       .createQueryBuilder('user')
@@ -1891,9 +1946,10 @@ leftJoin ve innerJoin joinlenen tablo verilerini getirmez.
       .andWhere('product.title like :title', { title: '%test title%' })
       .getMany();
 
+      Note: there are not equals. The farmer title condition will be in join clause while the latter will be in where clause
 
-      // will be
-SELECT `user`.`id` AS `user_id`, `user`.`email` AS `user_email`, `user`.`password` AS `user_password`, `user`.`birth_year` AS `user_birth_year`, `product`.`id` AS `product_id`, `product`.`title` AS `product_title`, `product`.`description` AS `product_description`, `product`.`userId` AS `product_userId` FROM `users` `user` LEFT JOIN `products` `product` ON `product`.`userId`=`user`.`id` WHERE `user`.`id` = ? AND `product`.`title` like ? -- PARAMETERS: [25,"%test title%"]
+
+      
 ```
 
 Ayrıca Entity kısımlarında relation olarak belirtilmemiş tablolarada join atılabilir.

@@ -1,6 +1,5 @@
 https://www.hackerrank.com/apply?roles=%5B%22Back-End+Developer%22%2C%22Back-End+Developer+%28Node%29%22%2C%22Back-End+Developer+%28Node.js%29%22%2C%22Backend+Developer%22%2C%22Front-End+Developer%22%2C%22Front-End+Developer+%28Vue%29%22%2C%22Frontend+Developer%22%2C%22Frontend+Developer+%28Vue.js%29%22%2C%22Senior+Frontend+Developer%22%2C%22Senior+Frontend+Developer+%28Vue.js%29%22%2C%22Full-Stack+Engineer+%28Vue%2C+Node%29%22%2C%22Fullstack+Engineer%22%5D&countries=%5B%22Turkey%22%5D
 
-05526580562 can bey
 
 https://jobs.lever.co/oneteam/b105de9d-8c17-4e5a-970c-f105a4dc1798
 https://www.hogarth.com/job/freelance-front-end-developer?gh_src=9ea6f5ad4us
@@ -424,7 +423,7 @@ Additional Examples:
              - `CREATE TABLE settings (user_id INT NOT NULL REFERENCES users (id));`
              - `CREATE TABLE settings (user_id INT, FOREIGN KEY (user_id) REFERENCES users (id) NOT NULL);`
          - `Foreign Key` constraints are triggered during two operations: `DELETE` and `UPDATE`. There are five different actions that can be specified for a `FOREIGN KEY` constraint when a referenced row is deleted or updated:
-             1. **NO ACTION**: This is the default behavior. It prevents the delete and update operations if there are any dependent rows in the referencing table. The action is enforced immediately without waiting for the end of the transaction.
+             1. **NO ACTION**: This is the default behavior. It prevents the delete and update operations if there are any dependent rows in the referencing table.
              2. **RESTRICT**: This is similar to `NO ACTION`, but it differs in that `RESTRICT` checks the constraint immediately, whereas `NO ACTION` waits until the end of the transaction to enforce the constraint.
              3. **CASCADE**: When a row is deleted, it deletes all the referencing rows (i.e., cascading the delete). On update, the referencing rows are updated with the new value of the referenced column.
              4. **SET NULL**: When the referenced row is deleted or updated, the foreign key columns in the referencing rows are set to `NULL`.
