@@ -1,0 +1,1 @@
+* We cannot send emails with simple username and passwords anymore. [issue](https://stackoverflow.com/questions/45478293/username-and-password-not-accepted-when-using-nodemailer)

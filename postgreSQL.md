@@ -57,6 +57,11 @@ https://hizlibasvuru.aselsan.com.tr/apply?announcementId=95e7d7df-cc6c-4fb0-8055
 - `as` is used as determine alias. 
     - `SELECT b.name,u.name,u.admin FROM books AS b JOIN users as u ON u.id=b.user_id ORDER BY b.name;` 
     - `as` is an optinal identifier.So adding a space also can be enough for aliasing. `SELECT b.name,u.name,u.admin FROM books AS b JOIN users as u ON u.id=b.user_id ORDER BY b.name;`
+
+
+
+- PostgreSQL is case sensitive. To do what you want create a function index. So say `CREATE UNIQUE INDEX test_upper_idx ON mytable (UPPER(myfield));`
+
 - **POSTMASTER**: The Postmaster process in PostgreSQL acts as a listener for incoming connections. When a connection request is received, it manages authentication, authorization, and other checks to validate the connection. Once validated, the Postmaster spawns a new backend process, called Postgres, to handle the client's requests. Additionally, Postmaster functions as a supervisor to keep the database resilient; for example, if a critical process like autovacuum stops unexpectedly, the Postmaster restarts it automatically to maintain database performance.
      - **shared area**: All operations such as read, write, update, and delete in PostgreSQL are performed in the shared buffer area. When data is modified but not yet written to the data files on disk, it is referred to as dirty data. This data remains in memory until it is eventually flushed to the disk through a process known as checkpointing, ensuring that changes are persisted and the database is consistent.
      - **wall buffer**: The WAL (Write-Ahead Log) buffer contains records of all changes made to the database

@@ -2,6 +2,7 @@ const numbers = {
   x: 1,
   y: 2,
 };
+
 let target;
 Object.keys(numbers).forEach((key) => {
   const subscribers = [];
