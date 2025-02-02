@@ -1,33 +1,91 @@
 ## JEST
 
  ```bash
- npm i jest ts-jest @types/jest
+ npm i jest ts-jest @types/jest typescript
  ```
-Package.json dosyasında scripts altında `"test": "jest"` eklenmeli..
- Eslint ile çalışırken eslintin no-undef kuralına atlatmak için `.eslintrc` dosyasında  eklenmelidir.
+package.json > scripts> `test:"jest"`
+- `npx `
+- jest also allow to write .ts config file : 
+```ts
+import { Config } from "@jest/types";
+
+const config: Config.InitialOptions = {
+  preset: "ts-jest",
+  testEnvironment: "node",
+  verbose: true,
+};
+
+export default config;
+```
+When working with eslint,to avoid the un-def  rule we should below configuration:
  ```ts
  {env:{jest:true}}
  ```
+```ts
+export const toUppercase = (text: string) => text.toUpperCase(); //app.ts
 
- İlk örnek:
- ```ts
- //test.ts
- export function sum(number1: number, number2: number) {
-  return number1 + number2;
-}
-
-//test.spec.ts
-import { sum } from './test';
-
-test('sumTest', () => {
-  expect(sum(1, 2)).toBe(3);
+describe("app.ts tests", () => {
+  test("should return uppercase", () => {
+    const result = toUppercase("hi world");
+    expect(result).toBe("HI WORLD");
+  });
 });
- ```
 
-```bash
-npm run test
+// Here is a better version
+describe("app.ts tests", () => {
+  it("should return uppercase", () => {
+    // arrange
+    const sut = toUppercase;
+    const expected = "ABC";
+
+    // act
+    const actual = sut("abc");
+
+    // expect
+    expect(actual).toBe(expected);
+  });
+});
 ```
-Primitive olmayan tiplerde `.toBe` yerine `.toEqual` kullanılmalı.`.toBe` ,`Object.is` kullandığı için `.toBe({},{})` gibi bir karşılaştırma hatalı gösterir.
+- `it` is alias for `test`
+- We should use `.toEqual` instead of `.toBe` for non-primitive values because `.toBe` uses `Object.is` method, so `.toBe({},{})` will throw error.
+- create a new test(it) for each test 
+```ts
+export const getStringInfo = (text: string) => {
+  return {
+    length: text.length,
+    array: text.split(""),
+    uppercase: text.toUpperCase(),
+    lowercase: text.toLowerCase(),
+  };
+};
+
+  it("should be a valid function", () => {
+    const actual = getStringInfo("hi world");
+
+    expect(actual.array).toContain<string>("h");
+    expect(actual.length).toBe(8);
+    expect(actual.array).toHaveLength(8);
+    expect(actual.uppercase).toBe("HI WORLD");
+    expect(actual.array).toEqual(["h", "i", " ", "w", "o", "r", "l", "d"]);
+    expect(actual.lowercase).not.toBe(undefined);
+    expect(actual.lowercase).not.toBeUndefined();
+    expect(actual.lowercase).toBeDefined();
+    expect(actual.lowercase).toBeTruthy();
+
+
+  });
+```
+
+```ts
+  it.each([  
+    { input: "hi world", expected: "HI WORLD" },
+    { input: "cibilex", expected: "CIBILEX" },
+    { input: "Kevin Spacy", expected: "KEVIN SPACY" },
+  ])("$input should be $expected", ({ input, expected }) => {// $ is used to represent the related field
+    const actual = toUppercase(input);
+    expect(actual).toBe(expected);
+  });
+```
 
 ```ts
 //test.ts
@@ -39,7 +97,8 @@ export function getUser() {
 import { getUser } from './test';
 
 test('sumTest', () => {
-  expect(getUser()).toEqual({ username: 'cibilex' });
+  expect(getUser()).toEqual({ username: 'cibilex' }); // this won't throw error ,we should use .toStrictEqual to make it throw error.
+
 });
 
 ```
