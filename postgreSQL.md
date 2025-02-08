@@ -1199,6 +1199,22 @@ Here are the steps:
 chown -R 1001:1001 /bitnami/postgresql/data/pg_wal
 Show linux files with last modify date: `ls -al`
 
+--- Bu not da ki cloumn order olayını bu konu ışığında bir değerlendir.
+https://www.cybertec-postgresql.com/en/postgresql-bulk-loading-huge-amounts-of-data/
+https://www.cybertec-postgresql.com/en/shrinking-the-storage-footprint-of-data/
+
+-- Optimal Column order verir.Yani sen tablonun nasıl istersen oyle create et. Sonra bunu bu sorgu ile sorgula.
+SELECT pns.nspname,a.attname, t.typname, t.typalign, t.typlen
+FROM pg_class c
+join pg_catalog.pg_namespace pns on (c.relnamespace=pns.oid)
+JOIN pg_attribute a ON (a.attrelid = c.oid)
+JOIN pg_type t ON (t.oid = a.atttypid)
+where c.relname = 'tbl_cities' and
+pns.nspname ='app'
+AND a.attnum >= 0
+ORDER BY t.typlen desc;
+
+SERIAL PRIMARY KEY = integer DEFAULT nextval('table_name_column_seq') PRIMARY KEY
 
 ### Non root containers
 - In root containers the same user ID and GROUP ID for the root user will be exist in the /etc/passwd file on the container.For example I am different user in operating systetm and try to access docker container.When I access the docker container my user will change to the root user.This creates a huge vulnerability.
