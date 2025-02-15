@@ -88,7 +88,7 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
 2. **reason prepositions**: `because of` `thanks to` `due to` `owing to` `as a result of` `with` `as a consequence of` `in a view of` `in virtue of` `by virtue of` `on account of` : -dığı için,-den dolayı,sayesindea 
        - `Women live longer than men because of taking care of themselves..`
 3. **result sentence adverbs**: `therefore` `thereby` `as a result` `thus` `so` `hence` `accordingly` `consequently` `that's why` `in turn` `for this reason` `as a consequence`:bunun sonucunda,böylece,bu yüzden =>soldaki sebebin sonucunu verir. 
-     - `thereby` dan sonra svo gelemez.
+     - `thereby` dan sonra svo gelemez. As a result of this action. `He practiced diligently, thereby perfecting his skilss.` 
      - `Women take care of themselves; therefore, they live longer than men.`
 4. **aa +1 additional info sentence adverb**: `also` `besides` `moreover` `in addition` `additionally` `furthermore` `what's more`=>ek olarak,bununla birlikte,bunun yanında,ayrıca
      - `Ali consumes alcohol. In addition,ali uses drugs.`

@@ -1,10 +1,71 @@
+interrogate
+from that day to this date = to date
+from then until now
+to date
+empirical
+excruciate
+excrutiating
+constitute
+make up
+strain
+lean
+neglect
+jerk
+rotten
+cabbage
+lettuce
+chute
+parachute
+combat
 
+
+
+
+go off
+juvenile
+cellular
+malfunction
+trial - duruşma deneme test
+enrol in
+cononary
+quest
+nutrient
+glucose
+pinpoint
+unsteady
+stead
+dairy
+grain
+nicotine
+crave
+craving
+admire
+restrain
+retreat
+
+
+
+vandal
+descent
+vandalism
+malicous
+hopping
+chamber
+liege
+refurbished
+snap out of it
+snap out
+allies
+duel
+taint
+exile
 divine
 infant
 revise
 autocrat
 quirk
 aquarium
+social
 wail
 vivid
 excavate
@@ -26,6 +87,7 @@ admiration
 distinguish
 scalar
 correlation
+virtually
 ordinarily
 christmas carol
 aptly
@@ -34,6 +96,8 @@ ox
 vague
 perish
 subsist
+in time
+over time
 coarse
 minority
 contrive
@@ -72,6 +136,12 @@ stem from
 stem
 turn into
 result in
+underestimate
+tribe
+regale
+flame
+ruthless
+southern
 amount to
 set out
 wipe out
@@ -139,6 +209,7 @@ ardently
 teem
 extermination
 exterminate
+voletile
 co-exist
 concide
 affiliate
@@ -194,8 +265,10 @@ artfully
 replicate
 arful
 emancipation
+hand over
 
-lobster
+
+lobster 
 nocturne
 nocturenal
 endanger
@@ -431,7 +504,6 @@ humming
 vulture
 sleepwalking
 occupy
-tribe
 kidnapped
 worship
 double whammy
@@ -1864,7 +1936,7 @@ improvise
 mock
 lethal
 vital
-reputiation
+repudiation
 reputation
 manuever
 treadmill
@@ -1881,3 +1953,47 @@ wail
 revise
 quirk
 strand
+coward
+covart
+get down to
+charter
+coach
+I'll put you through to ...
+solitary
+pull trough
+coherent
+valiant
+fairy
+bustle
+valentine
+genie
+prominent
+draw on
+worthwhile
+obstruction
+carrion
+faint
+virtue
+allege
+figurative
+stew
+peans
+bean
+ligament
+exquisite
+akin
+go down
+put out
+give out
+avail of
+wander
+wanderer
+descriptive
+surgery
+surgeon
+toothbrush
+toothpaste
+obsolete
+deficit
+
+

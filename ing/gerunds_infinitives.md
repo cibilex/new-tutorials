@@ -100,7 +100,7 @@ finish
 * verb+object+infinitive
     - exceptions:
         - `spend/waste+object+gerund`
-        - `help+object%verb0 | infinitive`
+        - `help+object%verb0 | infinitive`  . can't help => gerund. `kendini alamıyor.`
         - `algı/şahirlik+object+verb0 | infinitive`
         - `have+object+v0 |verb3`
         - `get+object+to verb0 | verb3`
@@ -127,8 +127,8 @@ finish
 * It takes + infinitive `It took botanists  years to breed`
 - seem,appear + to lu yapılar gelir. (to be getting,to be verb3,to be)
 * pasif cümlelerde istisnalar dışında to verb0 alır.
-     - `catch,see,heard` +gerund
-     - `find`=>... yaparken ise gerund,.... olduğu,yaptığı keşfedildi farkedildi to verb0   
+     - `find,catch,see,heard` +gerund
+     - `find`=>... yaparken  bulundu ise gerund,.... olduğu,yaptığı keşfedildi farkedildi to verb0   
 * ,verb ... => 
     - if the sentence is active  : `gerund` 
     - if the sentence is passive : `verb3`
