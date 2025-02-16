@@ -58,6 +58,11 @@ snap out
 allies
 duel
 taint
+tangible
+susceptible
+cohesive
+flux
+colocate
 exile
 divine
 infant
@@ -1996,4 +2001,20 @@ toothpaste
 obsolete
 deficit
 
+
+bruise
+tape
+shrimp
+dolphin
+inscription
+get at
+obtrusive
+exposure
+relief
+sculptor
+sculpture
+sorcery
+collar
+compulsion
+conceal
 
