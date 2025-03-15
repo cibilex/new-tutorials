@@ -20,10 +20,16 @@ combat
 
 
 
+contemporary
+indifferent
+in excess of
+consequent on
 
 go off
 juvenile
 cellular
+mortgage
+elien
 malfunction
 trial - duruşma deneme test
 enrol in
@@ -2017,4 +2023,25 @@ sorcery
 collar
 compulsion
 conceal
+
+compulsion
+take up
+fanny bag
+put on
+apprentice
+elienation
+exaggerate
+prodigious
+martyr
+patriotic
+combustible
+literally
+utterly
+pretend
+imprevise
+give in
+shore
+harvest
+
+
 
