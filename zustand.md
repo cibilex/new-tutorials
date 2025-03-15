@@ -138,3 +138,4 @@ export const BearNames = () => {
 ```
 - In this case, Zustand will re-render BearNames on every state update, even if the return value of useMeals((state) => Object.keys(state)) hasn't changed. Why? Actually, the values returned by the selector function are not considered the same by Zustand. Zustand uses Object.is to check for equality, which treats arrays as different objects on every render. Therefore, the returned value from Object.keys(state) is always a new array, even if the contents are identical.
 - To avoid unnecessary re-renders in such situations, we can use `useShallow`: `const names = useMeals(useShallow((state) => Object.keys(state)))` . With useShallow, Zustand will perform a shallow comparison and only trigger a re-render if the contents of the array (i.e., the keys) have changed,
+- 
