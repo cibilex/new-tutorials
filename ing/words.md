@@ -20,11 +20,22 @@ combat
 
 
 
+
 contemporary
 indifferent
 in excess of
 consequent on
-
+sue
+continiously
+waist
+comfortably
+once  as soon as ,bir zamanlar,bir kez
+deposited
+comet
+blond
+whipped cream
+cozy
+overstep
 go off
 juvenile
 cellular
@@ -2042,6 +2053,18 @@ imprevise
 give in
 shore
 harvest
+
+
+scarcity
+drought
+set off
+duffle bag
+bribe
+deliberative
+by means of
+tremor
+frugal
+inclement
 
 
 
