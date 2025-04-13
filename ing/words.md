@@ -1,3 +1,25 @@
+hitch (get hitch)
+hitchiking
+lizard
+assassinate
+detain
+epilogue
+virgin
+mature
+chafe
+decapitate
+apprentice
+novice
+indigenous
+forage
+forecast
+standoff
+encase
+jar
+decent
+trot
+
+
 interrogate
 from that day to this date = to date
 from then until now
@@ -17,6 +39,7 @@ lettuce
 chute
 parachute
 combat
+ever since
 
 
 
@@ -2084,4 +2107,7 @@ pest
 insect
 tomb
 parrot
+
+
+
 
