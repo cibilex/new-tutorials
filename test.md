@@ -11,8 +11,10 @@ import { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
   preset: "ts-jest",
-  testEnvironment: "node",
-  verbose: true,
+  testEnvironment: "node", 
+  verbose: true, // elaborate
+  testMatch: ["**/src/test/**/*.ts"], // which folders should be run
+
 };
 
 export default config;
@@ -193,6 +195,54 @@ describe('test to handle catch', () => {
 Async test listenerları return değerine atanabilir veya `done` parametresi ile bitme durumu belirtilebilir.
 Bir test dosyasında sadece bir testin çalışması için ilgili test test.only flagı ile çalıştırılabilir.
 
+
+- **Test Doubles**:
+1. **Fakes**: They are similates the real object or functions.
+```ts
+export const sumNumbers = (
+  num1: number,
+  num2: number,
+  logger: (message: string) => void
+) => {
+  const result = num1 + num2;
+  logger(`result of ${num1} + ${num2} is ${result} `);
+  return result;
+};
+
+
+  it.only("test 2 + 5", () => {
+    const act = sumNumbers(2, 5, () => {}); // ()=>{} is fake
+    expect(act).toBe(7);
+  });
+```
+In the above example,we just write an fake function to run our test.However we don't know how much our function run,what the argument is called with our logger etc...,we can do something like below to track our logger.
+```ts
+  let timesCalled = 0;
+  let calledArg: string;
+
+  it.only("test 2 + 5", () => {
+    const logger = (arg: string) => {
+      calledArg = arg;
+      timesCalled++;
+    };
+    const act = sumNumbers(2, 5, logger);
+    expect(act).toBe(7);
+    expect(calledArg).toBe("result of 2 + 5 is 7 ");
+    expect(timesCalled).toBe(1);
+  });
+```
+but this is not enough because our function can be more complex and also this is exhuasting.To solve this problem,we can use `mocks`
+2. **Mocks**: Mocks help us to track our fake functions like below example.
+```ts
+  it.only("test 2 + 5", () => {
+    const logger = jest.fn();
+    const act = sumNumbers(2, 5, logger);
+    expect(act).toBe(7);
+    expect(logger).toHaveBeenCalledWith("result of 2 + 5 is 7 ");
+    expect(logger).toHaveBeenCalledTimes(1);
+  });
+```
+As you can see,it both simpler and useful.
 
 Mock Functions:
 Mock fonksiyonları constructor fonksiyon oluşturarak bu fonksiyonun çağrılma,return değerleri ve inject edilme durumlarını kontrol etmek için kullanılır.
