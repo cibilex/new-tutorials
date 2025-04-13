@@ -69,6 +69,7 @@ malicous
 hopping
 chamber
 liege
+alleged
 refurbished
 snap out of it
 snap out
@@ -2067,4 +2068,20 @@ frugal
 inclement
 
 
+
+
+malign
+inexplicable
+as if
+swallow
+allegedly
+collegue
+alleged
+collision
+remnant
+perseverance
+pest
+insect
+tomb
+parrot
 
