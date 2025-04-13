@@ -1,3 +1,25 @@
+hitch (get hitch)
+hitchiking
+lizard
+assassinate
+detain
+epilogue
+virgin
+mature
+chafe
+decapitate
+apprentice
+novice
+indigenous
+forage
+forecast
+standoff
+encase
+jar
+decent
+trot
+
+
 interrogate
 from that day to this date = to date
 from then until now
@@ -17,6 +39,8 @@ lettuce
 chute
 parachute
 combat
+ever since
+
 
 
 
@@ -24,7 +48,17 @@ contemporary
 indifferent
 in excess of
 consequent on
-
+sue
+continiously
+waist
+comfortably
+once  as soon as ,bir zamanlar,bir kez
+deposited
+comet
+blond
+whipped cream
+cozy
+overstep
 go off
 juvenile
 cellular
@@ -58,6 +92,7 @@ malicous
 hopping
 chamber
 liege
+alleged
 refurbished
 snap out of it
 snap out
@@ -2042,6 +2077,37 @@ imprevise
 give in
 shore
 harvest
+
+
+scarcity
+drought
+set off
+duffle bag
+bribe
+deliberative
+by means of
+tremor
+frugal
+inclement
+
+
+
+
+malign
+inexplicable
+as if
+swallow
+allegedly
+collegue
+alleged
+collision
+remnant
+perseverance
+pest
+insect
+tomb
+parrot
+
 
 
 
