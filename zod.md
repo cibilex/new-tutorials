@@ -16,15 +16,6 @@ const user3 = schema.safeParse("hi"); // {success:true,data:"hi"}
 const user4 = schema.safeParse(12); // {success:false,error:[Getter]}
 ```
 
-```ts
-import z from "zod";
-const User = z.object({
-  username: z.string(),
-});
-
-const user = User.safeParse({ username: "hi world" }); // {success:true,data:{username:"hi world"}}
-const user = User.safeParse({ username: 123 }); // {success:false,error:[Getter]}
-```
 
 - **Type Coercion**:  zod uses javascript built-in functions such as `Boolean,String,Number` for coercion. So It might seem a bit tricky to us.For example :
 ```ts
@@ -71,7 +62,7 @@ const user = User.safeParse({
             type: UserTypes.ADMIN,  // ok  , `admin` => ok , `hi` => will throw error
             }); 
            ``` 
-- **Boolean**: This part is a bit tricky.Zod just allow `true` and `false` values for `z.boolean()`. We can use `z.coerce.boolean()` to make the zod consider falsy values like `0` `null` `false` `undefined` `""` as  `false` and all of the other values such as `"hi world"` `true` `231` `[]` as true.But this approach is still not enough  use  case for env-variables or query parameters.To accomplish this issue zod intruduced a new feature called `z.stringbool()` that works like below.This feature is existed in the zod@4.
+- **Boolean**: This part is a bit tricky.Zod just allow `true` and `false` values for `z.boolean()`. We can use `z.coerce.boolean()` to make the zod consider falsy values like `0` `null` `false` `undefined` `""` as  `false` and all of the other values such as `"hi world"` `true` `231` `[]` as true.But this approach is still not enough for some  use  cases such as for env-variables or query parameters.To accomplish this issue zod intruduced a new feature called `z.stringbool()` that works like below.This feature is existed in the zod@4.
 ```ts
 const strbool = z.stringbool();
  
