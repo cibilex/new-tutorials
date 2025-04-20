@@ -1,57 +1,56 @@
-hitch (get hitch)
-hitchiking
-lizard
-assassinate
-detain
-epilogue
-virgin
-mature
-chafe
-decapitate
-apprentice
-novice
-indigenous
-forage
-forecast
-standoff
-encase
-jar
-decent
+voyage
+contrive
+whirlwind
+hang on / hold on
+baffling
+on sale
+scuba dive
+stiff
+prophet
+prophecy
+I can't wait to
+I'll right back
+virtue
+flyboard
+manuevability
+overweight
+joint
+joint pain
+curative
+therapy
+
+
+break away
+fire away
+give away
+get away
+take out
+elbow
+verbal
+vital
+shotgun
+discourse
+disclaim
+disclosure
 trot
+short by
+confidential
+confident
+celebrity
+insomnia
+widespread
+sculptor
+trademark
+jog
+,plus
+delicate
+frugal
+spender
+toiletress
 
 
-interrogate
-from that day to this date = to date
-from then until now
-to date
-empirical
-excruciate
-excrutiating
-constitute
-make up
-strain
-lean
-neglect
-jerk
-rotten
-cabbage
-lettuce
-chute
-parachute
-combat
-ever since
-
-
-
-
-contemporary
-indifferent
-in excess of
-consequent on
-sue
-continiously
-waist
-comfortably
+put down
+disposes
 once  as soon as ,bir zamanlar,bir kez
 deposited
 comet
