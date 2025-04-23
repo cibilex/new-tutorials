@@ -1,56 +1,26 @@
-voyage
-contrive
-whirlwind
-hang on / hold on
-baffling
-on sale
-scuba dive
-stiff
-prophet
-prophecy
-I can't wait to
-I'll right back
-virtue
-flyboard
-manuevability
-overweight
-joint
-joint pain
-curative
-therapy
-
-
-break away
-fire away
-give away
-get away
-take out
+dairy
+waist
 elbow
-verbal
-vital
 shotgun
-discourse
-disclaim
-disclosure
-trot
-short by
-confidential
-confident
-celebrity
-insomnia
-widespread
-sculptor
-trademark
-jog
-,plus
-delicate
-frugal
-spender
-toiletress
+dispose of
+redemption
+sin
+crave
+admire
+restrain
+retreat
+vandal
+descent
+vandalism
+malicous
+hopping
+chamber
+alleged
 
 
-put down
-disposes
+
+
+liege
 once  as soon as ,bir zamanlar,bir kez
 deposited
 comet
@@ -76,22 +46,6 @@ stead
 dairy
 grain
 nicotine
-crave
-craving
-admire
-restrain
-retreat
-
-
-
-vandal
-descent
-vandalism
-malicous
-hopping
-chamber
-liege
-alleged
 refurbished
 snap out of it
 snap out
