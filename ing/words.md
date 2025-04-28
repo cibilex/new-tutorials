@@ -12,10 +12,12 @@ retreat
 vandal
 descent
 vandalism
-malicous
-hopping
+malicious
+hop
 chamber
-alleged
+allege
+allegedly
+
 
 
 
