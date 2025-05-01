@@ -1,37 +1,32 @@
-dairy
-waist
-elbow
-shotgun
-dispose of
-redemption
-sin
-crave
-admire
-restrain
-retreat
-vandal
-descent
-vandalism
-malicious
-hop
-chamber
-allege
-allegedly
-
-
-
-
-
+obtrusive
+profoundly
+mud
+mild
+mold
+drain
+dispassionate
+cease
+collate
+precedent
+unprecedent
+mud
+mold
+applaud
+allegience
+precedent
 liege
-once  as soon as ,bir zamanlar,bir kez
+once 
 deposited
 comet
-blond
+blonde
 whipped cream
 cozy
 overstep
 go off
 juvenile
+
+
+
 cellular
 mortgage
 elien
@@ -2044,10 +2039,6 @@ by means of
 tremor
 frugal
 inclement
-
-
-
-
 malign
 inexplicable
 as if
