@@ -27,9 +27,31 @@ juvenile
 
 
 
+pull out
+go off
+try on
+take off
+handle down
+
 cellular
 mortgage
 elien
+shower
+crewmembers
+groundbreaking
+notorious
+lawful
+devise
+forecaster
+nominee
+vain
+forerunner
+infuential
+uninfluential
+affluent
+tame
+
+
 malfunction
 trial - duruşma deneme test
 enrol in
