@@ -40,6 +40,11 @@ resent
 tolerate
 practice
 finish
+understand
+justify
+excuse
+defend
+
 
 
 
@@ -132,19 +137,15 @@ finish
 * ,verb ... => 
     - if the sentence is active  : `gerund` 
     - if the sentence is passive : `verb3`
-* adjective ... => 
-    - if the sentence is active  : `infinitive` 
-    - if the sentence is passive : `to be verb3`
 Other examples:
    - `They suggested me to rent a car.`
-   - `It is nice to see you here.` adjective+infinitive
-   - `I am about to leave` be about to+infinitive
+   - `It is nice to see you here.` 
+   - `I am about to leave` 
 
 
 
 - ipucu yoksa 
   1. infinitive=>amaç,hedef
-  2. gerund=>adjective clause kısaltması veya özne durumundaki fiil.
 
 
 - He put off returning to paris. he postponed getting back to paris.
