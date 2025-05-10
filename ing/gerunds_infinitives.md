@@ -80,6 +80,9 @@ finish
 9. **need**:
     * `This house needs cleanig.`
     * `we need to obey the rules all the time.`
+10. **mean**:
+    * `Being a leader means taking responsibility.` (Lider olmak, sorumluluk almak demektir.)
+    * `He means to visit his parents.` (Ailesini ziyaret etmeyi düşünüyor.)
 
 * Prepositions are used with gerunds.
     - `We are looking forward to seeing your beautiful face`
@@ -91,12 +94,43 @@ finish
 * have fun,have a trouble,have a good time ... are used with gerunds.
     - `We had fun playing soccer with the children.`
   
-* busy,worth are used with gerunds.
+* busy,worth,not good are used with gerunds.
     - `I was busy preparing the lunch.`
     - `It is worth replacing this phone with a new one.`
 * go+ sport activity is used with gerunds.
     - `I am going dancing with my girlfriend.`
     - `I am going playing chess this afternoon.`
+* sit,stand,lie +place adverb+  are used with gerunds.
+    - `She was lying on the couch reading a novel.`
+    - `I am standing there doing nothing.`
+* find,catch + personal pronouns+ gerund
+    - `I found him kissing your sister`
+    - `I caught her stealing your eraser.`
+
+* Causative sentences used with vanilla verb:  
+    - I made him paint the wall.
+* Aim sentences are used with inf
+    - `I brought your purse to give me money.`
+* Order clauses used with inf.
+    - `She called the first student to give him a prize.`
+* **Adjective Cluases**:
+    - If the sentence includes future events,plans then use inf. `I have a lot of work that I must do` => `I have a lot of work to do`
+    - If the sentence is generic,current or active,then use gerund. `The man who is talking to Jane is my father.` => `The man talking to jane is my father.`
+* Inf has other forms,for example
+    - Active: `to be` `to have been doing` `to have done` `to be doing`
+    - passive: `to be done` `to have been done`
+    - `She seems to be sleeping`
+    - `The car needs to be repaired`
+    - `The suspect is believed to have been killed`
+* Gerunds also has other forms:
+    - Active: `doing` `having done`
+    - passive: `being done` `having been done`
+- He admitted stealing the documents. Belgeleri çaldığını kabul etti. `basit gerund active yapısı.2. örnek ile benzer.`
+- He admitted having stealing the documents. Belgeleri çalmış olduğunu inkar etti. `active olduğu için ve zaman damgasını vurgulamak için having verb3 geldi.`
+- He hates being punished. Cezalandırılmaktan nefret eder. `Passive olduğu için being + verb3 geldi`
+- ipucu yoksa 
+  1. infinitive=>amaç,hedef
+  2. gerund=>adjective clause kısaltması veya özne durumundaki fiil.
 * verb+object+infinitive
     - exceptions:
         - `spend/waste+object+gerund`
@@ -107,12 +141,6 @@ finish
         - `soyut isimler(tendency,urge)+infinitive`
     - `Our teacher adviced us to study harder.`
     - difficult+`infitinive` but difficulty+`gerund`
-* sit,stand,lie +place adverb+  are used with gerunds.
-    - `She was lying on the couch reading a novel.`
-    - `I am standing there doing nothing.`
-* find,catch + personal pronouns+ gerund
-    - `I found him kissing your sister`
-    - `I caught her stealing your eraser.`
 * phrasal verbs can be used with both gerund and infinitives.It depends the pharasal verb itself.
     - `He chickened out of jumping from the crevice.`
     - `He got him round to sign the contract.`
@@ -122,8 +150,6 @@ finish
 * see,hear,listen
     - from zero to end of the process ` He saw me play soccer.`
     - from middle of the process `he saw me playing soccer.`
-* Causative sentences used with vanilla verb:  
-    - I made him paint the wall.
 * It takes + infinitive `It took botanists  years to breed`
 - seem,appear + to lu yapılar gelir. (to be getting,to be verb3,to be)
 * pasif cümlelerde istisnalar dışında to verb0 alır.
@@ -142,9 +168,6 @@ Other examples:
 
 
 
-- ipucu yoksa 
-  1. infinitive=>amaç,hedef
-  2. gerund=>adjective clause kısaltması veya özne durumundaki fiil.
 
 
 - He put off returning to paris. he postponed getting back to paris.
@@ -152,3 +175,5 @@ Other examples:
 - He is standing here doing nothing.
 - I forget lending you my book.
 - I struggled to convince him.
+
+

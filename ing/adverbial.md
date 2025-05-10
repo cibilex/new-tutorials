@@ -131,11 +131,22 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
         - `zoom in the page with a view to seeing the sentences better.` 
 
 12. AS
-    1. **çünkü,için**: `Forests are needed as they balance the carbon dioxide in the air.`
-    2. **-dıkça,dikçe**:genelde cümle başına gelir. => `As the temperature rises,glaciers begin to melt.`
-    3. **when,while**: `As they were speaking,somebody knocked on the door.`
-    4. **-dığı gibi,-dığı üzere**: `As I do` `As you know` `I answered the questions as my teacher demonstrated.`
-    5. **olarak(prep)**: `I see you as a friend.`
+     - **prep**: naun / naun pharase
+           - `I want to be a good role model as your father`
+           - `I want to warn you as your teacher.`
+     - **comperative**: adjective / adverb
+           - `You are not good as him`
+           - `Who can run as fast as cheetah.`
+     - **Conjunction form 1**: when/while
+           - `as I was cleaning the windown, I saw him playing soccer`
+     - **Conjunction form 2**: because / since
+           - `I don't have free time, as I am busy`
+     - **Conjunction form 3**: in the way that
+           - `We need to act kindly, as he did`
+           - `You should finish your homework on time, as your friends do`
+     - **refer earlier or future statement**:
+           - `as I was saying,the price of gold will rise`
+           - `as He made this mistake before, we need to be careful`
 
 13. Given that: -dikkate alındığında,-ya bakıldığında
     1. **preposition**: `given` `considering`

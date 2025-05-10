@@ -1,43 +1,68 @@
-obtrusive
-profoundly
-mud
-mild
-mold
-drain
-dispassionate
-cease
-collate
-precedent
-unprecedent
-mud
-mold
-applaud
-allegience
-precedent
-liege
-once 
-deposited
-comet
-blonde
-whipped cream
-cozy
-overstep
 go off
-juvenile
-
-
-
+cut it out
 pull out
-go off
 try on
 take off
-handle down
+hand down
+snap out of it
+amount to
+set out
+wipe out
+wear away
+stave off
+reflect on
+blast off
+go over
+get on
+get down
+give in
 
-cellular
-mortgage
+
+
+
+
+be over
+think over
+bring about
+bring around
+turn down
+watch out
+show off
+get by
+look up
+take down
+put out
+put off
+take over
+stand for
+let down
+get on with
+look up
+run into
+break off
+turn off
+turn down
+turn around
+switch on
+switch over
+accour to
+stick at
+
+
+
+
+
+reluctant
+scholar
+scholarship
+
+wipe
+stave
+toodle
 elien
 shower
 crewmembers
+erode
 groundbreaking
 notorious
 lawful
@@ -50,8 +75,8 @@ infuential
 uninfluential
 affluent
 tame
-
-
+cellular
+mortgage
 malfunction
 trial - duruşma deneme test
 enrol in
@@ -66,8 +91,6 @@ dairy
 grain
 nicotine
 refurbished
-snap out of it
-snap out
 allies
 duel
 taint
@@ -160,13 +183,7 @@ regale
 flame
 ruthless
 southern
-amount to
-set out
-wipe out
-wear away
-stave off
-reflect on
-blast off
+
 precipitation
 sell out
 put out
