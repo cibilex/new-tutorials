@@ -1,6 +1,5 @@
 go off
 cut it out
-pull out
 try on
 take off
 hand down
@@ -16,11 +15,6 @@ go over
 get on
 get down
 give in
-
-
-
-
-
 be over
 think over
 bring about
@@ -29,33 +23,42 @@ turn down
 watch out
 show off
 get by
-look up
 take down
-put out
-put off
 take over
 stand for
+turn off
+pull out
+
+
+
+
+
+put out
+put off
 let down
 get on with
 look up
 run into
 break off
-turn off
-turn down
 turn around
 switch on
 switch over
 accour to
 stick at
+look up
+looking forward to
 
 
 
 
 
 reluctant
+brag
+mule
+
 scholar
 scholarship
-
+bequeath
 wipe
 stave
 toodle

@@ -44,6 +44,8 @@ understand
 justify
 excuse
 defend
+suffer
+
 
 
 
@@ -118,6 +120,12 @@ defend
     - `I brought your purse to give me money.`
 * Order clauses used with inf.
     - `She called the first student to give him a prize.`
+* ,verb ... => 
+    - if the sentence is active  : `gerund` 
+    - if the sentence is passive : `verb3`
+* **allow**: 
+    - `allow me to ...`
+    - `allow using ...`
 * **Adjective Cluases**:
     - If the sentence includes future events,plans then use inf. `I have a lot of work that I must do` => `I have a lot of work to do`
     - If the sentence is generic,current or active,then use gerund. `The man who is talking to Jane is my father.` => `The man talking to jane is my father.`
@@ -133,9 +141,20 @@ defend
 - He admitted stealing the documents. Belgeleri çaldığını kabul etti. `basit gerund active yapısı.2. örnek ile benzer.`
 - He admitted having stealing the documents. Belgeleri çalmış olduğunu inkar etti. `active olduğu için ve zaman damgasını vurgulamak için having verb3 geldi.`
 - He hates being punished. Cezalandırılmaktan nefret eder. `Passive olduğu için being + verb3 geldi`
+
 - ipucu yoksa 
   1. infinitive=>amaç,hedef
   2. gerund=>adjective clause kısaltması veya özne durumundaki fiil.
+
+* how +adjective+gerunds
+    - `how beautiful  seeing you`
+* It takes + infinitive `It took botanists  years to breed`
+
+* looking forward to `gerund`
+    - We are looking forward to seeing you.
+
+
+  
 * verb+object+infinitive
     - exceptions:
         - `spend/waste+object+gerund`
@@ -146,23 +165,15 @@ defend
         - `soyut isimler(tendency,urge)+infinitive`
     - `Our teacher adviced us to study harder.`
     - difficult+`infitinive` but difficulty+`gerund`
+  
 * phrasal verbs can be used with both gerund and infinitives.It depends the pharasal verb itself.
     - `He chickened out of jumping from the crevice.`
     - `He got him round to sign the contract.`
     - `When will you finish off gathering the crop?`
-* how +adjective+gerunds
-    - `how beautiful  seeing you`
 * see,hear,listen
     - from zero to end of the process ` He saw me play soccer.`
     - from middle of the process `he saw me playing soccer.`
-* It takes + infinitive `It took botanists  years to breed`
 - seem,appear + to lu yapılar gelir. (to be getting,to be verb3,to be)
-* pasif cümlelerde istisnalar dışında to verb0 alır.
-     - `find,catch,see,heard` +gerund
-     - `find`=>... yaparken  bulundu ise gerund,.... olduğu,yaptığı keşfedildi farkedildi to verb0   
-* ,verb ... => 
-    - if the sentence is active  : `gerund` 
-    - if the sentence is passive : `verb3`
 Other examples:
    - `They suggested me to rent a car.`
    - `It is nice to see you here.` 
