@@ -33,6 +33,7 @@ pull out
 
 
 
+
 put out
 put off
 let down
@@ -51,10 +52,16 @@ looking forward to
 
 
 
-
+attendance
+prolonged
 reluctant
 brag
 mule
+confine
+compel
+precaution
+acquaintance
+
 
 scholar
 scholarship
