@@ -29,7 +29,7 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
      - `since` `as` `besides` `while` `when` `after` `before`
 3. Edatla bitmesine rağmen ardından isim yerine fiil alan  3 istisna.
      - `in order to ` `so as to` `in an attempt to`
-4. though jokerdir.Her şekilde kullanılabilir.
+4. though jokerdir.Her şekilde kullanılabilir.Ayrıca hem `rağmen` hem de `ancak` anlamlarına gelebilir.
 5. `fantboys`=> for,and,nor,then,but,or,yet,so
      - SVO x SVO . cümlenin ortasında sadece gelebilirler.
      - **ATBOYS**: İki cümlenin öznesi aynı ise fiil ile devam edebilir.

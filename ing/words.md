@@ -61,6 +61,15 @@ confine
 compel
 precaution
 acquaintance
+shipyard
+surge
+corrosive
+burden
+reckless
+pottery
+pursuit
+accordance
+
 
 
 scholar
