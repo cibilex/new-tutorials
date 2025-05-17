@@ -1,45 +1,15 @@
-go off
-cut it out
-try on
-take off
-hand down
-snap out of it
-amount to
-set out
-wipe out
-wear away
-stave off
-reflect on
-blast off
-go over
-get on
-get down
-give in
-be over
-think over
-bring about
-bring around
-turn down
-watch out
-show off
-get by
-take down
-take over
-stand for
-turn off
-pull out
-
-
-
-
-
-
+shed light on
 put out
 put off
+get down
+give in
 let down
 get on with
 look up
 run into
+
+
+
 break off
 turn around
 switch on
@@ -48,16 +18,19 @@ accour to
 stick at
 look up
 looking forward to
+appeals to
 
 
 
 
+era
 attendance
 prolonged
 reluctant
 brag
 mule
 confine
+collide
 compel
 precaution
 acquaintance
@@ -69,6 +42,30 @@ reckless
 pottery
 pursuit
 accordance
+correlative
+solely
+distinguish
+their own
+pose (creating problems)
+inherent
+shed
+in place of
+in exchange for
+focal
+predate
+acquiant
+acquire
+tangible
+hasty
+unwise
+irrigate
+extinguish
+distinguish
+hh
+nossy
+
+
+
 
 
 

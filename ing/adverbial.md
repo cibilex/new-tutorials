@@ -283,4 +283,7 @@ Zaman bağlaç kuralları:
 
 
 
+- in place of
+- in exhange for
+- 
 

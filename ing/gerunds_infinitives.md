@@ -139,7 +139,7 @@ suffer
     - Active: `doing` `having done`
     - passive: `being done` `having been done`
 - He admitted stealing the documents. Belgeleri çaldığını kabul etti. `basit gerund active yapısı.2. örnek ile benzer.`
-- He admitted having stealing the documents. Belgeleri çalmış olduğunu inkar etti. `active olduğu için ve zaman damgasını vurgulamak için having verb3 geldi.`
+- He admitted having stolen the documents. Belgeleri çalmış olduğunu inkar etti. `active olduğu için ve zaman damgasını vurgulamak için having verb3 geldi.`
 - He hates being punished. Cezalandırılmaktan nefret eder. `Passive olduğu için being + verb3 geldi`
 
 - ipucu yoksa 
