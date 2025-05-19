@@ -1,28 +1,11 @@
-shed light on
-put out
-put off
-get down
-give in
-let down
-get on with
-look up
-run into
-
-
-
-break off
-turn around
-switch on
-switch over
-accour to
-stick at
-look up
-looking forward to
-appeals to
-
-
-
-
+pine
+occassionally
+acquaint
+acquire
+contend
+cabbage
+radish
+frown
 era
 attendance
 prolonged
@@ -31,6 +14,15 @@ brag
 mule
 confine
 collide
+accordance
+correlative
+solely
+distinguish
+unwise
+irrigate
+extinguish
+
+
 compel
 precaution
 acquaintance
@@ -41,10 +33,7 @@ burden
 reckless
 pottery
 pursuit
-accordance
-correlative
-solely
-distinguish
+
 their own
 pose (creating problems)
 inherent
@@ -57,10 +46,6 @@ acquiant
 acquire
 tangible
 hasty
-unwise
-irrigate
-extinguish
-distinguish
 nossy
 excerpt
 breeze
@@ -68,14 +53,22 @@ disclaimer
 squeeze
 relevance
 dummy
+desolation
 
 
 
 
 
 
-
-
+break off
+turn around
+switch on
+switch over
+accour to
+stick at
+look up
+looking forward to
+appeals to
 scholar
 scholarship
 bequeath
