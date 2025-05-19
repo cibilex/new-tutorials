@@ -46,6 +46,7 @@ acquiant
 acquire
 tangible
 hasty
+frankly
 nossy
 excerpt
 breeze
@@ -54,6 +55,7 @@ squeeze
 relevance
 dummy
 desolation
+embrace
 
 
 
