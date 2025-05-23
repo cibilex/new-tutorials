@@ -61,6 +61,18 @@ embrace
 
 
 
+jumper
+scarf
+soil
+rag
+lighter
+light
+chick
+well (kuyu)
+straw
+stick
+brick
+
 
 break off
 turn around
