@@ -1,45 +1,13 @@
-pine
-occassionally
-acquaint
-acquire
 contend
-cabbage
 radish
-frown
-era
-attendance
-prolonged
-reluctant
-brag
-mule
-confine
-collide
-accordance
-correlative
-solely
-distinguish
-unwise
-irrigate
-extinguish
-
-
-compel
-precaution
-acquaintance
-shipyard
-surge
-corrosive
-burden
-reckless
-pottery
-pursuit
-
-their own
-pose (creating problems)
-inherent
-shed
-in place of
-in exchange for
+clog
+sparse
+transient
+sense
+superscript
+subscript
+whist
+acknowledge
 focal
 predate
 acquiant
@@ -50,12 +18,33 @@ frankly
 nossy
 excerpt
 breeze
-disclaimer
-squeeze
+inclement
 relevance
+disclaimer
 dummy
+despair
 desolation
+pursuit
+
+
+squeeze
 embrace
+compel
+precaution
+acquaintance
+shipyard
+surge
+corrosive
+burden
+reckless
+pottery
+
+their own
+pose (creating problems)
+inherent
+shed
+in place of
+in exchange for
 
 
 
@@ -72,7 +61,7 @@ well (kuyu)
 straw
 stick
 brick
-
+wicked
 
 break off
 turn around
