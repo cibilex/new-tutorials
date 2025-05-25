@@ -104,6 +104,8 @@ suffer
 * busy,worth,not good are used with gerunds.
     - `I was busy preparing the lunch.`
     - `It is worth replacing this phone with a new one.`
+* appear,seem + inf
+    - `Saturn's moon encaladues appears to have a greater range of complex organic molecules.` 
 * go+ sport activity is used with gerunds.
     - `I am going dancing with my girlfriend.`
     - `I am going playing chess this afternoon.`
@@ -173,7 +175,6 @@ suffer
 * see,hear,listen
     - from zero to end of the process ` He saw me play soccer.`
     - from middle of the process `he saw me playing soccer.`
-- seem,appear + to lu yapılar gelir. (to be getting,to be verb3,to be)
 Other examples:
    - `They suggested me to rent a car.`
    - `It is nice to see you here.` 

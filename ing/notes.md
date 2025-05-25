@@ -1,4 +1,5 @@
-modadil > cloze test 2 >1,13
-
-
-
+- **It was not until ..X.. that ..Y..**: Y happened only after X happened.Ancak ... -tan sonra ... olabildi. ... dan sonra y oldu.
+     - `It was not until a particular way was developed that steel was able to be mass-produced.` 
+- `prove|turn out + adjective` = Ortaya çıktı,anlaşıldı.
+     - `It's message has proved elusive.`
+- `at + price/cost` : `a great cost` `at this price`

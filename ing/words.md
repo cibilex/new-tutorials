@@ -2,6 +2,7 @@ contend
 radish
 clog
 sparse
+inclement
 transient
 sense
 superscript
@@ -27,6 +28,44 @@ desolation
 pursuit
 
 
+fluffy
+delusion
+intensification
+manifest
+aversion
+endangerment
+defect
+conservationist
+plumber
+obedient
+preventive
+trivial
+undoubtedly
+bizarrelly
+steel
+cooper
+mass production
+expose
+subject to
+relieve
+shot
+discharge
+employer
+intriguing
+empowering
+seafloor
+cavitie
+thrive
+flourish
+ridge
+fluctuate
+unanimous
+elaborate
+
+
+
+
+
 squeeze
 embrace
 compel
@@ -45,11 +84,18 @@ inherent
 shed
 in place of
 in exchange for
+reown
+prowess
+mystery
+replenish   
+gluttony
+rebellion
 
 
 
 
-
+prove+adjective =It's has proved fatal. `Mesajının hayati olduğu ortaya çıktı`
+not least!!
 jumper
 scarf
 soil
@@ -62,12 +108,23 @@ straw
 stick
 brick
 wicked
+ingenious
+adamant
+elusive
+amid
+inscription
+
+
 
 break off
 turn around
 switch on
 switch over
+fall under
 accour to
+jot down
+drive down
+pull over
 stick at
 look up
 looking forward to
