@@ -1,57 +1,38 @@
-contend
-radish
-clog
 sparse
-inclement
-transient
-sense
-superscript
-subscript
-whist
-acknowledge
-focal
-predate
-acquiant
-acquire
-tangible
-hasty
-frankly
-nossy
-excerpt
-breeze
-inclement
-relevance
-disclaimer
-dummy
-despair
-desolation
-pursuit
-
-
 fluffy
 delusion
 intensification
-manifest
 aversion
 endangerment
+texture
+crave
+grave
 defect
-conservationist
+steel
+copper
 plumber
 obedient
+manifest
 preventive
 trivial
 undoubtedly
 bizarrelly
-steel
-cooper
 mass production
-expose
-subject to
+employer
+casualty
+obsession
+flask
+statutorily
+
+
+
+
 relieve
 shot
+conservationist
 discharge
-employer
 intriguing
+subject to
 empowering
 seafloor
 cavitie
@@ -61,11 +42,6 @@ ridge
 fluctuate
 unanimous
 elaborate
-
-
-
-
-
 squeeze
 embrace
 compel
@@ -90,9 +66,13 @@ mystery
 replenish   
 gluttony
 rebellion
-
-
-
+all hail
+pernicious
+preeminent
+essence
+sanctuary
+naughty
+tithe
 
 prove+adjective =It's has proved fatal. `Mesajının hayati olduğu ortaya çıktı`
 not least!!
@@ -1979,7 +1959,7 @@ foam
 straight away
 flammable
 affordable
-formadible
+formidable
 favorable
 come along
 satellite
