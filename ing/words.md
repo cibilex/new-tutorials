@@ -26,11 +26,39 @@ cavity
 flourish
 fluctuate
 squeeze
+scorn
+scornfully
+sue
+stove
+staycation
+grill
+molest
+burden
+reckless
+pottery
+inherent
+pose (creating problems)
+essence
+sanctuary
+naughty
+not least!!
+shed
+in place of
+in exchange for
+prowess
+mystery
+all hail
+shipyard
+preeminent
+rebellion
+flavor
 
 
 
 
 
+
+severance
 thrive
 ridge
 unanimous
@@ -39,35 +67,14 @@ embrace
 compel
 precaution
 acquaintance
-shipyard
-surge
+possesion
+salute
 corrosive
-burden
-reckless
-pottery
-
-their own
-pose (creating problems)
-inherent
-shed
-in place of
-in exchange for
-reown
-prowess
-mystery
 replenish   
 gluttony
-rebellion
-all hail
+surge
 pernicious
-preeminent
-essence
-sanctuary
-naughty
-tithe
-
 prove+adjective =It's has proved fatal. `Mesajının hayati olduğu ortaya çıktı`
-not least!!
 jumper
 scarf
 soil
@@ -126,6 +133,7 @@ tame
 retention
 cellular
 mortgage
+tithe
 malfunction
 trial - duruşma deneme test
 enrol in
