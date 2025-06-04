@@ -3,3 +3,9 @@
 - `prove|turn out + adjective` = Ortaya çıktı,anlaşıldı.
      - `It's message has proved elusive.`
 - `at + price/cost` : `a great cost` `at this price`
+
+- `plenty` + can be  both  singular | plural 
+- `a great deal of ` + countable single | uncountable single
+- `rather than`: there are two ways to write `rather` and `than` seperately.
+    - would rather .... than ...
+    - would comperative  than

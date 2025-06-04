@@ -125,6 +125,8 @@ suffer
 * ,verb ... => 
     - if the sentence is active  : `gerund` 
     - if the sentence is passive : `verb3`
+* Passive sentences are used with gerunds expect for perceive/witness verbs.(catch,find,observe,see,hear)
+    - `They have never been observerd killing one of their own kind.`
 * **allow**: 
     - `allow me to ...`
     - `allow using ...`

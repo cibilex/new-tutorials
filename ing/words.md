@@ -1,14 +1,5 @@
-fist
 beget
 futile
-obsolete
-transcend
-transient
-deficit
-defect
-customs
-faggy
-dizzy
 fluctuation
 shout-out
 flight flew flown
@@ -57,8 +48,26 @@ flavor
 
 
 
-
+underestimate
+dizzy
 severance
+contempt
+composed
+simplistic
+dissolution
+renunciation
+possum
+rebound
+compromised
+ chainsaw
+ payroll
+ kidnapping
+ warehouse
+ TAN
+ indulge
+ instinct
+ gross
+ boob
 thrive
 ridge
 unanimous
@@ -76,7 +85,7 @@ surge
 pernicious
 prove+adjective =It's has proved fatal. `Mesajının hayati olduğu ortaya çıktı`
 jumper
-scarf
+scarfamicablu
 soil
 rag
 lighter
@@ -92,8 +101,16 @@ adamant
 elusive
 amid
 inscription
+hairy
+resemble
+arise
+reside
 
 
+imprinit
+folk medicine (traditional medicine)
+spacefaring
+sedentary
 
 break off
 turn around

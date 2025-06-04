@@ -287,3 +287,4 @@ Zaman bağlaç kuralları:
 - in exhange for
 - 
 
+
