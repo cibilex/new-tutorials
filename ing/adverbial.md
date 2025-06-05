@@ -184,7 +184,7 @@ https://www.youtube.com/watch?v=ilvii-O5eOE
     - `as long as` `so long as`=>süresince,boyunca,sürece
     - `when` : cümle present olmalı.
     - `only if` :cümle başında cümle devrik ise kullanılabilir.Cümle ortasında her zaman kullanılabilir.
-
+    - The main sentence which uses `if` cannot include `have + v3`
 2. **-mış gibi,sanki**: `as if` `as though` .
     - Cümle başına gelmez
     - öncesinde duyu fiillerini sever. smell,looki,appear,act,treat 

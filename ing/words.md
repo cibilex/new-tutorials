@@ -45,7 +45,23 @@ rebellion
 flavor
 
 
-
+glacier
+overlying
+unlikely
+accumulate
+manage to
+braces
+appealing
+embrace
+race
+racial
+renaissance
+plummete
+neglect
+keep pace (ayak uydurmak) keep up with catch up with
+endeavour
+odd to me
+coherence
 
 
 underestimate
