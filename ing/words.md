@@ -44,29 +44,42 @@ preeminent
 rebellion
 flavor
 
-
+implore
+saute
+ox
+cattle
+compulsion
+blackmail
+accomodate
+underestimate
+dizzy
+roller coaster
+tease
+severance
 glacier
 overlying
 unlikely
 accumulate
 manage to
 braces
+bracers
 appealing
 embrace
+neglect
 race
 racial
+odd to someone
+condense
+kidnapping
+
+
 renaissance
 plummete
-neglect
 keep pace (ayak uydurmak) keep up with catch up with
 endeavour
-odd to me
 coherence
-
-
-underestimate
-dizzy
-severance
+desertification
+precipitation
 contempt
 composed
 simplistic
@@ -77,7 +90,6 @@ rebound
 compromised
  chainsaw
  payroll
- kidnapping
  warehouse
  TAN
  indulge

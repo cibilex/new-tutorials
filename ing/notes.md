@@ -9,3 +9,6 @@
 - `rather than`: there are two ways to write `rather` and `than` seperately.
     - would rather .... than ...
     - would comperative  than
+- `by + number +s` => sayıda,miktarda
+    - `by the hundres` => yüzlerce
+    - `Planets are being discovered around other starts by the thausands`=> Diğer yıldızların çevresinde binlerce gezegen keşfediliyor.
