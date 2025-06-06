@@ -13,13 +13,13 @@
 | **why**   | Reason         | Refers to reason   | I don't know the reason **why she left**. | Refers to **reason**                               |
 
 1. `which/that` vs `where`:
-   - `My school which was built in 1991 is a nice school.` . This relative clause describes the place itself (the school as an object). `The school was built in 1991.`.If the relative clause starts with verb ,always use `which/that`
-   - `My school which they built in 1991 is a nice school.`. `They built the school| it in 1991.`  We must use which/that.
-   - `My school where I graduated last year is a nice school.`. `I graduated from the school | from there last year.`  we should use the `where`.
+   - `My school ... was built in 1991 is a nice school.` . This relative clause describes the place itself (the school as an object). `The school was built in 1991.`.If the relative clause starts with verb ,always use `which/that`
+   - `My school .... they built in 1991 is a nice school.`. `They built the school| it in 1991.`  We must use which/that.
+   - `My school ... I graduated last year is a nice school.`. `I graduated from the school | from there last year.`  we should use the `where`.
 2. `which/that` vs `where`: 
-   - `I can't see her on Friday, which is the busiest time of the year for me.` => ` Friday is the busiest time of the year for me` // We must usee which/that
-   - `I can't see her on Friday, which many people find gloomy.`  => `Many people find it (Friday) gloomy.` // We must use which/that
-   - `I can't see her on Friday, when everybody is away for winter holiday.` => ` Everybody is away for winter holiday at that time.` // we must use when
+   - `I can't see her on Friday, ... is the busiest time of the year for me.` => ` Friday is the busiest time of the year for me` // We must usee which/that
+   - `I can't see her on Friday, ... many people find gloomy.`  => `Many people find it (Friday) gloomy.` // We must use which/that
+   - `I can't see her on Friday, ... everybody is away for winter holiday.` => ` Everybody is away for winter holiday at that time.` // we must use when
 3. `when` ,`where` with prepositions: We can  replace “when” or “where” with “preposition + which” in more formal or written English.However, we should not always use "in which" for where, or "on which" for when — the preposition must match the verb or context of the sentence
    - `The university at which I studied is famous.` // where
    - `Friday, on which we have a meeting, is fully booked.` // when
@@ -28,7 +28,7 @@
     - `My neighbor who will be here in ten minutes is my best friend.`  Defining (no comma)
     - `My sister, who can speak English very fluently,is writing a new book` // He has a only one sister.!!
     -  **That** cannot be used after commas.
-4. **which**: To give more information about the thing mentioned
+5. **which**: To give more information about the thing mentioned
     - `He helped me to complete my homework, which saved my job.` => `Because he helped me with my homework, I was able to keep my job.`
 Reduction
 - `that, who, whom, which` can be removed but 
