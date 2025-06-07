@@ -1,78 +1,81 @@
-beget
-futile
-fluctuation
-shout-out
-flight flew flown
-relieve
-shot
-conversation
-conservation
-conservationist
-discharge
-intriguing
-subject to
-empowering
-seafloor
-cavity
-flourish
-fluctuate
-squeeze
-scorn
-scornfully
-sue
-stove
-staycation
-grill
-molest
-burden
-reckless
-pottery
-inherent
-pose (creating problems)
-essence
-sanctuary
-naughty
-not least!!
-shed
-in place of
-in exchange for
-prowess
-mystery
-all hail
-shipyard
-preeminent
-rebellion
-flavor
-
-implore
-saute
-ox
-cattle
 compulsion
-blackmail
-accomodate
-underestimate
-dizzy
-roller coaster
-tease
-severance
-glacier
-overlying
-unlikely
-accumulate
-manage to
-braces
-bracers
-appealing
-embrace
-neglect
-race
-racial
-odd to someone
-condense
-kidnapping
+overtake
+recognize
+novice
+debilitate
+undermine
+erode
+rumor
+critic
+criticism
+implication
+segregation
+betterment
+enforcement
+praise
+conceling
+conceal
+trivializing
+superstition
+notorious
+feasible
+viable
+impair
+immaculate
+spotless
 
 
+confess
+sacre
+prompt
+prompted
+cataclysm
+cataclysmically
+perpetually
+meltdown
+erupt
+conspicuous
+amidst
+regard as
+invervention
+occupational
+distress
+foretall
+meltdown
+
+degradation
+malevolent
+possess
+conduit
+ratify
+reversible
+irreversible
+dissuade
+incentive
+meticulous
+malicious
+mortem
+post-mortem
+decomposition
+peasant
+biase
+devise  
+palatial
+emergence
+blend
+blending
+harsh
+critic
+chamber
+eco chamber
+disseminate
+nutrient
+pervasive
+suffice
+insurgent
+seize
+complaint
+complain
 renaissance
 plummete
 keep pace (ayak uydurmak) keep up with catch up with
@@ -97,6 +100,7 @@ compromised
  gross
  boob
 thrive
+possess
 ridge
 unanimous
 elaborate

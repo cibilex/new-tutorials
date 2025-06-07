@@ -12,3 +12,8 @@
 - `by + number +s` => sayıda,miktarda
     - `by the hundres` => yüzlerce
     - `Planets are being discovered around other starts by the thausands`=> Diğer yıldızların çevresinde binlerce gezegen keşfediliyor.
+- `the body of ... ` => tümü,bütünü
+    - `The body of evidence` =>kanıtların bütünü
+- `if only` vs `only if`:
+    - `if only` : wish clause `If only I were taller`.
+    - `only if `: conditional `I will do it only if you ask kindly` 
