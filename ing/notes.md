@@ -17,3 +17,14 @@
 - `if only` vs `only if`:
     - `if only` : wish clause `If only I were taller`.
     - `only if `: conditional `I will do it only if you ask kindly` 
+
+
+
+In this bookstore,you can find a great  many books .... with gender discrimination and contemporary issues alike.
+a. to be dealt
+b. dealt
+c. which deals
+d. dealing
+e. having been dealt
+
+We can think that c and d are the same (The farmer is relative clause and the latter is participle reduction) and cross out both of them but If you look carefully, books world is prular but `which deals` is  singular relative clause.So c is wrong but d is still a valid option.
