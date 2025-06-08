@@ -27,7 +27,6 @@ spotless
 
 
 imprisonment
-
 confess
 sacre
 prompt
@@ -45,7 +44,6 @@ occupational
 distress
 foretall
 meltdown
-
 degradation
 malevolent
 possess
