@@ -17,7 +17,7 @@
 - `if only` vs `only if`:
     - `if only` : wish clause `If only I were taller`.
     - `only if `: conditional `I will do it only if you ask kindly` 
-
+- `off the coast` => sahil açıklarında `on the coast` => sahilde
 
 
 In this bookstore,you can find a great  many books .... with gender discrimination and contemporary issues alike.

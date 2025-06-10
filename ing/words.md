@@ -26,6 +26,41 @@ spotless
 
 
 
+cue
+audit
+auditory
+
+
+
+degrade
+neutral
+jeopardise
+
+bring out
+in response to
+chirping
+proliferate
+proliferation
+draw on
+dwell on
+spark
+controversy
+pervasive
+instantaneous
+
+halt ,hamper
+
+adolescence
+rife-full
+partake
+partake in
+take on
+put down
+come out
+pick outp
+
+
+
 imprisonment
 confess
 sacre
@@ -102,6 +137,10 @@ compromised
  boob
 thrive
 possess
+amuse
+damascus
+bring out
+interfer
 ridge
 unanimous
 elaborate
@@ -154,6 +193,12 @@ accour to
 jot down
 drive down
 pull over
+interfere with  
+start off
+jot down
+write down
+rife
+
 stick at
 look up
 looking forward to
@@ -412,6 +457,10 @@ hand over
 
 lobster 
 nocturne
+mutual
+welfare
+undertake
+overlook
 nocturenal
 endanger
 soluble
