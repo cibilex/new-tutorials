@@ -69,3 +69,26 @@ racial
 odd to someone
 condense
 kidnapping
+give out
+coach
+couch
+crown
+throne
+resentment
+recruit
+convict
+crawl
+yawn
+yawning
+conviction
+cue
+cohesion
+audit
+auditory
+hereditary
+retard - ed
+degrade
+neutral
+jeopordise
+bring out
+in response to

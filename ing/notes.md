@@ -18,8 +18,12 @@
     - `if only` : wish clause `If only I were taller`.
     - `only if `: conditional `I will do it only if you ask kindly` 
 - `off the coast` => sahil açıklarında `on the coast` => sahilde
-
-
+- `in one part .... in another ...` `in one part of the world,while in another people trek miles every day.`
+- `aught` => `should` . `possess` => `have`
+- with naun v3 passive ving active  mesiyle
+- provive
+     - `sağkanılan şey + for +  hedef kitle` :  `provide money for his family`
+     - `hedef kitle + with + sağlanılan şey` : `provide his family with money`
 In this bookstore,you can find a great  many books .... with gender discrimination and contemporary issues alike.
 a. to be dealt
 b. dealt

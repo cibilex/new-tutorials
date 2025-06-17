@@ -1,29 +1,117 @@
-give out
-coach
-couch
-crown
-throne
-resentment
-recruit
-convict
-crawl
-yawn
-yawning
-conviction
-cue
-cohesion
-audit
-auditory
-hereditary
-retard - ed
-degrade
-neutral
-jeopordise
-bring out
-in response to
+
+fever
+drop off
+overlook
+revenant
+sanity
+surplus
+acute
+in vain
+trek
+striking
+relatively
+extravagantly
+halt
+hamper
+imprisonment
+confess
+invervention
+occupational
+cardigan
+surplus
+affluent
+variability
+livelihood
+to this end
+adolescence
+rife
+
+
+stagnation
+corruptible
+intervene
+attain
+complicating
+priortise
+thoroughly
+depletion
+comprehension
+menace
+sparsely
+enact
+act
+malaria
+recipient
+
+in vain
+depletion
+compassionate
+impostor
+deception
+disguise
+uncanny
+canny
+feign
+deceive
+highstake
+stake
+superior
+feat
+naval
+commanding officer
+ponder
+sheer
+audacity
+baffled
+impersonation
+
+engage
+engage in
+apply yourself to somthing odaklan
+coincide with
+reproductive
+infertile
+inland
+curiosity
+dismissively
+radiate
+crippling
+pinpoint
+casualty
+causality
 
 
 
+
+
+retention
+dismissively
+radiate
+multilateral
+make for
+compensate for
+account for
+demonstration
+to resort to
+tobacco
+take up
+make up
+pledge
+pledged
+hostile
+hostility
+
+
+
+
+
+partake
+partake in
+take on
+bias
+put down
+come out
+pick outp
 chirping
 proliferate
 proliferation
@@ -34,21 +122,9 @@ controversy
 pervasive
 instantaneous
 
-halt ,hamper
-
-adolescence
-rife-full
-partake
-partake in
-take on
-put down
-come out
-pick outp
 
 
 
-imprisonment
-confess
 sacre
 prompt
 prompted
@@ -60,8 +136,7 @@ erupt
 conspicuous
 amidst
 regard as
-invervention
-occupational
+
 distress
 foretall
 meltdown
