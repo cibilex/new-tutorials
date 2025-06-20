@@ -45,25 +45,24 @@ recipient
 
 in vain
 depletion
-compassionate
 impostor
+compassionate
+deceive
 deception
 disguise
+superior
 uncanny
 canny
 feign
-deceive
 highstake
 stake
-superior
+defy
 feat
-naval
 commanding officer
-ponder
-sheer
-audacity
-baffled
-impersonation
+naval
+
+
+
 
 engage
 engage in
@@ -81,25 +80,45 @@ casualty
 causality
 
 
-
-
-
+myriad
+decelerate
+redundant
+amend
+amendment
+seize
+inadequate
+offend
+audacity
+baffled
+offensive
+impersonation   
+ponder
+sheer
 retention
 dismissively
 radiate
 multilateral
+tobacco
+
+
+https://stackoverflow.com/questions/69577451/how-do-you-type-an-error-property-in-a-catch-block-in-typescript
+
+remorse
+inhabit
+in concert
 make for
 compensate for
 account for
 demonstration
 to resort to
-tobacco
 take up
 make up
 pledge
 pledged
 hostile
+monumental
 hostility
+detrimental
 
 
 
@@ -1790,7 +1809,7 @@ disclaim
 warp
 subsequent
 mend
-amend
+
 squash
 heads up
 lamb
