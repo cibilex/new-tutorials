@@ -3,14 +3,14 @@
 - `prove|turn out + adjective` = Ortaya çıktı,anlaşıldı.
      - `It's message has proved elusive.`
 - `at + price/cost` : `a great cost` `at this price`
-
+- `excel + in/at` => `excel in your career`
 - `plenty` + can be  both  singular | plural 
 - `a great deal of ` + countable single | uncountable single
 - `rather than`: there are two ways to write `rather` and `than` seperately.
     - would rather .... than ...
     - would comperative  than
 - `by + number +s` => sayıda,miktarda
-    - `by the hundres` => yüzlerce
+    - `by the hundreds` => yüzlerce
     - `Planets are being discovered around other starts by the thausands`=> Diğer yıldızların çevresinde binlerce gezegen keşfediliyor.
 - `the body of ... ` => tümü,bütünü
     - `The body of evidence` =>kanıtların bütünü
@@ -24,6 +24,10 @@
 - provive
      - `sağkanılan şey + for +  hedef kitle` :  `provide money for his family`
      - `hedef kitle + with + sağlanılan şey` : `provide his family with money`
+
+
+
+
 In this bookstore,you can find a great  many books .... with gender discrimination and contemporary issues alike.
 a. to be dealt
 b. dealt
