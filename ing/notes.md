@@ -24,7 +24,10 @@
 - provive
      - `sağkanılan şey + for +  hedef kitle` :  `provide money for his family`
      - `hedef kitle + with + sağlanılan şey` : `provide his family with money`
-
+- devrik  cümle
+     - `as` : `Work hard  as does your father.` `Work hard as your father does` : tüm cümle gelmez.
+     - `nor` : öncesinde olumsuz yapı varsa, ne de anlamı verebilir. 
+     - `althouh` `though` gibi yapılardan sonra devrik gelemez.
 
 
 

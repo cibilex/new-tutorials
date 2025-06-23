@@ -15,26 +15,25 @@ make up
 make for
 put away
 let down
-
-
-
 prospect
+detrimental
 expenditure
 evade
 spoil
 compulsory
 scarce
-nadir
 thoroughly
 obscure
 deter
+swear
+sweat
+
 
 
 
 heavily
 fortunately
 briefly
-detrimental
 genuine
 solely
 solitary
@@ -73,6 +72,7 @@ tide
 captive
 captivated
 reproductive
+sane
 
 
 
