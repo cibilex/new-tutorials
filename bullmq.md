@@ -397,3 +397,163 @@ await myQueue.add(
 - **job getters**:
   - **getJobCountByTypes()**: Returns the **total number** of jobs across specified statuses. `myQueue.getJobCountByTypes("wait", "delayed");`
   - **getJobCounts()**: Returns an **object** with individual counts for each specified status. `myQueue.getJobs(['completed'], 0, 100, true);`
+
+# BullMQ Stalled Jobs Mechanism
+
+## Overview
+
+BullMQ uses a **Redis lock mechanism** to ensure jobs are processed safely and completed reliably. This mechanism prevents job loss when workers crash or disconnect unexpectedly.
+
+1. **Lock Creation**: When a worker starts processing a job, BullMQ creates a Redis lock
+2. **Lock Renewal**: Worker must renew this lock every **30 seconds** (default stalledInterval)
+3. **Heartbeat Monitoring**: BullMQ monitors worker heartbeats via lock renewals
+4. **Stalled Detection**: If lock is not renewed within the interval, job becomes "stalled"
+5. **Auto-Recovery**: Stalled jobs are moved back to "waiting" state for reprocessing
+
+```typescript
+// Default worker configuration
+const worker = new Worker(
+  "email",
+  async (job) => {
+    console.log("processing job", job.id);
+
+    // Simulating 10-second processing time
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+    return "done";
+  },
+  {
+    stalledInterval: 30000, // Lock renewal interval (30 seconds)
+    maxStalledCount: 1, // Max times a job can be stalled before failing
+  }
+);
+```
+
+#### 1. Job Publication
+
+```bash
+# Publish a job to the queue
+Job ID: 5
+Status: waiting → active
+Worker: Acquires Redis lock
+```
+
+#### 2. Processing Starts
+
+```bash
+Console Output: "processing job 5"
+Redis Lock: Created and being renewed every 30s
+Job Status: active
+```
+
+#### 3. Worker Crash (CTRL+C before 10s completion)
+
+```bash
+Worker: Terminated unexpectedly
+Redis Lock: No longer being renewed
+Job Status: Still marked as "active" but worker is dead
+```
+
+#### 4. Stalled Detection (After 30s)
+
+```bash
+BullMQ Check: Lock has expired (30s without renewal)
+Action: Moves job from "active" to "stalled"
+Redis Storage: Job ID added to "bull:email:stalled" set
+```
+
+#### 5. Worker Restart
+
+```bash
+New Worker: Starts up
+Stalled Job Recovery: Job moves from "stalled" → "waiting"
+Reprocessing: Job gets processed again
+Guarantee: Every job runs at least once
+```
+
+## Monitoring
+
+BullMQ supports multiple monitoring strategies depending on your needs:
+
+## 1. With an endpoing:You can expose basic queue statistics using a simple HTTP endpoint:
+
+```ts
+const myQueue = new Queue<JobData>("email", {
+  connection: {
+    host: "localhost",
+    port: 6379,
+    password: "cibilex",
+  },
+});
+
+const app = express();
+
+app.get("/metrics", async (req, res) => {
+  try {
+    const metrics = await myQueue.exportPrometheusMetrics();
+    res.set("Content-Type", "text/plain");
+    res.send(metrics);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+app.listen(8080, () => {
+  console.log("Server is running on port 8080");
+});
+```
+
+When you visit http://localhost:8080/metrics, you'll get output like this:
+
+```bash
+# HELP bullmq_job_count Number of jobs in the queue by state
+# TYPE bullmq_job_count gauge
+bullmq_job_count{queue="email", state="active", mode="PROD"} 0
+bullmq_job_count{queue="email", state="completed", mode="PROD"} 1418
+bullmq_job_count{queue="email", state="failed", mode="PROD"} 9
+...
+
+```
+
+2. Monitoring with taskforce.sh: taskforce.sh offers a cloud-based monitoring dashboard for BullMQ and Bull. It allows you to inspect queues, jobs, and perform actions like retry, remove, or pause.It's not free !!.This example is for local usage:
+   - `npm install -g taskforce-connector`
+   - Sign up at [taskforce.sh](http://taskforce.sh/) and get your connection token under Account > Connection Token.
+   - run this command: `taskforce -n "transcoder connection" -t <connectionToken> --password <redisPassword> -h localhost`
+3. Monitoring with BullBoard: BullBoard is an open-source monitoring tool for Bull and BullMQ queues. It provides a dashboard to visualize queues and job statuses and perform basic actions.
+   `npm i @bull-board/api @bull-board/express @bull-board/ui`
+
+```ts
+const app = express();
+
+const serverAdapter = new ExpressAdapter();
+serverAdapter.setBasePath("/admin/queues");
+
+createBullBoard({
+  queues: [new BullMQAdapter(myQueue)],
+  serverAdapter: serverAdapter,
+});
+
+app.use("/admin/queues", serverAdapter.getRouter());
+// http://localhost:<your-port>/admin/queues
+```
+
+### BULLMQ vs RabbitMQ
+
+BullMQ is a Redis-based job queue library developed exclusively for Node.js. If Redis is already used in the system, it can be integrated without requiring additional setup. It operates quickly and allows detailed tracking of job states (waiting, active, completed, failed). BullMQ enables defining event listeners for specific job states so the system can automatically take action at these stages. Additionally, BullMQ’s flow mechanism allows defining a process as a sequence of dependent subtasks. For example, an order process can be divided into “stock check → payment → invoice → shipment” steps, and this workflow can be managed automatically. The main job completes successfully once all these steps finish successfully.
+
+RabbitMQ is a language-independent message queue system based on the AMQP protocol and operates as a standalone service. It enables message exchange between services written in different languages in microservice architectures. It offers advanced features such as flexible routing of messages to different queues, broadcasting (sending the same message simultaneously to multiple queues), and more. It also provides reliability mechanisms such as message persistence, delivery guarantees (ack), dead-letter queues, retry, and high availability, making it preferred in critical and complex systems. For Node.js, it can be used with libraries like amqplib or amqplib-client.
+
+| Feature / Criterion                 | BullMQ                                                             | RabbitMQ                                                                                      |
+| ----------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| **Architecture & Language Support** | Library running inside Node.js, only for Node.js projects          | Independent service, AMQP protocol based, language independent, multi-language support        |
+| **Setup & Integration**             | Easily integrated if Redis is available, no extra service required | Installed and configured as a separate broker                                                 |
+| **Message Routing & Broadcasting**  | Simple queue-based, no complex routing or broadcasting             | Advanced routing (direct, topic, fanout), messages broadcasted to multiple queues & consumers |
+| **Job Lifecycle & Event Listener**  | Detailed job state tracking and event listener support             | Basic ack/nack mechanism, limited lifecycle tracking                                          |
+| **Workflow (Flow) Support**         | Native, supports multi-step dependent workflows with sub-jobs      | None, workflows must be manually managed in application code                                  |
+| **Job Scheduling (Delayed Jobs)**   | Built-in support; jobs can be delayed or run periodically          | No direct support; implemented indirectly via plugins or TTL + dead-letter exchange           |
+| **Performance & Latency**           | Very fast, low latency (in-memory Redis)                           | Relatively slower due to disk and protocol overhead                                           |
+| **Retry & Failure Management**      | Basic retry and failed job queue                                   | Advanced retry, dead-letter, message rejection and redelivery features                        |
+| **Monitoring & Management UI**      | Simple open-source panel support via Bull Board plugin             | Built-in, advanced official web-based management and monitoring UI                            |
+
+```
+
+```
