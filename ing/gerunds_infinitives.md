@@ -118,7 +118,7 @@ suffer
 
 * Causative sentences used with vanilla verb:  
     - I made him paint the wall.
-* Aim sentences are used with inf
+* 
     - `I brought your purse to give me money.`
 * Order clauses used with inf.
     - `She called the first student to give him a prize.`

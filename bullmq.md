@@ -93,7 +93,7 @@ removeOnComplete: {
 },
 ```
 
-When jobs are deleted, they are completely removed from all relevant parts of Redis. For example, if an email job with ID 4 is deleted, both `EXISTS bull:email:4` will return 0, and it won't be in the `ZRANGE bull:email:completed 0 -1` list.
+When jobs are deleted, they are completely removed from all relevant parts of Redis. For example, if an email job with ID 4 is deleted, `EXISTS bull:email:4` will return 0, and it won't be in the `ZRANGE bull:email:completed 0 -1` list.
 
 Finally, keep in mind that when a new job is published, if a job with that ID already exists, the new job won't be published and a `duplicated` event will be triggered instead.
 
@@ -164,6 +164,7 @@ BullMQ provides several methods to delete jobs from queues. Understanding job st
 
 - `waiting`: Job is published and waiting to be processed.
 - `waiting-children`: Job is published but waiting for its children to be completed.
+- `stalled`: An server error accured while the job was processing and The job was placed to the stalled list.
 - `delayed`: Job has delay option and waiting for delay time to expire.
 - `active`: Job is currently being processed.
 - `completed`: Job finished successfully and stored in completed sorted set.
@@ -469,6 +470,8 @@ Stalled Job Recovery: Job moves from "stalled" → "waiting"
 Reprocessing: Job gets processed again
 Guarantee: Every job runs at least once
 ```
+
+### Retrying Failed jobs:
 
 ## Monitoring
 
