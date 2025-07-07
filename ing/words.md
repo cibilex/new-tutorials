@@ -64,6 +64,8 @@ detrimental
 
 
 
+slimmer
+soap opera
 
 
 
