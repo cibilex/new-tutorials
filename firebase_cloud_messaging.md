@@ -11,6 +11,37 @@ Here is some my notes.
 - **VAPID** : FCM uses VAPID(Voluntary Application Server Identification) to authorize an website.Click [here](https://firebase.google.com/docs/cloud-messaging/js/client#configure_web_credentials_with) to open related firebase documentation.
 - **getToken(messaging, options)**: Subscribes the Messaging instance to push notifications. Returns a Firebase Cloud Messaging registration token that can be used to send push messages.If notification permission isn't already granted, this method asks the user for permission. The returned promise rejects if the user does not allow the app to show notifications.
 - Also FCM requires a `firebase-messaging-sw.js` file in the root directory.So if you are using Vite, you should add this file into `public` directory.
+# FCM Background Notifications Behavior
+
+## Core Setup
+- `firebase.messaging()` must be initialized to enable background notification worker
+- This allows FCM to display notifications when app is in background
+
+## Listener Impact
+- When `onBackgroundMessage` listener is defined, behavior changes
+- Without listener: FCM handles everything automatically
+- With listener: Manual control over notification display
+
+## Double Notification Issue
+**Problem:** If message contains `notification` field:
+1. FCM automatically displays notification (default behavior)
+2. `self.registration.showNotification()` in `onBackgroundMessage` creates second notification
+
+**Solution:** 
+```javascript
+// Check if notification payload exists
+if (payload.notification) {
+    return; // Let FCM handle automatically
+}
+// Only show manual notification for data-only messages
+```
+
+## Message Types
+- **notification + data**: FCM auto-displays → Skip manual notification
+- **data only**: No auto-display → Use manual notification in listener
+
+## Best Practice
+Use `onBackgroundMessage` only for data-only messages or when you need custom notification handling. 
 - Token’a göre kullanıcı ve platform (web/android/ios) kombinasyonu da kontrol edilmeli. Aynı token’ın başka platformlarda tekrar oluşması FCM’de nadiren de olsa olabiliyor.
 - **Topics**: - Topic messaging supports unlimited subscriptions for each topic. However, FCM enforces limits in these areas: One app instance can be subscribed to no more than 2000 topics. - I am not going to use topics since firebase does not allow to list topics,this might cause vital errors.
   Frontend: I created a singleton class to manage firebase operations like below:
@@ -112,3 +143,5 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/app/secrets/firebase-service-account.json
 ```bash
 echo 'export GOOGLE_APPLICATION_CREDENTIALS="./src/constants/firebase-config.json"' >> ~/.zshrc
 ```
+
+
