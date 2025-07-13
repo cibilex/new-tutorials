@@ -1,8 +1,24 @@
 https://stackoverflow.com/questions/69577451/how-do-you-type-an-error-property-in-a-catch-block-in-typescript
-
+https://www.hepsiburada.com/ara?q=Ser-Yat+Plaj+Has%C4%B1r%C4%B1
 
 
 prejudice
+jeopardize
+prospect
+deter
+evade
+uncanny
+decelerate
+audacity
+compulsory
+feign
+inadequate
+amend
+ponder
+spoil
+defy
+deceive
+
 
 obliterate
 pass down
