@@ -18,6 +18,10 @@ ponder
 spoil
 defy
 deceive
+debiliate
+undermine
+erode
+digest
 
 
 obliterate

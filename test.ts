@@ -1,24 +1,8 @@
-import * as z from "zod/v4";
+import { tr } from "zod/locales";
+import { z as zV4Mini } from "zod/v4-mini";
+const mySchema = z.boolean().parse(true); // 2.12kb
+const miniSchema = zV4Mini.boolean().parse(true); // 5.91kb
 
-const userSchema = z.object({
-  username: z.string().min(5),
-  age: z.number().min(18),
-  posts: z.array(z.object({ title: z.string().min(3) })).nonempty(),
-});
-
-console.log(z.toJSONSchema(userSchema), "schema");
-/* Output will be:
-{
-  '$schema': 'https://json-schema.org/draft/2020-12/schema',
-  type: 'object',
-  properties: {
-    username: { type: 'string', minLength: 5 },
-    age: { type: 'number', minimum: 18 },
-    posts: { minItems: 1, type: 'array', items: [Object] }
-  },
-  required: [ 'username', 'age', 'posts' ],
-  additionalProperties: false
-}
- 
-
-*/
+// our bundle size reduced  64% .This seems amazing but when we the main zod librariy build cost is around 5-10kb to our bundle size.
+// So To reduce 5-10kb to 3-8kb is not a big deal especially for the backend applications.So I guess I will not use this library and also not recommended you to use it.
+// With this library there are some use cases to be careful but I will not cover them here.You can click [here](https://zod.dev/packages/mini) to read more about it.
