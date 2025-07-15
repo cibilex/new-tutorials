@@ -35,6 +35,26 @@ naughty
 not least!!
 shed
 in place of
+prejudice
+jeopardize
+prospect
+deter
+evade
+uncanny
+decelerate
+audacity
+compulsory
+feign
+inadequate
+amend
+ponder
+spoil
+defy
+deceive
+debiliate
+undermine
+erode
+digest
 in exchange for
 prowess
 mystery

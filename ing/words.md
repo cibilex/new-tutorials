@@ -1,28 +1,37 @@
 https://stackoverflow.com/questions/69577451/how-do-you-type-an-error-property-in-a-catch-block-in-typescript
 https://www.hepsiburada.com/ara?q=Ser-Yat+Plaj+Has%C4%B1r%C4%B1
 
-
-prejudice
-jeopardize
-prospect
-deter
-evade
-uncanny
-decelerate
-audacity
-compulsory
-feign
-inadequate
-amend
-ponder
 spoil
-defy
-deceive
-debiliate
-undermine
-erode
-digest
+deter
 
+notion
+glossary
+foreword
+summon
+preoccupied
+proposal
+condolence
+muddle
+feeble
+recur
+helping hand
+compendium
+scuffle
+recalcitrant
+cleansing
+bobbed up
+tangle
+sardonically
+pride
+put a spin on a ball
+brevity
+vigor
+unimpaired
+pith
+tamper
+gem
+audaciously
+refurbish
 
 obliterate
 pass down
@@ -49,9 +58,6 @@ deter
 swear
 sweat
 
-
-
-
 heavily
 fortunately
 briefly
@@ -61,10 +67,6 @@ solitary
 appoint
 collide
 phase out
-
-
-
-
 
 remorse
 inhabit
@@ -81,14 +83,8 @@ monumental
 hostility
 detrimental
 
-
-
-
 slimmer
 soap opera
-
-
-
 
 chew
 tide
@@ -96,11 +92,6 @@ captive
 captivated
 reproductive
 sane
-
-
-
-
-
 
 deception
 demand for ,by
@@ -131,10 +122,6 @@ spark
 controversy
 pervasive
 instantaneous
-
-
-
-
 
 sacre
 prompt
@@ -199,14 +186,14 @@ renunciation
 possum
 rebound
 compromised
- chainsaw
- payroll
- warehouse
- TAN
- indulge
- instinct
- gross
- boob
+chainsaw
+payroll
+warehouse
+TAN
+indulge
+instinct
+gross
+boob
 thrive
 possess
 amuse
@@ -223,7 +210,7 @@ acquaintance
 possesion
 salute
 corrosive
-replenish   
+replenish  
 gluttony
 surge
 pernicious
@@ -249,7 +236,6 @@ hairy
 resemble
 arise
 reside
-
 
 imprinit
 folk medicine (traditional medicine)
@@ -487,7 +473,7 @@ self-propelled
 intriguing
 detrimental
 outbreak
-adolescence 
+adolescence
 catastrophe
 catastrophic
 collition
@@ -506,7 +492,7 @@ gestation
 impair
 stave off
 instructor
-erect 
+erect
 devote
 shortage
 broad
@@ -526,8 +512,7 @@ arful
 emancipation
 hand over
 
-
-lobster 
+lobster
 nocturne
 mutual
 welfare
@@ -539,7 +524,7 @@ soluble
 colour blindless
 insoluble
 dementia
-rinse 
+rinse
 disproven
 dietary
 blob
@@ -743,7 +728,7 @@ individual
 fat
 undue
 psychiatrist
-gradual 
+gradual
 earnest
 consultation
 modality
@@ -933,7 +918,6 @@ tilt
 tendency
 mistreat
 
-
 tickle
 glory
 hold on
@@ -964,7 +948,7 @@ blushe
 instinct
 craw
 unponished
- peace of mind
+peace of mind
 belly
 roll over
 
@@ -2182,7 +2166,7 @@ squirrel
 duvet
 pillow
 raprochement
-unforeseen 
+unforeseen
 reinforcement
 segregate
 decisive
@@ -2259,7 +2243,6 @@ toothpaste
 obsolete
 deficit
 
-
 bruise
 tape
 shrimp
@@ -2295,7 +2278,6 @@ give in
 shore
 harvest
 
-
 scarcity
 drought
 set off
@@ -2320,7 +2302,3 @@ pest
 insect
 tomb
 parrot
-
-
-
-

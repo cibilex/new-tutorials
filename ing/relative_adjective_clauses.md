@@ -38,8 +38,7 @@ Reduction
     - `The doctor whom I called will be at the party.` => `The doctor I called just before will be at the party.` // ✅ 
 
 
-
-2. **relative clause as subject** if the blank followed by a verb,the blank can be which,that or who or all of which,some of whom
+ **relative clause as subject** if the blank followed by a verb,the blank can be which,that or who or all of which,some of whom
 - Be aware of prepositions.Always check that whether a prep is lack or not.For example 
      - `The project  ... our company's future depends will be completed in a few days.`  => not which,shoyld be on which.
 
