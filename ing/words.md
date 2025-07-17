@@ -32,6 +32,11 @@ tamper
 gem
 audaciously
 refurbish
+vintage
+amplification
+overhaul
+enliven
+bewhiskered
 
 obliterate
 pass down
