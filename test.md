@@ -1,5 +1,9 @@
 ## JEST
 
+Notes:
+
+- If you have a test that often fails when it's run as part of a larger suite, but doesn't fail when you run it alone, it's a good bet that something from a different test is interfering with this one. You can often fix this by clearing some shared state with beforeEach
+
 ```bash
 npm i jest ts-jest @types/jest typescript
 ```
@@ -26,7 +30,7 @@ export default {
 };
 ```
 
-When working with eslint,to avoid the un-def rule we should below configuration:
+When working with eslint,to avoid the un-def rule we should add below configuration:
 
 ```ts
 {
@@ -64,7 +68,6 @@ describe("app.ts tests", () => {
 
 - `it` is alias for `test`
 - We should use `.toEqual` instead of `.toBe` for non-primitive values because `.toBe` uses `Object.is` method, so `.toBe({},{})` will throw error.
-- create a new test(it) for each test
 
 ```ts
 export const getStringInfo = (text: string) => {
@@ -88,18 +91,6 @@ it("should be a valid function", () => {
   expect(actual.lowercase).not.toBeUndefined();
   expect(actual.lowercase).toBeDefined();
   expect(actual.lowercase).toBeTruthy();
-});
-```
-
-```ts
-it.each([
-  { input: "hi world", expected: "HI WORLD" },
-  { input: "cibilex", expected: "CIBILEX" },
-  { input: "Kevin Spacy", expected: "KEVIN SPACY" },
-])("$input should be $expected", ({ input, expected }) => {
-  // $ is used to represent the related field
-  const actual = toUppercase(input);
-  expect(actual).toBe(expected);
 });
 ```
 
@@ -128,6 +119,48 @@ toBeNaN: sadece NAN değerini kabul eder.
 
 .toMatch: regex kullanımını sağlar. "expect('my nickname is cibilex').toMatch(/cibilex/);" testi geçer.  
 .toContain: arrayda includes metodunu sağlar.
+
+- **each**: Creates a loop for each item of given array.It can be used both describe and it. `describe.each(table)(name, fn)`
+
+```ts
+it.each([
+  { input: "hi world", expected: "HI WORLD" },
+  { input: "cibilex", expected: "CIBILEX" },
+  { input: "Kevin Spacy", expected: "KEVIN SPACY" },
+])("$input should be $expected", ({ input, expected }) => {
+  // $ is used to represent the related field
+  const actual = toUppercase(input);
+  expect(actual).toBe(expected);
+});
+```
+
+- **only**: Jest will run just only selected test or describe.. `describe.only(name, fn)`
+- **skip**: We can write `skip` flag to skip a particular test or describe. `describe.skip(name,fn)`
+- In Jest, assertions must be placed inside a test/it block. For example, writing expect(true).toBe(true) outside a test will throw an error.
+- As a convention, each test/it should ideally include only one assertion, to keep tests focused and easier to debug.
+- describe is used to group related tests under a common topic.
+
+```ts
+export const getUser = async (name: string): Promise<{ username: string }> => {
+  await new Promise((res) => {
+    setTimeout(() => res(true), 550);
+  });
+  if (name === "cibilex") {
+    throw new Error("User not found");
+  }
+  return { username: name };
+};
+
+describe("getUser function", () => {
+  test("should throw not found error", () => {
+    return expect(getUser("cibilex")).rejects.toThrow("User not found");
+  });
+
+  test("should return user", () => {
+    return expect(getUser("alex")).resolves.toEqual({ username: "alex" });
+  });
+});
+```
 
 ## Asynchronous testing
 
@@ -160,12 +193,11 @@ export const getUser = async (name: string): Promise<{ username: string }> => {
 };
 ```
 
-1. Catch,resolve durumları için ayrı ayrı testler yazabiliriz.
+1.We can achieve `then/catch` logic in Jest tests using the `.resolves` and `.rejects` matchers like below:
 
 ```ts
 it("get cibilex", async () => {
   await expect(getUser("cibilex")).rejects.toThrow("User not found");
-  await expect(getUser("cibilex")).rejects.toBeInstanceOf(Error);
 });
 
 it("get alex", async () => {
@@ -173,14 +205,21 @@ it("get alex", async () => {
 });
 ```
 
-Fonksiyonu return değeri olarak verildiğinde de async olarak çalışır.
+In Jest, if we return the assertion, Jest treats the test as async function and waits for the promise to settle. So, we can rewrite the above code like this:
 
 ```ts
-test("sum func throws an error", async () =>
-  expect(sum(21, 21)).rejects.toMatch("Something went wrong"));
+it("get cibilex", () => {
+  return expect(getUser("cibilex")).rejects.toThrow("User not found");
+});
+
+it("get alex", () => {
+  return expect(getUser("alex")).resolves.toEqual({ username: "alex" });
+});
 ```
 
-3. Her iki durumu tek teste sığdırabiliriz.
+🔥 Important: If you forget to return or await the assertion, Jest will complete the test before the async operation finishes — causing false positives or missed failures.
+
+2. Also we can write async tests with `try/catch` logic.
 
 ```ts
 it.each([{ name: "cibilex" }, { name: "alex" }])(
@@ -197,11 +236,19 @@ it.each([{ name: "cibilex" }, { name: "alex" }])(
 );
 ```
 
-Listeners
-beforeAll: bir test dosyasında tüm testlerden bir kere önce çalışır.
-beforeEach: bir test dosyasında her test için 1 kere çalışır çalışır.
-afterAll: bir test dosyasında tüm testlerden sonra çalışır.
-afterEach: bir test dosyasında her testten sonra çalışır.
+Listeners:  
+`beforeAll`: bir test dosyasında tüm testlerden bir kere önce çalışır.  
+`beforeEach`: bir test dosyasında her test için 1 kere çalışır çalışır.  
+`afterAll`: bir test dosyasında tüm testlerden sonra çalışır.  
+`afterEach`: bir test dosyasında her testten sonra çalışır.
+
+- By default jest will not wait for async functions inside listeners and run the tests.To make the listeners logic async,we can return the async function or use `done` method.
+
+```ts
+beforeEach(() => {
+  return initDb();
+});
+```
 
 Testleri gruplayarak listenerları belli testlere uygulamak için describe kullanılabilir.
 
@@ -209,6 +256,8 @@ Testleri gruplayarak listenerları belli testlere uygulamak için describe kulla
 import { sum } from "./test";
 beforeAll(() => console.log("global before all"));
 beforeEach(() => console.log("global beforeEach"));
+afterAll(() => console.log("global after all"));
+
 test("the fetch fails with an error", async () => {
   await expect(sum(1, 2)).resolves.toBe(3);
 });
@@ -224,10 +273,8 @@ describe("test to handle catch", () => {
 // global beforeEach
 // global beforeEach
 // local after all
+// global after all
 ```
-
-Async test listenerları return değerine atanabilir veya `done` parametresi ile bitme durumu belirtilebilir.
-Bir test dosyasında sadece bir testin çalışması için ilgili test test.only flagı ile çalıştırılabilir.
 
 - **Test Doubles**:
 
