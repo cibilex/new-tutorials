@@ -276,210 +276,310 @@ describe("test to handle catch", () => {
 // global after all
 ```
 
-- **Test Doubles**:
+### Mocks
 
-1. **Fakes**: They are similates the real object or functions.
+Mocks replace functions in your code to help you focus on the function you're testing and track all operations on the mocked function. For example, in the `test.ts` file, the mock function's `mock` property lets you access information like which parameters were used or how many times it was called.
 
-```ts
-export const sumNumbers = (
-  num1: number,
-  num2: number,
-  logger: (message: string) => void
-) => {
-  const result = num1 + num2;
-  logger(`result of ${num1} + ${num2} is ${result} `);
-  return result;
-};
-
-it.only("test 2 + 5", () => {
-  const act = sumNumbers(2, 5, () => {}); // ()=>{} is fake
-  expect(act).toBe(7);
-});
-```
-
-In the above example,we just write an fake function to run our test.However we don't know how much our function run,what the argument is called with our logger etc...,we can do something like below to track our logger.
+**Example:**
 
 ```ts
-let timesCalled = 0;
-let calledArg: string;
-
-it.only("test 2 + 5", () => {
-  const logger = (arg: string) => {
-    calledArg = arg;
-    timesCalled++;
-  };
-  const act = sumNumbers(2, 5, logger);
-  expect(act).toBe(7);
-  expect(calledArg).toBe("result of 2 + 5 is 7 ");
-  expect(timesCalled).toBe(1);
-});
-```
-
-but this is not enough because our function can be more complex and also this is exhuasting.To solve this problem,we can use `mocks` 2. **Mocks**: Mocks help us to track our fake functions like below example.
-
-```ts
-it.only("test 2 + 5", () => {
-  const logger = jest.fn();
-  const act = sumNumbers(2, 5, logger);
-  expect(act).toBe(7);
-  expect(logger).toHaveBeenCalledWith("result of 2 + 5 is 7 ");
-  expect(logger).toHaveBeenCalledTimes(1);
-});
-```
-
-As you can see,it both simpler and useful.
-
-Mock Functions:
-Mock fonksiyonları constructor fonksiyon oluşturarak bu fonksiyonun çağrılma,return değerleri ve inject edilme durumlarını kontrol etmek için kullanılır.
-Aşağıdaki örnekte fonksiyonumuza bir callback eklemek için mock functions oluşturalım:
-
-```ts
-// test.ts
-export function getKey<T extends Record<string, string>, Key extends keyof T>(
-  obj: T,
-  key: Key,
-  cal: (key: T[Key]) => string
-) {
-  console.log(obj, key);
-  return cal(obj[key]);
+// index.ts
+export function sayHi(username: string, callback: (done: boolean) => string) {
+  return callback(true);
 }
 
 // test.spec.ts
-const cb = jest.fn((key: string) => key);
+import { sayHi } from "./index";
 
-test("mock Function", () => {
-  cb("blue");
+describe("test sayHi function", () => {
+  it("should call cb", () => {
+    const cb = jest.fn((done: boolean) =>
+      done ? "completed" : "not completed"
+    );
 
-  expect(getKey({ color: "red" }, "color", cb)).toBe("red");
+    sayHi("username", cb);
 
-  // 2. kullanımdaki 1. parametre değerini kontrol eder
-  expect(cb.mock.calls[1][0]).toBe("red");
-
-  // instance sayısını kontrol eder
-  expect(cb.mock.instances.length).toBe(2);
-
-  // kaç kere kullanıldığını kontrol eder
-  expect(cb.mock.calls.length).toBe(2);
-
-  // 2. kullanımındaki return değerini kontrol eder
-  expect(cb.mock.results[1].value).toBe("red");
+    expect(cb).toHaveBeenCalled(); // it is called
+    expect(cb.mock.calls.length).toBe(1); // is the length of the calls array 1
+    expect(cb.mock.calls[0][0]).toBe(true); // is the first param of the first call true
+    expect(cb.mock.results[0].value).toBe("completed"); // is the result of the first call "completed"
+    expect(cb.mock.lastCall).toBeDefined(); // is the last call defined
+    expect(cb.mock.lastCall![0]).toBe(true); // is the first param of the last call true
+  });
 });
 ```
 
-Yukarıdaki gibi mock fonksiyonumuzun kaç kere çağrıldığı,çağırılırken aldığı parametreler,dönüş değerleri gibi pek çok özellik üzerinde kontrolumuz olur.
-
-Ayrıca return değerlerini belirleyebiliriz.
+**Mock Return Values:**  
+`mockReturnValueOnce`: Sonraki çalıştırma için return edilecek değeri ekler.  
+`mockReturnValue`: Sonraki tüm değerler için return değerini belirler.  
+Bu sayede mock fonksiyonlarının içini tanımlamadan return değerini belirleyerek çok daha kolay testler yazabiliriz.
 
 ```ts
-const mock = jest.fn();
-mock
-  .mockReturnValueOnce("first return value")
-  .mockReturnValue("will be return value expect first call");
-
-expect(mock()).toBe("first return value");
+it("mock test", () => {
+  const cb = jest.fn();
+  cb.mockReturnValueOnce("not completed").mockReturnValue("completed");
+  cb();
+  cb();
+  expect(cb).toHaveBeenCalled(); // it is called
+  expect(cb.mock.calls.length).toBe(2); // is the length of the calls array 1
+  expect(cb.mock.results[0].value).toBe("not completed"); // is the result of the first call "completed"
+  expect(cb.mock.results[1].value).toBe("completed"); // is the result of the second call "completed"
+  expect(cb.mock.lastCall).toBeDefined(); // is the last call defined
+  expect(cb.mock.lastCall![0]).not.toBeDefined(); // is the first param of the last call true
+});
 ```
 
-Bir fonksiyonu mocklamak için fonksiyonu eşitlemeliyiz.
+**Async Mock Functions:**
+
+- `mockResolvedValueOnce`: Same as `mockReturnValueOnce(Promise.resolve())`. Used to resolve async functions.
+- `mockRejectedValueOnce`: Same as `mockReturnValueOnce(Promise.reject())`. Used to reject async functions.
+- `mockResolvedValue`: Same as `mockReturnValue(Promise.resolve())`. Sets default resolve value for async functions.
+- `mockRejectedValue`: Same as `mockReturnValue(Promise.reject())`. Sets default reject value for async functions.
+
+These functions are used to mock async functions. For example, if we have a function that makes external requests with axios (like in `index.ts`), it's not practical to run these external requests in test environment. So mocking them and defining sample responses is more functional.
 
 ```ts
-// @ts-ignore
-testFile.getKey = jest.fn();
-expect(
-  testFile.getKey({ color: "red" }, "color", (key: string) => key)
-).toBeUndefined();
+// index.ts
+export const getAlbum = async (id: string) => {
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// test.ts
+it("test getAlbum", async () => {
+  const mockResponse = {
+    userId: 1,
+    id: 1,
+    title:
+      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    body: "hi",
+  };
+
+  // we made the first request reject and the second one resolve.
+  (axios.get as jest.Mock)
+    .mockRejectedValueOnce(new Error("Data Not found"))
+    .mockResolvedValueOnce({
+      data: mockResponse,
+    });
+  // this also equivalent to below code
+  // (axios.get as jest.Mock)
+  //   .mockReturnValueOnce(Promise.reject(new Error("Data Not found")))
+  //   .mockReturnValueOnce(Promise.resolve({ data: mockResponse }));
+
+  await expect(getAlbum("hiworld")).rejects.toThrow(Error);
+  await expect(getAlbum("1")).resolves.toEqual(mockResponse);
+});
 ```
 
-Her üyeyi tek tek mocklamak yerine tüm dosyayı mocklamak için `mock()` fonksiyonu kullanılabilir
+**Mock Implementations:**
+In Jest, we can write mock implementation in `jest.fn(implementation)` itself, and also add implementations with these functions:
+
+- `mockImplementation`: Default mock implementation
+- `mockImplementationOnce`: Implementation that works just once
 
 ```ts
-jest.mock("./test");
-expect(getKey({ color: "red" }, "color", (key: string) => key)).toBeUndefined();
+const myFunction = jest
+  .fn()
+  .mockImplementation((username: string) => `hi ${username}`)
+  .mockImplementationOnce((username: string) => `hello ${username}`);
+
+it("test myFunction", () => {
+  expect(myFunction("cibilex")).toBe("hello cibilex"); // first call
+  expect(myFunction("cibilex")).toBe("hi cibilex"); // subsequent calls
+});
 ```
 
-Default olarak `.mock` fonksiyonu dosyanın tamamını mocklarken partial şekilde mocklamayı yapabiliriz.
+**Partial Module Mocking:**
+With Jest, we can mock a file partially. For example, if you have multiple functions in a file and want to mock only specific ones while keeping others intact:
+
+Let's assume that we have below file:
 
 ```ts
-//test.ts
-export function getKey<T extends Record<string, string>, Key extends keyof T>(
-  obj: T,
-  key: Key,
-  cal: (key: T[Key]) => string
-) {
-  console.log(obj, key);
-  return cal(obj[key]);
+import axios from "axios";
+
+export function getUser(username: string) {
+  return { id: 1, username, password: undefined };
 }
 
-export function sum(number1: number, number2: number) {
-  return number1 + number2;
-}
+export const getAlbum = async (id: string) => {
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
-//test.spec.ts
-jest.mock("./test", () => {
-  const originalModule = jest.requireActual("./test");
+export default function () {
+  return "hi world";
+}
+```
+
+And run below test:
+
+```ts
+import * as indexFile from ".";
+
+it("index file", () => {
+  console.log(indexFile);
+});
+/*
+  {
+      getAlbum: [Function: getAlbum],
+      getUser: [Function: getUser],
+      default: [Function: default_1]
+    }
+*/
+```
+
+As you can see, this import include default and other members inside an object.Let's try to test below scenarious:
+
+1. mock the axios library and check the result correction.
+2. mock the `/index` file partially,just mock the getUser and write tests for all functions.
+
+```ts
+import axios from "axios";
+import defaultfunction, { getAlbum, getUser } from "./index";
+
+jest.mock("axios");
+const mockedAxios = jest.mocked(axios);
+jest.mock("./index", () => {
+  const original = jest.requireActual("./index");
 
   return {
-    __esmodule: true,
-    ...originalModule,
-    sum: () => "return value of sum function",
+    __esModule: true,
+    ...original,
+    getUser: jest
+      .fn()
+      .mockReturnValue("hi cibilex")
+      .mockReturnValueOnce("hello cibilex"),
   };
 });
 
-test("compiling android goes as expected", () => {
-  expect(getKey({ color: "red" }, "color", (key: string) => key)).toBe("red");
+const mockedGetUser = jest.mocked(getUser);
+describe("test index file", () => {
+  it("test getUser", () => {
+    const mockResponse = {
+      userId: 1,
+      id: 1,
+      title:
+        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "hi",
+    };
+    mockedAxios.get.mockResolvedValue({
+      data: mockResponse,
+    });
 
-  expect(sum(1, 2)).toBe("return value of sum function");
+    return expect(getAlbum("cibilex")).resolves.toEqual(mockResponse);
+  });
+
+  it("validate mocks", () => {
+    expect(jest.isMockFunction(getUser)).toBe(true);
+    expect(jest.isMockFunction(axios.get)).toBe(true);
+    expect(jest.isMockFunction(defaultfunction)).toBe(false);
+    expect(jest.isMockFunction(getAlbum)).toBe(false);
+  });
+
+  it("test getAlbum error", () => {
+    mockedAxios.get.mockRejectedValue(new Error("Data Not found"));
+
+    return expect(getAlbum("cibilex")).rejects.toThrow(Error);
+  });
+
+  it("test getUser", () => {
+    // the first return value is hello cibilex, the second return value is hi cibilex
+    expect(getUser("cibilex")).toBe("hello cibilex");
+    expect(getUser("cibilex")).toBe("hi cibilex");
+    expect(mockedGetUser.mock.calls.length).toBe(2);
+    expect(mockedGetUser.mock.calls[0]).toEqual(["cibilex"]);
+  });
+
+  it("test defaultfunction", () => {
+    expect(defaultfunction()).toBe("hi world");
+  });
 });
 ```
 
-Mocklanmış bir fonksiyonu veya mock fonksiyonu oluştururken çalıştırılacak fonksiyonu tanımlamak için  
-.mockImplementationOnce: tek seferlik fonksiyon sunar.  
-.mockImplementation: spesifik sıralam haricindeki default fonksiyonu sunar.
-
-Ayrıca toHaveBeenCalled,toHaveBeenCalledWith ve toHaveBeenCalledTimes gibi ekstra kullanışlı fonksiyonlarda sunar.
+- **jest.mock(path,factory,options)** is used to mock a module.
+- **jest.mocked(member)**: is used to create a wrapper to get types of package and jest.This wrapper helps us to avoid type castings.
+- **jest.isMockFunction(member)**: is used to check whether the member was mocked
+- **jest.spyOn(object,methodName):mockedMethod**: is used to create a mock function with [object][methodName] path.  
+  **Note**: while value of mocked function created with `mock` is undefined, value of mocked function with `spyOn` is function itself.It's important to know that to do not mistakes.
 
 ```ts
-import { sum, getKey } from "./test";
-jest.mock("./test");
+import axios from "axios";
+import { getAlbum } from ".";
 
-test("compiling android goes as expected", () => {
-  //@ts-ignore
-  sum.mockImplementation((num1, num2) => num1 * num2);
-  expect(sum(12, 2)).toBe(24);
+const mockedAxios = jest.spyOn(axios, "get");
 
-  const mockFn = jest
-    .fn()
-    .mockReturnValue(true)
-    .mockImplementationOnce((text: string) => `hi ${text}`);
+describe("test index file", () => {
+  it("test getUser", () => {
+    const mockResponse = {
+      userId: 1,
+      id: 1,
+      title:
+        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "hi",
+    };
 
-  expect(mockFn("cibilex")).toBe("hi cibilex");
-  expect(mockFn("cibilex")).toBe(true);
-  expect(mockFn.mock.calls.length).toBe(2);
-
-  // daha önce hiç kullanıldı mı
-  expect(mockFn).toHaveBeenCalled();
-
-  // kaç kere çağrıldı
-  expect(mockFn).toHaveBeenCalledTimes(2);
-
-  // cibilex parametresi ile hiç kullanıldı mı
-  expect(mockFn).toHaveBeenCalledWith("cibilex");
+    mockedAxios.mockResolvedValue({ data: mockResponse });
+    return expect(getAlbum("cibilex")).resolves.toEqual(mockResponse);
+  });
 });
 ```
 
-Çoğu zaman bir fonksiyonu tamamen değiştirmek yerine sadece izlemek veya varolan fonskyionun üzerine işlemler yapılır.
-Bunun için `.spyOn(object,property)` kullanılır.
+**mockFn.mockClear**: Clears all data in mock.calls, mock.instances, mock.results, and mock.contexts, but keeps the mock implementation. Useful in beforeEach to reset call history.
+
+**mockFn.mockReset**: A superset of mockClear. Does everything mockClear does and also removes any custom implementation. Useful in beforeEach when you want a clean mock with no behavior.
+
+**mockFn.mockRestore**: A superset of mockReset. Does everything mockReset does and also restores the original function implementation. Only works with jest.spyOn or restorable mocks.
+
+**jest.clearAllMocks**: Does the same as mockClear for every mock in the current test scope.
+
+**resetAllMocks**: Does the same as mockReset for every mock in the current test scope.
+
+**restoreAllMocks**: Does the same as mockRestore for every restorable mock in the current test scope.
 
 ```ts
-import * as testFile from "./test";
-jest.spyOn(testFile, "sum").mockImplementationOnce((num1, num2) => num1 * num2);
+import axios from "axios";
 
-test("compiling android goes as expected", () => {
-  expect(testFile.sum(1, 2)).toBe(2);
-  expect(testFile.sum(1, 2)).toBe(3);
+const mockedAxios = jest.spyOn(axios, "get");
 
-  expect(testFile.sum).toHaveBeenCalledTimes(2);
+describe("test index file", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it("test getUser", async () => {
+    const mockResponse = {
+      userId: 1,
+      id: 1,
+      title:
+        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "hi",
+    };
+
+    mockedAxios.mockResolvedValue(mockResponse);
+    await expect(
+      axios.get("https://jsonplaceholder.typicode.com/posts/1")
+    ).resolves.toEqual(mockResponse);
+    expect(mockedAxios).toHaveBeenCalledTimes(1);
+  });
+
+  it("test getUser rejection", async () => {
+    mockedAxios.mockRejectedValue(new Error("Data Not found"));
+    await expect(
+      axios.get("https://jsonplaceholder.typicode.com/posts/1")
+    ).rejects.toThrow("Data Not found");
+    expect(mockedAxios).toHaveBeenCalledTimes(1);
+  });
 });
 ```
-
-Useful packages:
-jest-diff: gitlens gibi iki değer arasındaki farklılıkları bularak yazdırır.

@@ -4,6 +4,7 @@ https://www.hepsiburada.com/ara?q=Ser-Yat+Plaj+Has%C4%B1r%C4%B1
 spoil
 deter
 
+flaky
 notion
 glossary
 foreword
