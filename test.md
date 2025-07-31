@@ -583,3 +583,164 @@ describe("test index file", () => {
   });
 });
 ```
+
+## Important Note
+
+Let's create an example with a subtle trick:
+
+```ts
+// index.ts
+import axios from "axios";
+
+type Album = {
+  userId: string;
+  id: string;
+  title: string;
+};
+
+type FormattedAlbum = Omit<Album, "id">;
+
+export const getAlbum = async (id: number): Promise<FormattedAlbum> => {
+  try {
+    const response = await axios.get<Album>(
+      `https://jsonplaceholder.typicode.com/albums/${id}`
+    );
+    const album = response.data;
+    if (!album) throw new Error("Album not found");
+
+    return formatAlbum(album);
+  } catch (err) {
+    throw new Error("Failed to fetch album");
+  }
+};
+
+export const formatAlbum = ({ userId, title }: Album): FormattedAlbum => ({
+  userId,
+  title,
+});
+
+// test.ts
+
+import axios from "axios";
+import { getAlbum } from "./index";
+
+jest.mock("axios");
+const mockedAxios = jest.mocked(axios);
+
+const albumResponse = {
+  userId: 1,
+  title: "Axios Album",
+  id: 1,
+};
+
+mockedAxios.get.mockResolvedValueOnce({ data: albumResponse });
+
+jest.mock("./index", () => {
+  const originalModule = jest.requireActual("./index");
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    formatAlbum: jest.fn().mockResolvedValue({
+      userId: 1,
+      title: "Mocked Album",
+    }),
+  };
+});
+
+describe("test getAlbum fn", () => {
+  it("should return a formatted album", async () => {
+    await expect(getAlbum(1)).resolves.toEqual({
+      userId: 1,
+      title: "Mocked Album",
+    });
+  });
+});
+/*
+● test getAlbum fn › should return a formatted album
+
+    expect(received).resolves.toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "title": "Mocked Album",
+    +   "title": "Axios Album",
+*/
+```
+
+Please take a time and think about why this example throws error.
+
+Before the solution,let's memorize our knowladge about js module resolution is working.Let's explain the logic of below function:
+
+```ts
+export const getAlbum = async (id: number): Promise<FormattedAlbum> => {
+  try {
+    const response = await axios.get<Album>(
+      `https://jsonplaceholder.typicode.com/albums/${id}`
+    );
+    const album = response.data;
+    if (!album) throw new Error("Album not found");
+
+    return formatAlbum(album);
+  } catch (err) {
+    throw new Error("Failed to fetch album");
+  }
+};
+```
+
+1. When the code comes to `formatAlbum` line,getAlbum looks the formatAlbum in the its scope
+2. It is not defined in the locale scope,therefore It starts to look at the file definitions which are in the same file.
+3. It is defined in the file scope,therefore `formatAlbum` is being running !!! Be aware that, The mocked `formatAlbum` function is not running because `runAlbum` function didn't need to the look the imports,It found the `runAlbum` at the second try.If the `formatAlbum` didn't found at the second trial,It would be looked at the import level definitions but it didn't need to do that.As a result file level definition of formatAlbum runned instead of mocked one.
+
+How we can solve this problem:
+We can solve this problem with two ways:
+
+1. Using seperate file for formatAlbum.Just put the `formatAlbum` in a seperate file and update the test file like below:
+
+```ts
+// format.ts
+import { Album, FormattedAlbum } from ".";
+
+export const formatAlbum = ({ userId, title }: Album): FormattedAlbum => ({
+  userId,
+  title,
+});
+
+import axios from "axios";
+import { getAlbum } from "./index";
+
+jest.mock("axios");
+const mockedAxios = jest.mocked(axios);
+
+const albumResponse = {
+  userId: 1,
+  title: "Axios Album",
+  id: 1,
+};
+
+mockedAxios.get.mockResolvedValueOnce({ data: albumResponse });
+
+jest.mock("./format", () => {
+  const originalModule = jest.requireActual("./index");
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    formatAlbum: jest.fn().mockResolvedValue({
+      userId: 1,
+      title: "Mocked Album",
+    }),
+  };
+});
+
+describe("test getAlbum fn", () => {
+  it("should return a formatted album", async () => {
+    await expect(getAlbum(1)).resolves.toEqual({
+      userId: 1,
+      title: "Mocked Album",
+    });
+  });
+});
+```
