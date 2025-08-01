@@ -1,5 +1,8 @@
 ## JEST
 
+AAA pattern, test naming conventions
+
+// objectContaining
 Notes:
 
 - If you have a test that often fails when it's run as part of a larger suite, but doesn't fail when you run it alone, it's a good bet that something from a different test is interfering with this one. You can often fix this by clearing some shared state with beforeEach
@@ -427,16 +430,19 @@ And run below test:
 
 ```ts
 import * as indexFile from ".";
-
+import indexFile2 from ".";
 it("index file", () => {
-  console.log(indexFile);
+  console.log("named export", indexFile);
+  console.log("default export", indexFile2);
 });
 /*
-  {
+  named export {
       getAlbum: [Function: getAlbum],
       getUser: [Function: getUser],
       default: [Function: default_1]
     }
+
+   default export [Function: default_1]
 */
 ```
 
@@ -741,6 +747,120 @@ describe("test getAlbum fn", () => {
       userId: 1,
       title: "Mocked Album",
     });
+  });
+});
+```
+
+The second and recommended way to solve this problem is using `spyOn` method to mock specified item like below.
+
+```ts
+// index.ts
+import axios from "axios";
+
+export type Album = {
+  userId: string;
+  id: string;
+  title: string;
+};
+
+export type FormattedAlbum = Omit<Album, "id">;
+
+export const getAlbum = async (id: number): Promise<FormattedAlbum> => {
+  try {
+    const response = await axios.get<Album>(
+      `https://jsonplaceholder.typicode.com/albums/${id}`
+    );
+    const album = response.data;
+    if (!album) throw new Error("Album not found");
+
+    return formatAlbum(album);
+  } catch (err) {
+    throw new Error("Failed to fetch album");
+  }
+};
+
+export const formatAlbum = ({ userId, title }: Album): FormattedAlbum => ({
+  userId,
+  title,
+});
+
+// test.ts
+import axios from "axios";
+
+export type Album = {
+  userId: string;
+  id: string;
+  title: string;
+};
+
+export type FormattedAlbum = Omit<Album, "id">;
+
+export const getAlbum = async (id: number): Promise<FormattedAlbum> => {
+  try {
+    const response = await axios.get<Album>(
+      `https://jsonplaceholder.typicode.com/albums/${id}`
+    );
+    const album = response.data;
+    if (!album) throw new Error("Album not found");
+
+    return formatAlbum(album);
+  } catch (err) {
+    throw new Error("Failed to fetch album");
+  }
+};
+
+export const formatAlbum = ({ userId, title }: Album): FormattedAlbum => ({
+  userId,
+  title,
+});
+```
+
+## [jest.doMock(moduleName, factory, options)](https://jestjs.io/docs/jest-object#jestdomockmodulename-factory-options)
+
+- `jest.mock` is hoisting module at the top of the imported file.Therefore a file with `jest.mock` is using globally across the file.Sometimes there could be situations that different tests need different mockings or while a test need to be mock a file but another doesn't.In these scenarious `jest.doMock` is used to make the mock test specified.Do not forget to use `jest.resetModules()` in `beforeEach` listener to avoid side effect of `doMock`.Also be sure that you are importing modules after `doMock` defination.You can use `require` or `await import` to import a module dynamically.
+
+```ts
+// index.ts
+import axios from "axios";
+
+export const getAlbumTitle = async (id: number): Promise<string> => {
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/albums/${id}`
+    );
+
+    const album = response.data;
+    if (!album) throw new Error("Album not found");
+    return album.title;
+  } catch (err) {
+    throw new Error("Failed to fetch album");
+  }
+};
+
+// test.ts
+
+describe("test index file", () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
+  it("getAlbumTitle should return mocked title", async () => {
+    jest.doMock("axios", () => ({
+      get: jest.fn().mockResolvedValue({ data: { title: "Mocked Album" } }),
+    }));
+
+    const { getAlbumTitle } = require("./index");
+
+    await expect(getAlbumTitle(1)).resolves.toBe("Mocked Album");
+  });
+
+  it("getAlbumTitle should throw error", async () => {
+    jest.doMock("axios", () => ({
+      get: jest.fn().mockRejectedValue(new Error("Failed to fetch album")),
+    }));
+    const { getAlbumTitle } = require("./index");
+
+    await expect(getAlbumTitle(1)).rejects.toThrow("Failed to fetch album");
   });
 });
 ```
