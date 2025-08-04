@@ -1,7 +1,11 @@
 ## JEST
 
+https://semaphore.io/blog/test-driven-development
 AAA pattern, test naming conventions
-
+https://github.com/goldbergyoni/javascript-testing-best-practices?tab=readme-ov-file#section-0%EF%B8%8F%E2%83%A3-the-golden-rule
+https://github.com/goldbergyoni/nodejs-testing-best-practices
+https://testing-library.com/
+https://fakerjs.dev/
 // objectContaining
 Notes:
 
@@ -113,17 +117,24 @@ test("sumTest", () => {
 
 In the above code will not throw error since `.toEqual` do not validate the result strictly,To enable strict validation we can use `.toStrictEqual`.
 
-Bazı özel durumlarda `.toBeFalsy` ve `.toBeTruthy` daha ayrıntılı testler gerekir.Bunlar için  
-toBeNull: sadece null değerini kabul eder.  
-toBeUndefined: sadece undefined değerini kabul eder.  
-toBeNaN: sadece NAN değerini kabul eder.
+Here some of validation methods:
 
-.toBeGreaterThan,.toBeGreaterThanOrEqual,.toBeLessThan,.toBeLessThanOrEqual ve floating değerler için .toBeCloseTo kullanılmalıdır.
+- **toBeNull**: sadece null değerini kabul eder.
+- **toBeUndefined**: sadece undefined değerini kabul eder.
+- **toBeNaN**: sadece NAN değerini kabul eder.
+- **toMatch**: validates input with the given regex.For example `expect('my nickname is cibilex').toMatch(/cibilex/);` will pass the test.
+- **toContain**: checks whether input includes given item or not.
+- **toBeGreaterThan**,**toBeGreaterThanOrEqual**,**toBeLessThan**,**toBeLessThanOrEqual** and for floating values **toBeCloseTo** can be used.
 
-.toMatch: regex kullanımını sağlar. "expect('my nickname is cibilex').toMatch(/cibilex/);" testi geçer.  
-.toContain: arrayda includes metodunu sağlar.
+### **each**: Creates a loop for each item of given array.It can be used both describe and it. `describe.each(table)(name, fn)` or `test.each(table)(name,fn)`.Jest uses printf-style format to get values from the loop.The most used format notations are:
 
-- **each**: Creates a loop for each item of given array.It can be used both describe and it. `describe.each(table)(name, fn)`
+| Format  | Type              | Example Title     | Actual Output (given value)      |
+| ------- | ----------------- | ----------------- | -------------------------------- |
+| `$name` | Named template    | `"Name is $name"` | `Name is Alice`                  |
+| `%s`    | Positional printf | `"String is %s"`  | `String is Hello`                |
+| `%i`    | Positional printf | `"Integer is %i"` | `Integer is 7`                   |
+| `%d`    | Positional printf | `"Number is %d"`  | `Number is 7` or `Number is 7.5` |
+| `%f`    | Positional printf | `"Float is %f"`   | `Float is 3.14`                  |
 
 ```ts
 it.each([
@@ -156,30 +167,16 @@ export const getUser = async (name: string): Promise<{ username: string }> => {
 
 describe("getUser function", () => {
   test("should throw not found error", () => {
-    return expect(getUser("cibilex")).rejects.toThrow("User not found");
+    // ...
   });
 
   test("should return user", () => {
-    return expect(getUser("alex")).resolves.toEqual({ username: "alex" });
+    // ...
   });
 });
 ```
 
 ## Asynchronous testing
-
-Yukarıdaki fonksiyonu 3 saniye gecikmeyle cevap verecek şekilde ayarlayalım:
-
-```ts
-export async function sum(number1: number, number2: number) {
-  await new Promise((res) =>
-    setTimeout(() => {
-      res(true);
-    }, 3000)
-  );
-
-  return number1 + number2;
-}
-```
 
 Böyle bir async fonksiyonunun testi için 3 temel yol vardır.
 
@@ -222,7 +219,7 @@ it("get alex", () => {
 
 🔥 Important: If you forget to return or await the assertion, Jest will complete the test before the async operation finishes — causing false positives or missed failures.
 
-2. Also we can write async tests with `try/catch` logic.
+1. Also we can write async tests with `try/catch` logic.
 
 ```ts
 it.each([{ name: "cibilex" }, { name: "alex" }])(
@@ -314,7 +311,7 @@ describe("test sayHi function", () => {
 
 **Mock Return Values:**  
 `mockReturnValueOnce`: Sonraki çalıştırma için return edilecek değeri ekler.  
-`mockReturnValue`: Sonraki tüm değerler için return değerini belirler.  
+`mockReturnValue`: Default olarak dönecek çıktıyı set eder.
 Bu sayede mock fonksiyonlarının içini tanımlamadan return değerini belirleyerek çok daha kolay testler yazabiliriz.
 
 ```ts
@@ -517,7 +514,7 @@ describe("test index file", () => {
 - **jest.mock(path,factory,options)** is used to mock a module.
 - **jest.mocked(member)**: is used to create a wrapper to get types of package and jest.This wrapper helps us to avoid type castings.
 - **jest.isMockFunction(member)**: is used to check whether the member was mocked
-- **jest.spyOn(object,methodName):mockedMethod**: is used to create a mock function with [object][methodName] path.  
+- **jest.spyOn(object,methodName):mockedMethod**: is used to create a mock function with [object][methodName] path.`spyOn` retains the original implementation unless explicitly overridden,  
   **Note**: while value of mocked function created with `mock` is undefined, value of mocked function with `spyOn` is function itself.It's important to know that to do not mistakes.
 
 ```ts
@@ -544,7 +541,7 @@ describe("test index file", () => {
 
 **mockFn.mockClear**: Clears all data in mock.calls, mock.instances, mock.results, and mock.contexts, but keeps the mock implementation. Useful in beforeEach to reset call history.
 
-**mockFn.mockReset**: A superset of mockClear. Does everything mockClear does and also removes any custom implementation. Useful in beforeEach when you want a clean mock with no behavior.
+**mockFn.mockReset**: A superset of mockClear. Does everything mockClear does and also removes any custom implementation. It makes converted the mocked function to `jest.fn` basically. Useful in beforeEach when you want a clean mock with no behavior.
 
 **mockFn.mockRestore**: A superset of mockReset. Does everything mockReset does and also restores the original function implementation. Only works with jest.spyOn or restorable mocks.
 
@@ -678,7 +675,7 @@ describe("test getAlbum fn", () => {
 
 Please take a time and think about why this example throws error.
 
-Before the solution,let's memorize our knowladge about js module resolution is working.Let's explain the logic of below function:
+Before the solution,let's memorize our knowledge about js module resolution is working.Let's explain the logic of below function:
 
 ```ts
 export const getAlbum = async (id: number): Promise<FormattedAlbum> => {
@@ -864,3 +861,56 @@ describe("test index file", () => {
   });
 });
 ```
+
+### AAA Patern
+
+- _Arrange_: This section is used to configure objects or setup dependencies to prepare them for the test such as creating class instances,initiating variables or mocking modules.
+- _Act_: This section is used to the code which is wanted to be tested such as running class method or interacting with internal services.
+- _Assert_: This section is used to verify results produced by act phase and be sure that the SUT(System Under test) works as desired.
+
+```ts
+// index.ts
+export class User {
+  constructor(public username: string) {}
+
+  sayHi() {
+    console.log(`Hi ${this.username}`);
+  }
+}
+
+// test.ts
+
+import { User } from "./index";
+
+const mockedLog = jest.spyOn(console, "log");
+
+describe("User class", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it.each([
+    { username: "cibilex", expected: "Hi cibilex" },
+    { username: "john", expected: "Hi john" },
+  ])("should say hi to $username", ({ username, expected }) => {
+    // Arrange
+    const user = new User(username);
+
+    // Act
+    user.sayHi();
+
+    // Assert
+    expect(mockedLog).toHaveBeenCalledWith(expected);
+    expect(mockedLog).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+Test doubles are the generic umbrella term for any objects that replace real dependencies in test environments to provide control, isolation, and observability.
+
+**Stubs**: Provide predetermined responses to method calls. Used when you need to control what data flows into your system under test, especially to avoid slow/expensive operations like database calls or external APIs.
+**Spies**: Record information about function calls (parameters, call count, etc.) while optionally preserving the original behavior. Used when you want to verify how your code interacts with dependencies.
+**Mocks**: Pre-programmed with expectations about how they should be called, then verify those expectations were met. They can provide return values (like stubs) and record calls (like spies), but their primary purpose is behavioral verification - ensuring your code calls its dependencies correctly.
+
+-Many testing frameworks blur the lines (Jest's `jest.fn()` can act as stub, spy, or mock depending on how you configure it)
+The same object can serve multiple roles - returning predetermined values AND recording call information AND verifying expectations

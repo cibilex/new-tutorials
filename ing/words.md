@@ -3,7 +3,7 @@ https://www.hepsiburada.com/ara?q=Ser-Yat+Plaj+Has%C4%B1r%C4%B1
 
 spoil
 deter
-
+tissue
 flaky
 notion
 glossary
@@ -14,6 +14,10 @@ proposal
 condolence
 muddle
 feeble
+shortcomings
+judiciously
+stunt double
+opinionated
 recur
 helping hand
 compendium
