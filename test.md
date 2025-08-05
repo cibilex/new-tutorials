@@ -822,6 +822,7 @@ import axios from "axios";
 
 export const getAlbumTitle = async (id: number): Promise<string> => {
   try {
+    p;
     const response = await axios.get(
       `https://jsonplaceholder.typicode.com/albums/${id}`
     );
@@ -912,5 +913,5 @@ Test doubles are the generic umbrella term for any objects that replace real dep
 **Spies**: Record information about function calls (parameters, call count, etc.) while optionally preserving the original behavior. Used when you want to verify how your code interacts with dependencies.
 **Mocks**: Pre-programmed with expectations about how they should be called, then verify those expectations were met. They can provide return values (like stubs) and record calls (like spies), but their primary purpose is behavioral verification - ensuring your code calls its dependencies correctly.
 
--Many testing frameworks blur the lines (Jest's `jest.fn()` can act as stub, spy, or mock depending on how you configure it)
+-Many testing frameworks blur the lines (Jest's `` can act as stub, spy, or mock depending on how you configure it)
 The same object can serve multiple roles - returning predetermined values AND recording call information AND verifying expectations
