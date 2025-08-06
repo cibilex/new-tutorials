@@ -233,3 +233,15 @@ function Footer() {
 // I will add a proper video to show performance upgration
 
 - As you can see react compilers did the same thing without any code refactoring and complexity.This looks great but we should see that why and when to use this compiler,and when not to do it.
+
+- No need any configuration for react react@19+ but we should make a bit effort to use react-compiler for older versions(React compiler supports react@17+) versions.Click here to see the steps.Also this guide includes vite configuration,click here to go installation [page](https://react.dev/learn/react-compiler/installation).
+- To verify react-compiler installation, you should see `✨` text next to `Component` tab.
+
+**Opting out specific components**: If somehow react-compiler causes unexpected behaviours, we can use `"use no memo";` at the starting of the related component to disable react-compiler for specific component.
+
+```ts
+export default function App() {
+  "use no memo";
+  // ...
+}
+```

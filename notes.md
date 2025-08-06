@@ -7,6 +7,7 @@
 - SSL: (Secure Sockets Layer) Bilginin bütünlüğü ve gizliliği için, İnternet üzerinde iki taraf
   arasında oluşan trafiğin şifrelenerek, gizliliğinin ve bütünlüğünün korunmasını sağlayan bir
   protokoldür.
+- https://notebooklm.google/?gad_source=1&gad_campaignid=22712476265&gbraid=0AAAAA-fwSsfRgUNpiw7Flfz7buQg-Gmuy&gclid=CjwKCAjw-svEBhB6EiwAEzSdrk8CtAxDVKaLJUbpSy9ka8RHeZFxck_qbxMlP-WC1FFCoIMX1UFHjhoCwzsQAvD_BwE
 
 # TypeScript Type Guards
 
