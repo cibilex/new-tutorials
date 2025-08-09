@@ -1,10 +1,53 @@
 https://stackoverflow.com/questions/69577451/how-do-you-type-an-error-property-in-a-catch-block-in-typescript
 https://www.hepsiburada.com/ara?q=Ser-Yat+Plaj+Has%C4%B1r%C4%B1
+https://quizlet.com/486346623/flashcards?funnelUUID=dcd4772b-9d7e-4478-a14a-1254ffaf1c92
+
+deception
+crippling
+cardigan
+sanity
+trek
+hamper
+in vain
+reckless
+heredity
+futile
+hereditary
+surplus
+auditory
+affluent
+extravagant
+frugal
+convict
+cue
+sue
+shortcomings
+flaw
+fill up
+get into trouble
+come to light
+warehouse
+defendant
+
+He started to wondering whether his sanity is in place.
+
+sports=> not spor
+
+Fazla ürünleri depoda saklamayı tercih ettik.
+Daha az para harcamak için çok tutumlu bir yaşam tarzı benimsedi.
+Mahkeme, sanığı suçlu buldu.
+Yağmur, piknik planlarımızı engelledi.
+Sadece bir işaretle ne yapmam gerektiğini anladım.
+Tüm çabalarına rağmen projeyi tamamlayamadı, boşunaydı.
 
 spoil
+up to now
+unveil
 deter
 tissue
+comment out / yoruma almak
 flaky
+polish
 notion
 glossary
 foreword
@@ -14,7 +57,8 @@ proposal
 condolence
 muddle
 feeble
-shortcomings
+time-consuming
+tweak
 judiciously
 stunt double
 opinionated

@@ -1,0 +1,2 @@
+- Add space after every period or comma.
+- Use capitalize for package names,People name.
