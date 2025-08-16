@@ -1,3 +1,6 @@
 jest/**/*
 node_modules/
 .env
+**/tutorial/**/* #ignore all files in tutorial folder
+*-tutorial/ #ignore folders ending with -tutorial
+**/*-tutorial/ #ignore folders ending with -tutorial in subdirectories
