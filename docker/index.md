@@ -74,9 +74,9 @@
 
   - `docker pull redis` (pulls latest Redis image), `docker pull redis:bookworm` (pulls Redis image tagged "bookworm").
 
-- **`docker images`** – Lists all images on your local machine.
+- **`docker images`** – Lists all images on our local machine.
 
-- **`docker rmi NAME[:TAG]`** – Removes an image from your local machine.
+- **`docker rmi NAME[:TAG]`** – Removes an image from our local machine.
 
   - `docker rmi redis:bookworm`
 
@@ -93,9 +93,9 @@
   | `node:20-alpine` | \~20 MB | Alpine Linux | Very small, minimal, secure, may need extra packages |
   | `node:20-slim` | \~100 MB | Debian Slim | Compatible with most modules, easier debugging |
   | `node:20` | \~400 MB | Full Debian | Largest, fully featured, rarely needed |
-- Use Alpine if you want smallest image and security.
-- Use Slim if you want compatibility and easier debugging.
-- Avoid full images unless you really need the full OS environment.
+- Use Alpine if we want smallest image and security.
+- Use Slim if we want compatibility and easier debugging.
+- Avoid full images unless we really need the full OS environment.
 
 - **WORKDIR CONTAINER_PATH**: Sets the working directory inside the container.WORKDIR is optional, but recommended to keep the container organized and avoid placing files in the root directory.All subsequent instructions that use relative paths (COPY, RUN, etc.) will be based on this directory.If the directory doesn’t exist, Docker will create it automatically. `WORKDIR app`
 - **COPY HOST_PATH CONTAINER_PATH**: COPY is used to copy files or directories from our host machine into the container, usually relative to the working directory.
@@ -116,3 +116,36 @@
   | **Environment variable inline** | ❌ Cannot declare `VAR=value` inline; use `ENV` or `-e` | ✅ Can do `VAR=value command` | | |
   | **Signal handling** | ✅ Proper, safer for production | ❌ Less predictable, may not handle signals properly | | |
   | **Use case** | Recommended for single command apps, production | Use only if we need shell features like chaining or variable expansion | | |
+
+### Building Dockerfile
+
+- `docker build [OPTIONS] PATH`
+- `docker build -t my-image .`: This reads the Dockerfile in the current directory and creates an image tagged my-image.
+- By default, BuildKit hides the output of RUN commands in the logs for brevity.To see full output of commands like `RUN ls -a ` or `RUN echo "hi"` use `--progress=plain` flag.
+- Each instruction in the Dockerfile creates a layer.Docker caches layers to speed up future builds.If a layer hasn’t changed, Docker reuses the cached version.To force all steps to run and ignore cached layers use `--no-cache` flag.
+
+### Dockerignore
+
+- We can use a `.dockerignore` file to exclude files or directories from the build context.Its format is the same as `.gitignore`
+
+```dockerfile
+# sets the base image
+FROM node:current-alpine3.22
+# sets the working directory for the container
+WORKDIR /app
+# copies the rest of the files to working directory
+COPY . .
+# list the files in the working directory
+RUN ls -a
+# echo "hi world"
+RUN echo "hi world"
+# install dependencies
+RUN npm i --legacy-peer-deps
+# set the environment variable for the node environment
+ENV NODE_ENV=prod
+# expose the port 3000 which is the port that the server will run on
+EXPOSE 3000
+# set the command to run when the container starts
+CMD ["npm","run","start:prod"]
+
+```
