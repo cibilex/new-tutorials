@@ -82,3 +82,37 @@
 
 - **`docker inspect NAME[:TAG]`** – Shows detailed information about an image, including layers, environment variables, default command, and metadata.
   - `docker inspect redis:bookworm`
+
+## Dockerfile
+
+- A Dockerfile is a text file that contains a set of instructions to build a Docker image.Each instruction creates a layer in the image.
+- **#** is used to add comments that are ignored during the build.
+- **FROM** is always the first instruction in a Dockerfile (except for optional ARG before it).
+  | Image | Size | OS | Notes |
+  | ---------------- | -------- | ------------ | ---------------------------------------------------- |
+  | `node:20-alpine` | \~20 MB | Alpine Linux | Very small, minimal, secure, may need extra packages |
+  | `node:20-slim` | \~100 MB | Debian Slim | Compatible with most modules, easier debugging |
+  | `node:20` | \~400 MB | Full Debian | Largest, fully featured, rarely needed |
+- Use Alpine if you want smallest image and security.
+- Use Slim if you want compatibility and easier debugging.
+- Avoid full images unless you really need the full OS environment.
+
+- **WORKDIR CONTAINER_PATH**: Sets the working directory inside the container.WORKDIR is optional, but recommended to keep the container organized and avoid placing files in the root directory.All subsequent instructions that use relative paths (COPY, RUN, etc.) will be based on this directory.If the directory doesn’t exist, Docker will create it automatically. `WORKDIR app`
+- **COPY HOST_PATH CONTAINER_PATH**: COPY is used to copy files or directories from our host machine into the container, usually relative to the working directory.
+- **RUN COMMAND**: Executes commands during the image build, not at runtime `RUN npm i`
+- **EXPOSE PORT** :Informs Docker which port our container will listen on.It does not publish the port to the host; it’s mostly documentation.
+- **ENV <KEY>=<VALUE>**: Sets environment variables inside the container.These variables can be used by the app or other commands in the Dockerfile.ENV variables in a Dockerfile act as default values for the container.We can override them at runtime using the -e flag or an environment file.
+  - ```dockerfile
+    ENV NODE_ENV=development
+    ENV PORT=3000
+    RUN echo "The app is running in $NODE_ENV on port $PORT"
+    ```
+- **CMD COMMAND**:Defines the default command to run when the container starts.Only the last CMD in a Dockerfile is used
+  | Feature | Exec Form | Shell Form | | |
+  | ------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- | ------------------- | ------------ |
+  | **Syntax** | `CMD ["executable","param1","param2"]` | `CMD command param1 param2` | | |
+  | **How it runs** | Directly, no shell | Through `/bin/sh -c` | | |
+  | **Supports multiple commands** | ❌ Cannot use `&&`, \` | \`, or chain commands | ✅ Supports `&&`, \` | \`, chaining |
+  | **Environment variable inline** | ❌ Cannot declare `VAR=value` inline; use `ENV` or `-e` | ✅ Can do `VAR=value command` | | |
+  | **Signal handling** | ✅ Proper, safer for production | ❌ Less predictable, may not handle signals properly | | |
+  | **Use case** | Recommended for single command apps, production | Use only if we need shell features like chaining or variable expansion | | |
