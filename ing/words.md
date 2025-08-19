@@ -6,13 +6,20 @@ bedridden
 trait
 genetic trait
 stiff
-
+elusive
 deter
 defy
 defendant
 convict
 confine
 sports=> not spor
+amuse
+amusing
+scrawny
+fine
+curfew
+impound
+I sure hope not
 
 He started to wondering whether his sanity is in place.
 

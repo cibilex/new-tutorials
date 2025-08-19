@@ -2,6 +2,7 @@
   - `It was not until a particular way was developed that steel was able to be mass-produced.`
 - `prove|turn out + adjective` = Ortaya çıktı,anlaşıldı.
   - `It's message has proved elusive.`
+- `one of my friends` == `a friend of mine`
 - `at + price/cost` : `a great cost` `at this price`
 - `excel + in/at` => `excel in your career`
 - `plenty` + can be both singular | plural
@@ -21,7 +22,7 @@
 - `in one part .... in another ...` `in one part of the world,while in another people trek miles every day.`
 - `aught` => `should` . `possess` => `have`
 - with naun v3 passive ving active mesiyle
-- provive
+- provide
   - `sağkanılan şey + for +  hedef kitle` : `provide money for his family`
   - `hedef kitle + with + sağlanılan şey` : `provide his family with money`
 - devrik cümle

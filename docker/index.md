@@ -149,3 +149,82 @@ EXPOSE 3000
 CMD ["npm","run","start:prod"]
 
 ```
+
+## [Multi-Stage Builds in Docker](https://docs.docker.com/build/building/multi-stage/)
+
+A Docker multi-stage build uses multiple `FROM` stages in a Dockerfile to separate build and runtime environments.  
+Only essential artifacts (e.g., compiled code) are copied to the final stage, creating a **smaller** and **more secure** image.
+
+### Benefits
+
+- **Smaller Images**: Excludes source code and dev dependencies, reducing size (e.g., ~100MB vs. 1GB).
+- **Security**: Fewer files lower the attack surface.
+- **Efficiency**: Isolates build and runtime phases, leveraging layer caching.
+
+---
+
+## How It Works
+
+- Each `FROM` defines a stage, named with `AS <name>` (e.g., `AS builder`) or referenced by index (`--from=0`).
+- Use `COPY --from=<stage>` to copy files from a previous stage (by name or index).
+- Only the **final stage** is included in the output image; earlier stages are discarded.
+
+---
+
+## Example: Node.js Multi-Stage Dockerfile
+
+```dockerfile
+# sets the base image
+FROM node:current-alpine3.22  AS builder
+# sets the working directory for the container
+WORKDIR /app
+# copies the rest of the files to working directory
+COPY . .
+# install dependencies
+RUN npm i --legacy-peer-deps
+# build the app
+RUN npm run build
+
+# create a new stage to run the app
+FROM node:current-alpine3.22
+# set the working directory for the container
+WORKDIR /app
+# copy the package.json file to the container
+COPY ./package.json ./package.json
+# install the dependencies
+RUN npm i --legacy-peer-deps
+# copy the dist from the builder stage to the container
+COPY --from=builder /app/dist ./dist
+# expose the port 3000 which is the port that the server will run on
+EXPOSE 3000
+# set the command to run when the container starts
+CMD ["npm","run","start:prod"]
+
+```
+
+**Stage 1**: Build (AS builder)
+
+Base Image: node:current-alpine3.22 (~70MB, lightweight Alpine Linux).
+
+Actions: Copies project files, installs dependencies (incl. dev), and builds the app.
+
+Output: Temporary image with source code, node_modules, and compiled build.
+
+**Stage 2**: Runtime
+
+Base Image: Fresh node:current-alpine3.22.
+
+Actions:
+
+- Copies package.json.
+
+- Installs runtime dependencies.
+
+- Copies dist/ folder from Stage 1 with --from=builder.
+
+- Exposes 3000.
+- Runs npm run start:prod.  
+  Output: Lean image (~100–200MB) with dist, minimal node_modules, and Node.js runtime.
+
+- What’s Excluded? Source Code: src/, tests/, etc. (remain in Stage 1), dev tools (e.g., TypeScript, Webpack),.gitignore, README.md, etc. (unless explicitly copied).
+- We can run the final image with `docker run -d --name my-cont -p 3030:3000 my-image`
