@@ -48,7 +48,7 @@
 
 # Quick Roadmap for Exploring a Docker Image
 
-1. **Check Docker Hub**Read description, tags, and usage examples
+1. **Check Docker Hub**: Read description, tags, and usage examples
 
    - Example: [Redis Docker Hub](https://hub.docker.com/_/redis)
 
@@ -228,3 +228,335 @@ Actions:
 
 - What’s Excluded? Source Code: src/, tests/, etc. (remain in Stage 1), dev tools (e.g., TypeScript, Webpack),.gitignore, README.md, etc. (unless explicitly copied).
 - We can run the final image with `docker run -d --name my-cont -p 3030:3000 my-image`
+
+## Docker compose
+
+- **Declarative setup**: We describe our whole app (multiple services) in one YAML file—repeatable, versioned, and easy to read.
+- **Faster onboarding**: New teammates run one command and get the same stack; CI can spin up the same stack for tests.
+- **Built-in Networking**: Normally, when we run containers with plain docker run, they each get their own isolated network. To make them talk to each other, you’d have to:
+
+  - 1. Create a custom Docker network manually.
+  - 2. Attach each container to that network.
+
+- Compose groups everything under a **project**. By default the project name is the **folder name**.
+- We define containers under the top-level `services:` key. Each **service** is a **blueprint for one or more containers**.
+- If we don’t set `container_name`, Docker Compose names containers like:
+  ```
+  <project>_<service>_<index>
+  ```
+  Example: folder `my-app`, service `web` → container `my-app_web_1`.
+
+**Example**
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+```
+
+- `web` is the service name.
+- Inside the default network, services can reach each other by service name as a DNS hostname (e.g., `web`, `db`).
+
+### `container_name`
+
+Override the auto-generated container name.
+
+```yaml
+container_name: my_web_container
+```
+
+### `image`
+
+Use a pre-built image
+
+```yaml
+image: nginx:1.27
+```
+
+### `ports`
+
+Map host-to-container ports (same as `-p HOST:CONTAINER`).
+
+```yaml
+ports:
+  - "8080:80"
+  - "443:443"
+```
+
+### `environment`
+
+Set environment variables (same as `-e NAME=VALUE`).
+
+```yaml
+environment:
+  - NODE_ENV=production
+  - API_KEY=${API_KEY} # interpolated from .env or shell
+```
+
+### `env_file`
+
+The env_file option loads environment variables from a separate file (usually .env).
+This keeps secrets and configs out of the compose file.Useful for cleaner configs and avoiding hardcoding sensitive data.
+
+```bash
+#.env
+POSTGRES_USER=myuser
+POSTGRES_PASSWORD=mypassword
+
+```
+
+```yaml
+services:
+  db:
+    image: postgres:15
+    env_file: .env
+```
+
+### `volumes`
+
+Persist data or mount code/config. (same as `-v`)
+
+```yaml
+# Bind mount (host path : container path)
+volumes:
+  - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+
+# Named volume (declared under top-level `volumes:`)
+volumes:
+  - db-data:/var/lib/postgresql/data
+```
+
+### `networks`
+
+Attach the service to one or more networks.(same as `--network`)
+
+```yaml
+networks:
+  - backend
+  - frontend
+```
+
+Declaring Networks & Volumes
+
+If we use **named volumes** or **named networks**, declare them at the end of the file.
+
+```yaml
+networks:
+  frontend: {}
+  backend:
+    name: my-backend
+    driver: bridge
+    # external: true   # uncomment if you created it outside Compose
+
+volumes:
+  db-data:
+    driver: local
+```
+
+- If `external: true`, Compose will **not** create it; it must already exist.If omitted, Compose creates an **implicit default network** for the project.
+
+### Using ${} with env_file in Compose
+
+We can use `${}` syntax in a docker-compose.yml to inject variables.
+This works inside the compose file itself (e.g., in environment: or ports:).
+
+We can also combine this with `env_file`, which loads values from external .env-style files.
+
+```yml
+services:
+  app:
+    build: .
+    env_file:
+      - common.env
+      - app.env
+    environment:
+      - API_URL=${BASE_URL}/api
+```
+
+# Networking in Docker
+
+Each container runs in its **own isolated environment**—it has its own filesystem, processes, and network. This isolation can cause issues when containers need to communicate with each other.
+
+---
+
+## 1️⃣ Running PostgreSQL with Docker Compose
+
+```yaml
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: post
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_POSTGRES_PASSWORD=my_password
+      - POSTGRESQL_USERNAME=my_username
+    volumes:
+      - my-volume:/bitnami/postgresql
+
+volumes:
+  my-volume:
+```
+
+- Run with:
+
+```bash
+docker compose up -d
+```
+
+- The `post` container starts and exposes PostgreSQL on port `5432`.
+
+- Your NestJS app can connect using `localhost:5432` in development:
+
+```ts
+TypeOrmModule.forRoot({
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "postgres",
+  password: "my_password",
+  database: "postgres",
+  synchronize: true,
+  autoLoadEntities: true,
+});
+```
+
+---
+
+## 2️⃣ Dockerizing the App
+
+Dockerizing your NestJS app using a Dockerfile:
+
+```dockerfile
+FROM node:current-alpine3.22 AS builder
+WORKDIR /app
+COPY . .
+RUN npm install --legacy-peer-deps
+RUN npm run build
+
+FROM node:current-alpine3.22
+WORKDIR /app
+COPY ./package.json .
+COPY --from=builder ./app/dist ./dist
+RUN npm install --legacy-peer-deps
+EXPOSE 3000
+ENV NODE_ENV=PROD
+CMD ["npm","run","start:prod"]
+```
+
+Build and run:
+
+```bash
+docker build -t my-image --progress=plain .
+docker run -d --name my-container -p 3000:3000 my-image
+```
+
+❌ This will fail to connect to PostgreSQL:
+
+```
+[TypeOrmModule] Unable to connect to the database. Retrying...
+AggregateError [ECONNREFUSED] ...
+```
+
+- Reason: **The app container is isolated** and cannot reach the host’s `localhost:5432`. Each container has its own network.
+
+---
+
+## 3️⃣ Connecting Containers via a Custom Network
+
+1. Create a network:
+
+```bash
+docker network create -d bridge my-network
+docker network ls   # verify
+```
+
+2. Attach the Postgres container to the network:
+
+```yaml
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: post
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_USERNAME=my_username
+    volumes:
+      - my-volume:/bitnami/postgresql
+    networks:
+      - my-network
+
+volumes:
+  my-volume:
+
+networks:
+  my-network:
+    name: my-network
+    external: true # this is required when using a network that not created by docker compose
+```
+
+3. Update the NestJS database host:
+
+```ts
+TypeOrmModule.forRoot({
+  type: "postgres",
+  host: "post", // container name used as hostname.This will be post IP in the runtime
+  port: 5432,
+  username: "postgres",
+  password: "my_password",
+  database: "postgres",
+  synchronize: true,
+  autoLoadEntities: true,
+});
+```
+
+4. Run the app container on the same network:
+
+```bash
+docker run -d --name my-container --network=my-network -p 3000:3000 my-image
+```
+
+✅ Now the app can connect to PostgreSQL.
+
+## 4️⃣ Recommended Approach: Compose Everything Together
+
+Instead of creating networks manually, include all services in a **single `docker-compose.yml`**:
+
+```yaml
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: post
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_USERNAME=my_username
+    volumes:
+      - my-volume:/bitnami/postgresql
+
+  my-app:
+    container_name: my-container
+    image: my-image
+    ports:
+      - 3000:3000
+
+volumes:
+  my-volume:
+```
+
+Run:
+
+```bash
+docker compose up -d
+docker logs my-container
+```
+
+- Both containers are automatically placed in the same **internal network**.
+- The app can now connect to PostgreSQL using the **service name** (`post`) as hostname.
+- We don’t need to expose PostgreSQL’s port if the app runs in the same Docker network. Internal container-to-container communication works using the service name and container port, so the app can connect without mapping the port to the host. Port mapping is only necessary when we want to access the database from outside Docker, such as from the host machine or external tools like pgAdmin.
