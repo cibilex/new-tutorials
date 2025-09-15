@@ -1,6 +1,7 @@
 # BULLMQ
 
 `npm i ioredis bullmq`
+
 # Connection
 
 - BullMQ uses the node module ioredis, and the options you pass to BullMQ are just passed to the constructor of ioredis
@@ -93,7 +94,6 @@ removeOnComplete: {
 ```
 
 When jobs are deleted, they are completely removed from all relevant parts of Redis. For example, if an email job with ID 4 is deleted, `EXISTS bull:email:4` will return 0, and it won't be in the `ZRANGE bull:email:completed 0 -1` list.
-
 
 We can use both `removeOnComplete` and `removeOnFail` within the options of both `Worker` and `queue.add` functions.It depends us,If we want to add option per job,then add these to add function can be a better solution.
 
@@ -399,7 +399,6 @@ await myQueue.add(
 
 # BullMQ Stalled Jobs Mechanism
 
-
 BullMQ uses a **Redis lock mechanism** to ensure jobs are processed safely and completed reliably. This mechanism prevents job loss when workers crash or disconnect unexpectedly.
 
 1. **Lock Creation**: When a worker starts processing a job, BullMQ creates a Redis lock
@@ -554,6 +553,11 @@ RabbitMQ is a language-independent message queue system based on the AMQP protoc
 | **Retry & Failure Management**      | Basic retry and failed job queue                                   | Advanced retry, dead-letter, message rejection and redelivery features                        |
 | **Monitoring & Management UI**      | Simple open-source panel support via Bull Board plugin             | Built-in, advanced official web-based management and monitoring UI                            |
 
-```
+## BullMQ schedulers:
 
-```
+- Bullmq ile tekrarlayan iş zamanı geldiğinde bullmq önceki yayınladığı işin hala `delayed` durumunda olup olmadığını kontrol eder.Eğer önceki iş hala `delayed` durumunda ise bullmq iş yayınlamasını atlar ve sonraki tetikleme zamanını bekler.Bu sayede duplication joblardan sistemi korur.Bu yüzden eğer `every:1000` gibi bir değer ile her saniye 1 job üretmesini eklersek, 1 dakika içerisinde 60 kere işin publish edileceği garanti edilmez.
+
+- Bullmq schedulerı ilk tanımlandığı anda(öyle bir key yok ise) rediste scheduler oluşturur ve ilk jobı direk intervalı beklemeden publish eder.`every` kısmında denediğimde bu mantıkta çalıştı.Ardından delayed statusunda başka bir job yayınlar yukarıdaki mantıkla işler işlemleri.
+  BullMQ tekrarlayan işler için 2 farklı seçenek sunar.
+
+1. **every** : every interval görevi görür ve belirtilen aralık bittiğinde yeni job tetiklenir.

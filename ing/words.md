@@ -15,6 +15,8 @@ confine
 sports=> not spor
 amuse
 amusing
+atomicity
+
 scrawny
 fine
 curfew

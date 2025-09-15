@@ -258,8 +258,6 @@ Browser tarafında `this` değeri `window` objesi iken, Node.js tarafında `this
 
 JavaScript’te `var` ile oluşturulan değişkenler default olarak `window` objesine eklenirken, `let` ve `const` ile oluşturulan değişkenler `window` objesine eklenmez.
 
-## 🌐 Browser Örneği
-
 ```js
 var username = "cibilex";
 console.log(this.username, window.username, username);

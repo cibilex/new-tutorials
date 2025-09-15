@@ -1,0 +1,1 @@
+- AWS uses a _pay-as-you-go_ approach, meaning there are no fixed monthly or yearly subscriptions. You only pay for the resources and services you actually use.
