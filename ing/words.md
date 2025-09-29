@@ -17,6 +17,7 @@ amuse
 amusing
 atomicity
 
+upfront payment
 scrawny
 fine
 curfew
