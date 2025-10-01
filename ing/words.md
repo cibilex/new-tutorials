@@ -15,8 +15,9 @@ confine
 sports=> not spor
 amuse
 amusing
-atomicity
 
+atomicity
+s
 upfront payment
 scrawny
 fine
