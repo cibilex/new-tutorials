@@ -17,7 +17,6 @@ amuse
 amusing
 asdasd
 atomicity
-sasdasdasd
 upfront payment
 scrawny
 fine
