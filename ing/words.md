@@ -10,7 +10,7 @@ elusive
 deter
 defy
 defendant
-convict
+convict,
 confine
 sports=> not spor
 amuse
