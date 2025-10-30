@@ -11,14 +11,14 @@ deter
 defy
 defendant
 convict,asd
-
+asd
 confine
 sports=> not spor
 amuse
 amusing
 asdasd
 atomicity
-upfront payment
+upfront paymentasdsd
 scrawny
 fine
 curfew
