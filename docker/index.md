@@ -1,12 +1,3 @@
-- bind vs mount in docker
-
-## **Containers**:
-
-- A container is an isolated, self-contained environment—like a mini virtual machine, but much lighter and faster.
-- Containers share the host OS kernel but run independently, preventing conflicts such as port collisions, library clashes, or memory contention.
-- Multiple containers can run on the same host, even if they require different versions of Node, Redis, or databases, without interfering with each other.
-- Containers make it possible to create an infrastructure that behaves consistently across environments, reducing the risk of unexpected crashes or errors.
-
 ### **Container Commands**:
 
 - `docker container run [OPTIONS] IMAGE [COMMAND]`
