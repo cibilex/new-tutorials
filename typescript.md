@@ -1,6 +1,9 @@
+You can assign any value to both any and unknown. any opts out of type-checking altogether, while unknown requires you to narrow the type before use.
+
 # 🧠 TypeScript Tip: Making Field-Based Change Logs Type-Safe with Discriminated Unions
 
 When building a change log or audit system that tracks field-level changes (e.g. `"name"` changed from `"John"` to `"Jane"`), it’s important to model the types in a way that TypeScript can understand and narrow correctly — especially when the type of each field is different.
+asd
 
 ---
 
