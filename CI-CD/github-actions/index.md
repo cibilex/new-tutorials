@@ -7,21 +7,6 @@
 
 ## Core Concepts
 
-### Actions
-
-- **Actions** are reusable units of code that perform specific tasks.They are stored in repositories and versioned with Git.
-- Examples: `actions/checkout@v4`, `actions/setup-node@v4`
-
-```yaml
-- name: Checkout code
-  uses: actions/checkout@v4
-
-- name: Setup Node.js
-  uses: actions/setup-node@v4
-  with:
-    node-version: "18"
-```
-
 ### Workflows
 
 - **Workflows** are automated processes that include one or more jobs
@@ -106,6 +91,21 @@ runs-on: self-hosted      # Your own runner
 runs-on: [self-hosted, linux, x64]  # With labels
 ```
 
+### Actions
+
+- **Actions** are reusable units of code that perform specific tasks.They are stored in repositories and versioned with Git.
+- Examples: `actions/checkout@v4`, `actions/setup-node@v4`
+
+```yaml
+- name: Checkout code
+  uses: actions/checkout@v4
+
+- name: Setup Node.js
+  uses: actions/setup-node@v4
+  with:
+    node-version: "18"
+```
+
 ## Flow Diagram
 
 ```
@@ -188,7 +188,7 @@ With this declaration, workflow will be triggered on every **push** on main bran
 on:
   push:
     branches-ignore:
-      - main
+      - mainc
 ```
 
 With this declaration, workflow will be triggered on every **push** on all branches except main branch.
@@ -200,8 +200,8 @@ on:
   push:
     branches:
       - main
-      - **`feature/*`**
-      - "!**`feature/*-alpha`**"
+      - feature/*
+      - "!feature/*-alpha"
 ```
 
 This triggers on main and **`feature/*`** branches, but excludes branches ending with **`-alpha`**.
@@ -329,42 +329,6 @@ jobs:
       - run: echo "Cleaning up..."
 ```
 
-## [Variables](https://docs.github.com/en/actions/reference/workflows-and-actions/variables):
-
-- Variables are reusable definitions that can be used within the declared scope. For example a variable can be `job` level or `workflow` level.Variables are always strings.Github comes with some of useful variables.
-
-```yml
-env:
-  APP_LINK: "http://localhost:3000"
-
-jobs:
-  job1:
-    name: job1
-    runs-on: ubuntu-latest
-    env:
-      APP_NAME: "Cibilex"
-    steps:
-      - name: write-info
-        run: echo "$APP_NAME is running at $APP_LINK" # Cibilex is running at http://localhost:3000
-      - name: write-job_id
-        run: echo "This job is $GITHUB_JOB" # This job is job1
-```
-
-- We can make an environment variable available to any subsequent steps in a workflow job by defining or updating the environment variable and writing this to the GITHUB_ENV
-  - `echo "{environment_variable_name}={value}" >> "$GITHUB_ENV"`
-
-```yml
-jobs:
-  job1:
-    name: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: pass custom env
-        run: echo "MY_ENV_VAR=Hi from the first step" >> $GITHUB_ENV
-      - name: echo env
-        run: 'echo "My custom env is : $MY_ENV_VAR"' # My custom env is : Hi from the first step
-```
-
 ## [Contexts](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts)
 
 - Context are read-only objects that includes information about github, job, workflow etc.... .They are usually used with expressions.
@@ -380,26 +344,115 @@ jobs:
         run: 'echo "Workflow: ${{ github.workflow }}, workflow id: ${{ github.workflow_id }}"'
 ```
 
-## [Secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets)
+- `#*/` is **Bash parameter expansion** that extracts the substring **after the first `/`** in a string.  
+  Example: `"owner/repo" → "repo"` using `${VAR#*/}`.
 
-- Secrets are encrypted key–value pairs containing sensitive data (like API keys or tokens). They are stored securely in GitHub and injected into workflows at runtime.
-- Why map to env vars – Mapping secrets to environment variables can make commands simpler and avoid repeatedly typing `${{ secrets.NAME }}`.
-- Secrets may contain characters that can break shell commands. Wrap them in quotes when referencing: `echo "$SUPER_SECRET"`
-- There are three access levels for secrets:
-  1. **Organization level**: Created at the organization level and selectively granted to repositories. Useful for shared credentials across multiple repos.
-  2. **Repository level**: Defined in a single repository. Recommended for values not reused elsewhere.
-  3. **Environment level**: Defined per environment (e.g., dev, staging, prod). Useful when secrets differ between environments.
-- On the GitHub Free plan, organization-level secrets and variables are not accessible to private repositories.
-- Secrets are available via the secrets context such as `${{ secrets.API_KEY }}`
-- When printed, secrets appear as `***` in logs.
-- Secrets cannot be directly referenced in `if`: conditionals. Instead, consider setting secrets as job-level environment variables, then referencing the environment variables to conditionally run steps in the job
+- By default, GitHub expressions `${{ ... }}` are evaluated **before the step runs**.  
+  You **cannot directly use `#*/`** in `${{ github.repository#*/ }}`.  
+  To use Bash operators like `#*/`, set the step to run in **Bash** using `run: |`.
 
-```yml
-with: # Set the secret as an input
-  super_secret: ${{ secrets.SuperSecret }}
-env: # Or as an environment variable
-  super_secret: ${{ secrets.SuperSecret }}
+- GitHub automatically passes **context and environment variables** to Bash:
+  - `github.repository` → `$GITHUB_REPOSITORY` (e.g., `owner/repo`)
+  - `github.repository_owner` → `$GITHUB_REPOSITORY_OWNER` (e.g., `owner`)
+
+---
+
+- Example Workflow Steps
+
+```yaml
+steps:
+  - name: Log full repository (GitHub expression)
+    run: echo ${{ github.repository }} # Logs: owner/repo
+
+  - name: Log repository name only (Bash)
+    run: |
+      REPO_NAME="${GITHUB_REPOSITORY#*/}"         # Extract repo name
+      echo "Repo name in this step: $REPO_NAME"  # Logs repo name
+      echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV # Makes it available to later steps
+
+  - name: Log repository owner (GitHub expression)
+    run: echo ${{ github.repository_owner }} # Logs: owner
+
+  - name: Log repository owner (Bash)
+    run: |
+      echo "$GITHUB_REPOSITORY_OWNER"            # Logs: owner
 ```
+
+### Variables
+
+- Reusable **string values** in workflows.
+- Scope depends on `env:` placement: **workflow > job > step**.
+
+#### Static Variables
+
+- Declared directly in the workflow YAML.
+- Access:
+
+  - Shell: `$NAME`
+  - Expression: `${{ env.NAME }}`
+
+```yaml
+env:
+  GLOBAL: "global"
+
+jobs:
+  build:
+    env:
+      JOB: "job"
+    steps:
+      - name: Step
+        env:
+          STEP: "step"
+        run: echo $STEP
+```
+
+#### Configuration Variables
+
+- Managed in GitHub UI, accessed via `${{ vars.NAME }}`
+- Levels:
+
+  1. Repository
+  2. Organization
+  3. Environment
+
+```yaml
+jobs:
+  deploy:
+    environment: prod
+```
+
+- Recommended: use dynamic environments via branch name:
+
+```yaml
+environment: ${{ github.ref_name }}
+```
+
+#### Persisting Variables Across Steps
+
+```bash
+echo "VAR=value" >> "$GITHUB_ENV"
+```
+
+---
+
+### Secrets
+
+- Encrypted and masked: `${{ secrets.NAME }}`
+- When printed in logs → `***`
+- Cannot be used directly in `if:` conditions; use job-level env workaround:
+
+```yaml
+jobs:
+  example:
+    env:
+      MY_SECRET: ${{ secrets.MY_SECRET }}
+    steps:
+      - name: Conditional
+        if: env.MY_SECRET == 'value'
+        run: echo "Secret-based step"
+```
+
+- Available at same levels as configuration variables: repository, organization, environment.
 
 ## Useful workflow actions
 
@@ -427,4 +480,310 @@ env: # Or as an environment variable
              with:
                node-version: "20.12.2"
      ```
-3.
+
+## Example for `pull_requests`:
+
+```yml
+name: Check whether the pr is ready to merge
+on:
+  pull_request:
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+
+      - name: Install dependencies
+        run: npm i --legacy-peer-deps
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build application
+        run: npm run build
+```
+
+### OIDC
+
+OIDC (OpenID Connect) is an identity federation protocol that allows external systems (like GitHub Actions, Kubernetes, or CI/CD pipelines) to authenticate to cloud providers without storing long-lived credentials.
+
+Instead of using permanent IAM user access keys, OIDC lets your external system prove its identity, and the cloud provider (e.g., AWS) responds by issuing short-lived, automatically expiring credentials through STS.
+
+This removes the risk of leaked access keys and enables secure, temporary access for operations in AWS, Azure, GCP, and other providers.
+
+- **What is OIDC?**
+
+  - OIDC (OpenID Connect) provides \*\*short-lived, temporary authentication
+  - tokens\*\* instead of permanent credentials.\
+  - With GitHub Actions → AWS:
+
+- **GitHub issues an OIDC JWT**
+- **AWS validates the token**
+- **AWS STS returns temporary credentials**
+- Credentials expire automatically and cannot be reused\
+  → More secure than storing IAM Access Keys.
+
+OIDC is supported by major cloud providers (AWS, Azure, GCP).
+
+---
+
+## **How OIDC Works (High-Level Flow)**
+
+1.  GitHub workflow requests a **JWT (OIDC token)**\
+2.  GitHub sends this JWT to AWS STS with:
+    - Repo name
+    - Owner/organization
+    - Branch
+    - Workflow info
+3.  AWS checks the token against the IAM Role **trust policy**\
+4.  AWS issues **temporary credentials**\
+5.  Workflow uses them\
+6.  Credentials expire
+
+---
+
+## Step-by-Step Explanation
+
+- **Step 1 — Verify Codebase Agility**
+
+  - **Checkout repository**
+    - Action: [`actions/checkout@v4`](https://github.com/actions/checkout)
+    - Pulls your repository code to the GitHub runner.
+  - **Setup Node.js**
+    - Action: [`actions/setup-node@v4`](https://github.com/actions/setup-node)
+    - Ensures Node.js is installed for building/testing.
+  - **Lint**
+    - Command: `npm run lint`
+    - Checks for code style and formatting issues.
+  - **Build**
+    - Command: `npm run build`
+    - Compiles the code for deployment.
+  - **Test**
+    - Command: `npm run test`
+    - Runs unit/integration tests to verify correctness.
+
+- **Step 2 — Set up AWS Authentication**
+
+  - **Step 2a — [Add GitHub as an Identity Provider in AWS](https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws#adding-the-identity-provider-to-aws)**
+    - IAM → Identity Providers → Add Provider
+    - Provider Type: **OpenID Connect**
+    - Provider URL: `https://token.actions.githubusercontent.com`
+    - Audience: `sts.amazonaws.com`
+    - This allows AWS to trust GitHub.
+  - **Step 2b — Create an IAM Role for GitHub OIDC**
+    - IAM → Roles → Create Role → Web identity
+    - **Trusted entity type:** Web identity
+    - **Identity provider:** The GitHub OIDC provider you added
+    - **Audience:** `sts.amazonaws.com`
+    - **GitHub Organization**: Organization name (or username for personal repos)
+    - Optional restrictions:
+      - GitHub Repository (`your-org/your-repo`)
+      - Branch (`main`, `prod`, etc.)
+  - **Step 2c — Configure GitHub Actions Workflow for OIDC Authentication**
+    - [`aws-actions/configure-aws-credentials@v5`](https://github.com/aws-actions/configure-aws-credentials): Allows GitHub Actions to perform AWS CLI operations (ECR login, ECS deployment) without storing permanent AWS keys.Injects temporary AWS credentials (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN) into the workflow environment
+      - Options:
+        - `aws-region`: Region of your AWS resources (ECR/ECS).
+        - `role-to-assume`: IAM Role ARN GitHub assumes.
+        - `role-session-name`: Optional label for logs, defaults to `GitHubActions`.
+
+- **Step 3 — Build and Push Docker Image**
+
+  - **Log in to ECR**
+    - [`aws-actions/amazon-ecr-login@v2`](https://github.com/aws-actions/amazon-ecr-login): Automatically logs GitHub into ECR using temporary AWS credentials
+    - **Purpose:** Docker can now push/pull images to/from ECR without storing permanent credentials.
+  - **Build Docker image**
+    - Command: `docker build -t <versioned> -t <latest> .`
+    - Multi-tagging allows version control + “latest” in a single build.
+  - **Push Docker image to ECR**
+    - Command: `docker push $ECR_REPOSITORY --all-tags`
+    - Sends both tags to AWS ECR repository.
+
+- **Step 4 — Update ECS Service**
+  - **Fetch current task definition**
+    - Command: `aws ecs describe-services ...` → saves `task-definition.json`
+    - **Purpose:** Avoid committing sensitive environment variables.
+  - **Render updated task definition**
+    - [`aws-actions/amazon-ecs-render-task-definition@v1`](https://github.com/aws-actions/amazon-ecs-render-task-definition)
+    - Replaces container image in the task definition with the new Docker image.
+  - **Deploy updated task definition**
+    - [`aws-actions/amazon-ecs-deploy-task-definition@v2`](https://github.com/aws-actions/amazon-ecs-deploy-task-definition)
+    - ECS performs a **rolling update**, replacing old tasks gradually while keeping the service available.
+    - `wait-for-service-stability: true` ensures workflow waits until the service is stable.
+
+```yml
+####################################################################################
+# GitHub Actions Workflow: Build Docker + Push to ECR + Deploy to ECS
+####################################################################################
+
+name: Test aws-ecr-credentials
+
+on:
+  push:
+    branches:
+      - prod
+      - dev
+
+permissions:
+  id-token: write # Required for OIDC authentication (GitHub → AWS)
+  contents: read # Required to checkout repository code
+
+jobs:
+  test-aws:
+    environment: ${{ github.ref_name }} # environment name is branch name. so we should create github environment by this info.
+    runs-on: ubuntu-latest
+
+    steps:
+      # ----------------------------------------
+      # Step 1 — Verify Codebase Agility
+      # ----------------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4 # Fetch repository code
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23" # Ensure correct Node.js version
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps # Install project dependencies
+
+      - name: Build project
+        run: npm run build # Compile TypeScript / bundle assets
+
+      - name: Run tests
+        run: npm run test # Validate project functionality
+
+      # ----------------------------------------
+      # Step 2 — Set up AWS Authentication
+      # ----------------------------------------
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-region: ${{ vars.AWS_REGION }} # AWS region (matches your ECR)
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # IAM Role ARN for OIDC
+          role-session-name: ${{ vars.AWS_SESSION_NAME }} # Optional session label
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2 # Docker authentication to ECR
+
+      # ----------------------------------------
+      # Step 3 — Build and Push Docker Image
+      # ----------------------------------------
+      - name: Prepare dynamic environment variables
+        env:
+          ECR_REPOSITORY: "${{ secrets.ECR_REPOSITORY }}"
+        run: |
+          REPO_NAME=${GITHUB_REPOSITORY#*/}           # Extract repository name
+          COMMIT_HASH=$(git rev-parse --short $GITHUB_SHA) # Short commit hash
+
+          DOCKER_LATEST_VERSION_ID=${ECR_REPOSITORY}:${COMMIT_HASH} # Commit tag
+          DOCKER_LATEST_VERSION_TAG=${ECR_REPOSITORY}:latest         # Latest tag
+
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "DOCKER_LATEST_VERSION_ID=$DOCKER_LATEST_VERSION_ID" >> $GITHUB_ENV
+          echo "DOCKER_LATEST_VERSION_TAG=$DOCKER_LATEST_VERSION_TAG" >> $GITHUB_ENV
+
+      - name: Log prepared environments
+        run: |
+          echo "REPO_NAME = $REPO_NAME"
+          echo "COMMIT_HASH = $COMMIT_HASH"
+          echo "DOCKER_LATEST_VERSION_ID = $DOCKER_LATEST_VERSION_ID"
+          echo "DOCKER_LATEST_VERSION_TAG = $DOCKER_LATEST_VERSION_TAG"
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t $DOCKER_LATEST_VERSION_ID \
+            -t $DOCKER_LATEST_VERSION_TAG . # Multi-tag build
+
+      - name: List Docker images (side check)
+        run: docker images | grep $ECR_REPOSITORY
+
+      - name: Push Docker image to ECR
+        env:
+          ECR_REPOSITORY: "${{ secrets.ECR_REPOSITORY }}"
+        run: docker push $ECR_REPOSITORY --all-tags
+
+      # ----------------------------------------
+      # Step 4 — Update ECS Service
+      # ----------------------------------------
+      - name: Fetch task definition
+        id: fetch-task-def
+        env:
+          ECS_CLUSTER: "${{ secrets.ECS_CLUSTER }}"
+          ECS_SERVICE: "${{ secrets.ECS_SERVICE }}"
+        run: |
+          if [ -z "$ECS_CLUSTER" ] || [ -z "$ECS_SERVICE" ]; then
+            echo "Warning: ECS_CLUSTER or ECS_SERVICE not set. Skipping ECS deployment."
+            exit 1
+          fi
+
+          echo "Fetching task definition for service: $ECS_SERVICE"
+          TASK_DEF_ARN=$(aws ecs describe-services \
+            --cluster $ECS_CLUSTER \
+            --services $ECS_SERVICE \
+            --region ${{ vars.AWS_REGION }} \
+            --query 'services[0].taskDefinition' \
+            --output text)
+
+          if [ "$TASK_DEF_ARN" == "None" ] || [ -z "$TASK_DEF_ARN" ]; then
+            echo "Error: Could not fetch task definition ARN"
+            exit 1
+          fi
+
+          echo "Task Definition ARN: $TASK_DEF_ARN"
+          echo "should_deploy=true" >> $GITHUB_OUTPUT
+
+          aws ecs describe-task-definition \
+            --task-definition $TASK_DEF_ARN \
+            --region ${{ vars.AWS_REGION }} \
+            --query 'taskDefinition' > task-definition.json
+
+      - name: Render task definition
+        id: task-def
+        if: steps.fetch-task-def.outputs.should_deploy == 'true'
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: ${{ secrets.CONTAINER_NAME }}
+          image: ${{ env.DOCKER_LATEST_VERSION_ID }}
+
+      - name: Deploy task definition
+        if: steps.fetch-task-def.outputs.should_deploy == 'true'
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ secrets.ECS_SERVICE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          wait-for-service-stability: true
+```
+
+#### Secrets and Variables: we should set this configurations in github.
+
+- **Secrets**
+  | Secret Name | Description |
+  | ---------------- | -------------------------------------------------------------------------- |
+  | `AWS_ROLE_ARN` | AWS IAM Role ARN for OIDC authentication. |
+  | `ECR_REPOSITORY` | Full ECR URI (e.g., `123123123.dkr.ecr.eu-north-1.amazonaws.com/cibilex`). |
+  | `ECS_CLUSTER` | ECS cluster name (e.g., `my-cluster`). |
+  | `ECS_SERVICE` | ECS service name (e.g., `my-service`). |
+  | `CONTAINER_NAME` | Container name in task definition (e.g., `my-container`). |
+- **Variables**
+  | Variable Name | Type | Description |
+  | --------------------------- | ----------------------- | ------------------------------------------------- |
+  | `AWS_REGION` | Repository/Env variable | AWS region for ECR/ECS (e.g., `eu-north-1`). |
+  | `AWS_SESSION_NAME` | Repository/Env variable | Optional session name (default: `GitHubActions`). |
+  | `REPO_NAME` | Dynamic env variable | Extracted repo name from `$GITHUB_REPOSITORY`. |
+  | `COMMIT_HASH` | Dynamic env variable | Short SHA of current commit. |
+  | `DOCKER_LATEST_VERSION_ID` | Dynamic env variable | Docker image tag with commit hash. |
+  | `DOCKER_LATEST_VERSION_TAG` | Dynamic env variable | Docker image tag `latest`. |
