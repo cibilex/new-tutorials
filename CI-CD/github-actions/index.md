@@ -787,3 +787,19 @@ jobs:
   | `COMMIT_HASH` | Dynamic env variable | Short SHA of current commit. |
   | `DOCKER_LATEST_VERSION_ID` | Dynamic env variable | Docker image tag with commit hash. |
   | `DOCKER_LATEST_VERSION_TAG` | Dynamic env variable | Docker image tag `latest`. |
+
+ECS Rolling Update – Quick Notes
+
+- **desiredCount**: total tasks
+- **minimumHealthyPercent**: % of tasks that must stay running
+- **maximumPercent**: max % of tasks that can run during deployment
+- Formulas:
+  - **minHealthyTasks** = ceil(desiredCount \_ minimumHealthyPercent / 100)
+  - **maxRunningTasks** = floor(desiredCount \_ maximumPercent / 100)
+- Rules:
+- Start new task only if running ≤ maxRunningTasks
+- Stop old task only if running ≥ minHealthyTasks
+- minHealthy = 75% → 3 must stay → 1 old task can stop
+- maxPercent = 150% → max 6 tasks → 2 new tasks can start
+- ✅ Safe for rolling updates.
+- **Wrong setting**: minHealthy = 100%, maxPercent = 200% → deployment blocks, no room to start new task.
