@@ -1,4 +1,5 @@
 # Causative
+
 s
 
 **active cousative** : to make someone to do someting
