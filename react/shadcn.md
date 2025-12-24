@@ -1,5 +1,7 @@
 # Shadcn
 
+https://animations.dev/
+
 - Don't forget that you basically cannot use shadcn/ui with Vue.
 - shadcn/ui bir component kütüphanesi değildir.Kendi component kütüphaneni doğrudan kendi codebase’in içinde kolayca oluşturmanı sağlayan bir araç setidir
 - **Geleneksel Component Kütüphaneleri (MUI, AntD vb.)**:
@@ -112,7 +114,6 @@ Kurulum: `https://ui.shadcn.com/docs/installation/vite` linkine giderek yapılan
   - 2. `npm install @radix-ui/componentName` seçeneği ile ilgili paketi ekleyip ardından bileşeni manuel kopyalamak.
 
 Örnek: `npx shadcn@latest add button`: `components.json` dosyamızda bu değişken ile ilgili dosyaları nereye ekleyeceğini öğrenir. Mesela şuanda `components.json` dosyamızda `"ui": "@/components/ui"` olduğundan . `src/components/ui` altına `button.tsx` eklenir ve kod buraya yapıştırılır.
-Not: Tailwind buton bileşenlerinin hover efectini resetlediğinden dolayı `cursor:pointer` efektinin tüm butonlarda olmasını sağlamak için `cursor-pointer disabled:cursor-not-allowed` classını ekleyebiliriz.
 
 - **[components.json](https://ui.shadcn.com/schema.json)** dosyasında çok önemli bazı seçenekleri kontrol edelim:
 
@@ -124,4 +125,16 @@ Not: Tailwind buton bileşenlerinin hover efectini resetlediğinden dolayı `cur
     - `cssVariables:boolean=true` : shadcn'i init ettiğinizde global css dosyanızda renk değişkenlerinin tanımlandığını görürsünüz. `background` text için kullanılırken `foreground` arkaplan rengi için kullanılır.
     - `aliases.ui`: bileşenlerin nereye kopyalanacağını belirtir. Default olarak değer `@/components/ui` değeridir.
 
+- `npx shadcn@latest init` çalıştırıldığında sadece `baseColor` seçtirir ve diğer tüm özellikler default gelir.Sonradan değiştirilemeyecek özellikleri projeye herhangi bir bileşen eklemeden ayarlamalıyız. Bu yüzden aşağıdaki yolu izleyebiliriz:
+  - `npx shadcn@latest init` : ile projenize ekleyin
+  - `https://ui.shadcn.com/create` sayfasından istediğiniz stillendirmeleri seçin ve proje oluşturma komutunu çalıştırın. Oluşturulan projedeki `components.json` dosyasını kopyalayarak var olan projenizdeki `components.json` dosyasına yapıştırın.Ardından yapmanız gerekenler
+    - global css dosyasını bulun ve oluşturduğunu projedeki css dosyasını buraya yapıştırın.
+    - Eklenti kontrolleri yapın. Genellikle ben `https://ui.shadcn.com/create?base=base&font=outfit&style=mira&radius=none&template=vite` burdaki stillendirmeyi seçiyorum.Yani benim `npm i @fontsource-variable/outfit lucide-react @base-ui/react ` komutu ile gereklilikleri indirmem gerekiyor ayrıca.
+    - Varolan ui bileşenlerini silin çünkü fresh bir start yapmalıyız.
 - **MCP Server**: `npx shadcn@latest mcp init --client claude` install this to my app.
+
+### Form
+
+shadcn Form’un mantığı input render etmekten çok form alanını context zinciriyle yönetmektir. FormItem her alan için benzersiz bir id üretir ve bu id label, input ve error message arasında ortak referans olur. Ancak bu id doğrudan input’a gitmez. FormControl, FormItem context’inden gelen id, aria-invalid ve aria-describedby gibi değerleri alıp gerçek DOM elementine aktarır. FormControl kullanılmazsa erişilebilirlik zinciri kırılır.
+FormField, react-hook-form ile shadcn Form arasındaki bağlantıyı kurar ve name prop’u zorunludur. name verilmezse input form state’e hiç bağlanmaz.
+Bu yapı context’e dayalı olduğu için sıralama kritiktir: FormField > FormItem > FormControl.
