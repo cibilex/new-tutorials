@@ -1,4 +1,4 @@
-# Would, Would prefer , Would rather
+    # Would, Would prefer , Would rather
 
 **would rather,'d rather** **than**
 1. can used for present or past. vanilla verb. Use with `than` or `rather than`
@@ -28,7 +28,7 @@
   
 - I would prefer to cook alone.
 - I would prefer you to cook me.
-
+- I’d prefer tea to coffee.
 
 # would vs used to
 
