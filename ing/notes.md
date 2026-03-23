@@ -8,8 +8,8 @@
 - `plenty` + can be both singular | plural
 - `a great deal of ` + countable single | uncountable single
 - `rather than`: there are two ways to write `rather` and `than` seperately.
-  - would rather .... than ...
-  - would comperative than
+  - would rather .... than ...: `I would rather stay home than go out.`
+  - comperative than. `This book is better than that one.`
 - `by + number +s` => sayıda,miktarda
   - `by the hundreds` => yüzlerce
   - `Planets are being discovered around other starts by the thausands`=> Diğer yıldızların çevresinde binlerce gezegen keşfediliyor.
@@ -30,6 +30,19 @@
   - `nor` : öncesinde olumsuz yapı varsa, ne de anlamı verebilir.
   - `althouh` `though` gibi yapılardan sonra devrik gelemez.
 - In English, when using a structure like The [noun] is \_\_\_, the verb that follows typically uses the infinitive form ("to + verb") rather than the gerund ("verb + -ing"). `The goal is to improve.`
+- **Emotion structures in English**:
+  - in + emotion → state: `He slammed the door in anger.` => `(He was angry.)`
+  - adverbs (-ly) → manner (how): `He slammed the door angrily.`
+  - out of + emotion → cause (why): `He slammed the door out of anger.` => `(because he was angry.)`
+- `of` - `to`:
+  - solution, refer, key, response, reaction, contribute, answer: to.Others of.
+  - `The solution to this problem has remained elusive for a long time`
+  - `the cover of the book`
+  - `a reaction to an event`
+- `trekking vs hiking`: Trekking is longer than hiking.
+- `armistice vs ceasefire`: 
+  - `ceasefire`: shorter and for urgent situations for example help or cleaning casualties.
+  - `armistice`: longer and for pre-peace agreement.
 
 In this bookstore,you can find a great many books .... with gender discrimination and contemporary issues alike.
 a. to be dealt
