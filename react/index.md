@@ -17,3 +17,6 @@ function calculateFinalPrice(price, qty, taxRate) {
   return total * (1 + taxRate)
 }
 ```
+
+- React components are just JavaScript functions. The only thing we need to do is to capitalize the first letter of the function so that React can recognize the Component.
+- If a component is reused elsewhere, move it to its own file. Otherwise, check its size: if it’s long, extract it into a separate file; if not, keep it where it is used.

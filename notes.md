@@ -92,3 +92,10 @@ The `is` keyword in a type guard is like a contract with TypeScript. It says:
 - TypeScript will trust your judgment and provide proper type checking
 
 https://semaphore.io/blog/test-driven-development
+
+
+
+- Bitwise:
+  - Both are the same (they toggle the bit):
+    - `checkpoint.extras ^ CHECKPOINT_EXTRAS.AUTO_START`
+    - `(checkpoint.extras & CHECKPOINT_EXTRAS.AUTO_START) !== 0 ? checkpoint.extras & ~CHECKPOINT_EXTRAS.AUTO_START : checkpoint.extras | CHECKPOINT_EXTRAS.AUTO_START`

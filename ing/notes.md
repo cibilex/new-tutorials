@@ -43,7 +43,17 @@
 - `armistice vs ceasefire`: 
   - `ceasefire`: shorter and for urgent situations for example help or cleaning casualties.
   - `armistice`: longer and for pre-peace agreement.
-
+- `to write something to remember it`:
+  - `jot down`: quick-casual
+  - `write down`: daily-casual
+  - `make a note of`: formal-official
+  - `put down`: formal
+- 
+ - `Giving birth` → natural, biological act of bringing offspring into the world.x  
+ - `Breeding` → controlled or planned reproduction.
+- `arrive`:
+  - `in`: cities,countries. We arrived in Ankara.
+  - `at`: specific places. We arrived at Hospital.
 In this bookstore,you can find a great many books .... with gender discrimination and contemporary issues alike.
 a. to be dealt
 b. dealt

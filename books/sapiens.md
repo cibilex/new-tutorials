@@ -1,23 +1,5 @@
-14 ago,Bigbang happened and earth created.
+The first section of this book explains that our prehistoric ancestors were just one of many insignificant organisms. They could easily have been hunted or died from natural causes, so they never expected to become the conquerors of the Earth. If two organisms tend to mate with each other and can produce fertile offspring, they are grouped into the same species. If two species are similar to each other, they are classified under the same genus. If two genera share a common ancestor, they belong to the same family. For example, we belong to the species sapiens (wise), the genus Homo (man), and the family Hominidae (apes).
 
-13.7 years ago the energy,place and time connect with each other and create molecules>chemistry
-
-4 billion years ago,certain molecules combined and first animate created
-
-400.000 years ago neandertals ,70.000 years ago homo sapiens
-
-homo means "human" and sapien means "wise" in latin.
-
-Biolojide genus+species ile tanımlar yapılır.Yani insanlar için homo bir genus ve sapiens bir türdür.
-
-Maymunlar alemine aitiz ve en yakın akrabamız şempanzeler(6 milyar yıl önceye dayanır) ve gorillalar.
-
-
-before 14 billions years ago matter,time,space and enery coalesced and being our universe.This event is called phsics.After 300 hundred years,Energy and matter coalesced and being atoms and after a while atoms coalesced and being moleculesç.This event is called Chemistery.
-4 billions years ago the first organiscm erased with molecules .This event is called biology.The first cognitive organism is erased before 70.000 years ago but there was a organisms like sapiens before 2 millions years ago called prehistoric humans.
-
-In the biology species refers to a group of organisms tending to mate each other and give fertile offsprings.For example horses and monkeys are related and looks like each other but don't tend to mate each other and give strerile offsprings although spaniels and bulldogs give fertile offsprings.
-There are also a terms called "family" and "genres" in biology.Family have higher taxonomic rank then genres.When specified an organism should called as <genre> + <species> like homo sapiens or panthera lions.
 
 Sapiens and chimpanzees have the same relatively common ancestor and they are in the same family with gorillas and oran-utans.
 
