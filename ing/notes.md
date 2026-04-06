@@ -54,6 +54,9 @@
 - `arrive`:
   - `in`: cities,countries. We arrived in Ankara.
   - `at`: specific places. We arrived at Hospital.
+- `It wasn't until ... that`
+  - `It wasn't until I met him that I understood he was an important man` =>  `I understood that he was an important man after I met him`
+  - `It wasn't until yesterday that they completed the task` => `They finally completed the task yesterday`
 In this bookstore,you can find a great many books .... with gender discrimination and contemporary issues alike.
 a. to be dealt
 b. dealt

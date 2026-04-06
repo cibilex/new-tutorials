@@ -1,24 +1,21 @@
-# Whether vs If
+Whether
 
-## Whether
-- Used for **alternatives / options**  
-- Forms: 
-  - `whether + SVO` → *I’m not sure whether he will come*  
-  - `whether + to + V` → *We are not sure whether to call him*  
-- Can use **or not** → *whether or not*  
-- Formal; preferred in writing  
+Alternatives/options → whether + SVO / whether + to + V
+Can use or not → whether or not
+Formal, good for writing
 
-## If
-- Used for **conditions** → *If it rains, we will stay home*  
-- Can replace **whether** in **informal speech**  
-- Cannot use **or not**  
+If
 
-## Reported Speech
-- Both **if** and **whether** work → *He asked if/whether I was from Turkey*  
+Conditions → If it rains…
+Informal replacement for whether in speech
+Cannot use or not
 
-## Examples
-- I’m not sure **whether we will win**.  
-- We aren’t sure **whether to call him**.  
-- **If he allows us**, we can do it.  
-- He asked **if/whether I was from Turkey**.  
-- Do you know **whether he will come**?
+Reported speech → both work → He asked if/whether…
+
+Examples
+
+I’m not sure whether we will win.
+We aren’t sure whether to call him.
+If he allows us, we can do it.
+He asked if/whether I was from Turkey.
+Do you know whether he will come?
