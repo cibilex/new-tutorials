@@ -307,6 +307,17 @@ Explains the reason for the emotion.
 - *No matter how difficult the project is, we will complete it on time.*
 - *No matter the weather, the game goes on.*
 
+## fragile / frail / brittle
+
+- **fragile**: kırılgan, narin. Easily broken or damaged. Used for objects, and also for abstract things such as peace, economy, ego.
+  - *Be careful with that box, the glasses inside are fragile.*
+  - *The ceasefire is still fragile.*
+- **frail**: güçsüz, cılız. Physically weak, usually because of old age or illness. Used for people.
+  - *My grandmother has become very frail since her surgery.*
+- **brittle**: gevrek, kolay kırılan. Hard but breaks or snaps easily instead of bending. Used for materials such as bones, nails, hair, plastic.
+  - *Old plastic becomes brittle in the cold.*
+  - *Calcium deficiency can make your bones brittle.*
+
 ## To look up
 
 mediate, alleviate, mitigate, refute
