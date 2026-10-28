@@ -1,5 +1,5 @@
 # Start from the Bitnami PostgreSQL image
-FROM bitnami/postgresql:latest
+FROM soldevelo/postgresql:latest
 
 # Switch to root user to install packages
 USER root

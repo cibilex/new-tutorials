@@ -17,7 +17,7 @@ services:
       - "5432:5432"
   redis:
     container_name: poss-redis
-    image: bitnami/redis:latest
+    image: soldevelo/redis:latest
     environment:
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
       - REDIS_PASSWORD=redis_password
